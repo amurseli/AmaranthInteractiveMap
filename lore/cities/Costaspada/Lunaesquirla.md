@@ -1,0 +1,2 @@
+<h4>Lunaesquirla</h4>
+<p>La ciudad de los colores, con calles y edificios pintados y hermosamente decorados, la ciudad-estado de Lunaesquirla es una de las más pequeñas de la Costa, pero para nada la menos relevante. Puesto que carecen de puerto y extensas tierras, Lunaesquirla centra su poco espacio de campo en la plantación de tintes exóticos y de calidad, así como la elaboración textil. Su sistema de gobierno es un parlamento partidario, que cuenta con un consejo con ocho integrantes permanentes que rotan cada ocho años.</p>
