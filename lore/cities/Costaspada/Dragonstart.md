@@ -1,0 +1,2 @@
+<h2>Dragonstart</h2>
+<p>La ciudad del Ascua es actualmente la única ciudad-estado de la costa de la espada que no forma parte la alianza de los lores, puesto que su tipo de gobierno es diferente al resto. Poco se conoce actualmente de este sistema de gobierno puesto que es extremadamente difícil ingresar a la ciudad. Exportan e importan muy poca materia, y son autosuficientes. La ciudad está construida en torno a Kilm-Derthes, el segundo volcán más grande del mundo, que actualmente se encuentra inactivo.</p>
