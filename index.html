@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Scripts/leaflet.css">
     <script src="Scripts/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         /* Asegura que la sidebar esté oculta inicialmente */
         #sidebar {
@@ -50,7 +51,9 @@
                     return response.text();
                 })
                 .then(data => {
-                    document.getElementById('sidebar-content').innerHTML = data;
+                    // Convertir el texto en Markdown a HTML usando marked.js
+                    const htmlContent = marked(data);
+                    document.getElementById('sidebar-content').innerHTML = htmlContent;
                     document.getElementById('sidebar').style.display = 'block';
                 })
                 .catch(error => {
@@ -59,7 +62,6 @@
                     document.getElementById('sidebar').style.display = 'block';
                 });
         }
-
 
         // Función para mostrar la sidebar
         function showSidebar(content) {
