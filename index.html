@@ -28,9 +28,7 @@
 
     <!-- Sidebar -->
     <div id="sidebar">
-        <h2>Detalles</h2>
         <p id="sidebar-content">Contenido del marcador aquí</p>
-        <button onclick="closeSidebar()">Cerrar</button>
     </div>
 
     <script type="text/javascript">
@@ -42,6 +40,26 @@
             minZoom: 3,
             maxZoom: 6,
         }).addTo(map);
+
+        function showSidebarFromFile(filePath) {
+            fetch(filePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al cargar el archivo');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('sidebar-content').innerHTML = data;
+                    document.getElementById('sidebar').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error al cargar el contenido:', error);
+                    document.getElementById('sidebar-content').innerHTML = '<p>Error al cargar el contenido.</p>';
+                    document.getElementById('sidebar').style.display = 'block';
+                });
+        }
+
 
         // Función para mostrar la sidebar
         function showSidebar(content) {
@@ -58,13 +76,13 @@
         var cityOrientroost = L.marker([37.753344, -29.11377]).addTo(map);
         cityOrientroost.bindPopup("<b>Orientroost</b> <a href='lore/Orientroost.md' target='_blank'>Ver detalles en archivo.md</a>");
         cityOrientroost.on('click', function() {
-            showSidebar('<h3>Orientroost</h3><p>Detalles sobre Orientroost.</p><a href="lore/Orientroost.md" target="_blank">Ver detalles en archivo.md</a>');
+            showSidebarFromFile('lore/Orientroost.md');
         });
 
         var cityLunasquirla = L.marker([47.931066, -28.168945]).addTo(map);
         cityLunasquirla.bindPopup("<b>Lunaesquirla</b>");
         cityLunasquirla.on('click', function() {
-            showSidebar('<h3>Lunaesquirla</h3><p>Detalles sobre Lunaesquirla.</p>');
+            showSidebar('<h3>Lunaesquirla</h3><p>La ciudad de los colores, con calles y edificios pintados y hermosamente decorados, la ciudad-estado de Lunaesquirla es una de las más pequeñas de la Costa, pero para nada la menos relevante. Puesto que carecen de puerto y extensas tierras, Luneasquirla centra su poco espacio decampo en la plantacion de tintes exóticos y de calidad, así como la elaboración textil. Su sistema de gobierno es un parlamento partidario, que cuenta con un consejo con ocho integrantes permanentes que rotan cada ocho años.</p>');
         });
 
         var cityCiudantigua = L.marker([47.709762, -8.920898]).addTo(map);
@@ -94,7 +112,7 @@
         var cityBaldursGate = L.marker([34.831841, -34.321289]).addTo(map);
         cityBaldursGate.bindPopup("<b>Baldur's Gate</b>");
         cityBaldursGate.on('click', function() {
-            showSidebar('<h3>Baldur\'s Gate</h3><p>Detalles sobre Baldur\'s Gate.</p>');
+            showSidebar("<h3>Baldur\'s Gate</h3><p>Detalles sobre Baldur\'s Gate.</p>");
         });
 
         // Grupo de marcadores
