@@ -103,6 +103,9 @@
             "Cities": cities,
         };
         L.control.layers(null, overlays).addTo(map);
+        map.on('click', function() {
+            closeSidebar();
+        });
     </script>
 </body>
 </html>
