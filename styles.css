@@ -3,21 +3,6 @@ body {
     background-color: #222;
     color: white;
     padding: 20px;
-    max-width: 800px;
-    margin: auto;
+    margin: 0;
     line-height: 1.6;
-}
-
-h1 {
-    color: #f5a623;
-}
-
-pre, code {
-    background: #333;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-a {
-    color: #f5a623;
 }
