@@ -7,33 +7,75 @@
     <script src="Scripts/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        /* Asegura que la sidebar esté oculta inicialmente */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        #navbar {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            gap: 15px;
+        }
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        #navbar a:hover {
+            text-decoration: underline;
+        }
+        #map-container {
+            flex: 1;
+            position: relative;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        /* Sidebar styles */
         #sidebar {
             display: none;
             position: fixed;
-            top: 0;
+            top: 50px; /* To not overlap navbar */
             right: 0;
             width: 300px;
-            height: 100%;
+            height: calc(100% - 50px);
             background-color: #f1f1f1;
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
             padding: 20px;
             overflow-y: auto;
-
             z-index: 1000;
+        }
+        #close-sidebar {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: red;
+            font-weight: bold;
         }
     </style>
 </head>
-<body style="height: 100%; margin: 0;">
-    <div id="map" style="width: 100%; height: 100%; background: #222222;"></div>
+<body>
+    <div id="navbar">
+        <a href="index.html">Map</a>
+        <a href="stories.html">Stories</a>
+    </div>
+
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
 
     <!-- Sidebar -->
     <div id="sidebar">
+        <span id="close-sidebar" onclick="closeSidebar()">✖ Close</span>
         <p id="sidebar-content">Contenido del marcador aquí</p>
     </div>
 
     <script type="text/javascript">
-        // Crear el mapa
         var map = L.map('map').setView([0, 0], 0);
         L.tileLayer('map/{z}/{x}/{y}.png', {
             continuousWorld: false,
@@ -44,42 +86,27 @@
 
         function showSidebarFromFile(filePath) {
             fetch(filePath)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error al cargar el archivo');
-                    }
-                    return response.text();
-                })
+                .then(response => response.text())
                 .then(data => {
                     document.getElementById('sidebar-content').innerHTML = data;
                     document.getElementById('sidebar').style.display = 'block';
                 })
                 .catch(error => {
-                    console.error('Error al cargar el contenido:', error);
-                    document.getElementById('sidebar-content').innerHTML = '<p>Error al cargar el contenido.</p>';
+                    console.error('Error loading content:', error);
+                    document.getElementById('sidebar-content').innerHTML = '<p>Error loading content.</p>';
                     document.getElementById('sidebar').style.display = 'block';
                 });
         }
 
-
-        // Función para mostrar la sidebar
-        function showSidebar(content) {
-            document.getElementById('sidebar-content').innerHTML = content;
-            document.getElementById('sidebar').style.display = 'block';
-        }
-
-        // Función para cerrar la sidebar
         function closeSidebar() {
             document.getElementById('sidebar').style.display = 'none';
         }
 
-        // Marcadores
         var cityOrientroost = L.marker([37.753344, -29.11377]).addTo(map);
         cityOrientroost.bindPopup("<b>Orientroost</b> <a href='lore/Orientroost.md' target='_blank'>Ver detalles en archivo.md</a>");
         cityOrientroost.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/Orientroost.md');
         });
-
         var cityLunasquirla = L.marker([47.931066, -28.168945]).addTo(map);
         cityLunasquirla.bindPopup("<b>Lunaesquirla</b>");
         cityLunasquirla.on('click', function() {
@@ -122,6 +149,7 @@
             "Cities": cities,
         };
         L.control.layers(null, overlays).addTo(map);
+
         map.on('click', function() {
             closeSidebar();
         });
