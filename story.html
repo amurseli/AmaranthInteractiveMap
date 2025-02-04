@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #222;
+            color: white;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        h1 {
+            color: #f5a623;
+        }
+
+        pre, code {
+            background: #333;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        a {
+            color: #f5a623;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="story-title">Cargando historia...</h1>
+    <div id="story-content">Por favor espera...</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Obtener el parámetro de la historia desde la URL
+        const params = new URLSearchParams(window.location.search);
+        const storyFile = params.get("story");
+
+        if (storyFile) {
+            fetch(`lore/stories/${storyFile}.md`)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById("story-title").innerText = storyFile.replace("-", " ");
+                    document.getElementById("story-content").innerHTML = marked.parse(text);
+                })
+                .catch(error => {
+                    document.getElementById("story-content").innerHTML = "<p>Error al cargar la historia.</p>";
+                });
+        } else {
+            document.getElementById("story-content").innerHTML = "<p>No se encontró la historia.</p>";
+        }
+    </script>
+
+</body>
+</html>

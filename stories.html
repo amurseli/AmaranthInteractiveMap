@@ -1,57 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Amaranth Stories</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <title>Amaranth Stories</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background-color: #222;
+            color: white;
         }
+
+        /* Barra de navegación */
         #navbar {
             background-color: #333;
             padding: 10px;
-            width: 100%;
-            text-align: center;
+            display: flex;
+            gap: 15px;
         }
         #navbar a {
             color: white;
             text-decoration: none;
             font-size: 18px;
-            margin: 0 10px;
         }
         #navbar a:hover {
             text-decoration: underline;
         }
-        #content {
-            max-width: 800px;
+
+        /* Contenedor de historias */
+        .stories-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* Estilos de las tarjetas */
+        .story-card {
+            background: #444;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .story-card:hover {
+            transform: scale(1.05);
+            background: #555;
+        }
+
+        .story-card h3 {
+            margin: 10px 0;
+        }
+
+        .story-card p {
+            font-size: 14px;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
+
+    <!-- Barra de navegación -->
     <div id="navbar">
-        <a href="index.html">Map</a>
-        <a href="stories.html">Stories</a>
+        <a href="index.html">Mapa</a>
+        <a href="stories.html">Historias</a>
     </div>
 
-    <div id="content">
-        <h1>Short Stories</h1>
-        <div id="story-container"></div>
+    <!-- Contenedor de historias -->
+    <div class="stories-container">
+        <div class="story-card" onclick="location.href='story.html?story=padre_pluvio'">
+            <h3>El Padre Pluvio</h3>
+            <p>Una historia corta ilustrativa sobre el génesis.</p>
+        </div>
+        
     </div>
 
-    <script>
-        fetch('stories/main.md')
-            .then(response => response.text())
-            .then(text => {
-                document.getElementById('story-container').innerHTML = marked.parse(text);
-            })
-            .catch(error => console.error('Error loading stories:', error));
-    </script>
 </body>
 </html>
