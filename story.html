@@ -37,15 +37,19 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
-        // Obtener el parámetro de la historia desde la URL
+        // Obtener los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
         const storyFile = params.get("story");
-
+        const storyTitle = params.get("title") ? decodeURIComponent(params.get("title")) : "Historia Desconocida";
+    
+        // Asignar el título a la página
+        document.title = storyTitle;
+        document.getElementById("story-title").innerText = storyTitle;
+    
         if (storyFile) {
             fetch(`lore/stories/${storyFile}.md`)
                 .then(response => response.text())
                 .then(text => {
-                    document.getElementById("story-title").innerText = storyFile.replace("-", " ");
                     document.getElementById("story-content").innerHTML = marked.parse(text);
                 })
                 .catch(error => {
@@ -55,6 +59,7 @@
             document.getElementById("story-content").innerHTML = "<p>No se encontró la historia.</p>";
         }
     </script>
+    
 
 </body>
 </html>
