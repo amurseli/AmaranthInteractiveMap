@@ -1,0 +1,9 @@
+##Ciudantigua
+
+Ciudantigua, o Antigua Azul, fue la primer ciudad fundada posterior a la caída de La Unión. La mayoría de los grandes pensadores, magos y eruditos provienen de Ciudantigua o de las zonas circundantes. A diferencia del resto de las ciudades de Costaspada, Ciudantigua no está regida por las decisiones tomadas por la Alianza de Lores, sino que, similar a el reino de Redhán, miles de kilómetros al sur, Ciudantigua se encuentra gobernado por un único lord, el Alto Señor Plaudinax. La tierra de Ciudantigua, y la península Peria en general contienen una enorme cantidad de recursos y, por ende, la ciudad exporta de todos los productos, pero su principal recurso es el desarrollo.
+
+En el centro de la ciudad, a varios kilómetros de cualquier muralla, viniendo por la ciudad o por el mar se puede llegar a la famosa Academia Eviterna de lo Mágico y Oculto, conocida y prestigiosa en todo Amaranth. Salvo contadas ocasiones, todos los grandes magos, hechiceros, brujos, bardos, artificieros, alquimistas y demás usuarios de magia pasaron en algun momento por sus enormes puertas. La academia es gigante, y juega un rol importantísimo en la vida de todos los ciudadanos de la ciudad, aumentando enormemente el turismo y atrayendo gente nueva y dispuesta a vivir en la ciudad.
+
+El puerto de Antigua Azul, Puerto Gravius, tamién es una parte central de la vida de los ciudadanos. Es la única ciudad con puerto hacia el Mar de Ícate de Costaspada y con fácil acceso tanto a las Islas Boreales como a la Ciudad de Modea y al puerto de Nueva Modeana.
+
+Considerado todo esto, no sería exagerado decir que Ciudantigua
