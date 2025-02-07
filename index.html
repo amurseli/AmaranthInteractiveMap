@@ -88,11 +88,14 @@
             fetch(filePath)
                 .then(response => response.text())
                 .then(data => {
-                    document.getElementById('sidebar-content').innerHTML = data;
+                    // Create a title from cityName and add it before the markdown content
+                    const titleHTML = `<h2>${cityName}</h2>`;
+                    document.getElementById('sidebar-content').innerHTML = titleHTML + data;
 
-                    if (cityName && regionName) { // Asegurarnos de que tienen valores válidos
+                    if (cityName && regionName) {
                         const cityEncoded = encodeURIComponent(cityName);
                         const regionEncoded = encodeURIComponent(regionName);
+
                         const readMoreLink = `<br><a href="city_lore.html?city=${cityEncoded}&region=${regionEncoded}&title=${cityEncoded}" target="_blank">Leer Más</a>`;
 
                         document.getElementById('sidebar-content').innerHTML += readMoreLink;
@@ -108,6 +111,7 @@
                     document.getElementById('sidebar').style.display = 'block';
                 });
         }
+
 
 
 
