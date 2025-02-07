@@ -73,7 +73,6 @@
     <div id="sidebar">
         <span id="close-sidebar" onclick="closeSidebar()">✖ Close</span>
         <p id="sidebar-content">Contenido del marcador aquí</p>
-        <span id="read-more" onclick="openCityLore()">Leer Más </span>
     </div>
 
     <script type="text/javascript">
@@ -91,12 +90,16 @@
                 .then(data => {
                     document.getElementById('sidebar-content').innerHTML = data;
 
-                    // Generar el enlace con parámetros para city_lore.html
-                    const cityEncoded = encodeURIComponent(cityName);
-                    const regionEncoded = encodeURIComponent(regionName);
-                    const readMoreLink = `<br><a href="city_lore.html?city=${cityEncoded}&region=${regionEncoded}&title=${cityEncoded}" target="_blank">Leer Más</a>`;
+                    if (cityName && regionName) { // Asegurarnos de que tienen valores válidos
+                        const cityEncoded = encodeURIComponent(cityName);
+                        const regionEncoded = encodeURIComponent(regionName);
+                        const readMoreLink = `<br><a href="city_lore.html?city=${cityEncoded}&region=${regionEncoded}&title=${cityEncoded}" target="_blank">Leer Más</a>`;
 
-                    document.getElementById('sidebar-content').innerHTML += readMoreLink;
+                        document.getElementById('sidebar-content').innerHTML += readMoreLink;
+                    } else {
+                        console.error("Error: Parámetros de ciudad o región no definidos.");
+                    }
+
                     document.getElementById('sidebar').style.display = 'block';
                 })
                 .catch(error => {
@@ -105,6 +108,7 @@
                     document.getElementById('sidebar').style.display = 'block';
                 });
         }
+
 
 
         function closeSidebar() {

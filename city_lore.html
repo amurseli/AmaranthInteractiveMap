@@ -37,17 +37,16 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
-        // Obtener los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
         const cityFile = params.get("city");
-        const regionFile = params.get("region"); // Capturar la región correctamente
+        const regionFile = params.get("region");
         const cityTitle = params.get("title") ? decodeURIComponent(params.get("title")) : "Historia Desconocida";
 
-        // Asignar el título a la página
-        document.title = cityTitle;
-        document.getElementById("city-title").innerText = cityTitle;
+        // Validamos que cityFile y regionFile existan antes de cargar la historia
+        if (cityFile && regionFile && cityFile !== "undefined" && regionFile !== "undefined") {
+            document.title = cityTitle;
+            document.getElementById("city-title").innerText = cityTitle;
 
-        if (cityFile && regionFile) {
             fetch(`lore/cities/${regionFile}/${cityFile}.md`)
                 .then(response => response.text())
                 .then(text => {
@@ -57,7 +56,9 @@
                     document.getElementById("city-content").innerHTML = "<p>Error al cargar la historia.</p>";
                 });
         } else {
-            document.getElementById("city-content").innerHTML = "<p>No se encontró la historia.</p>";
+            document.title = "Error - Historia no encontrada";
+            document.getElementById("city-title").innerText = "Historia no encontrada";
+            document.getElementById("city-content").innerHTML = "<p>No se encontró la historia. Asegúrate de acceder desde un marcador válido.</p>";
         }
 
     </script>
