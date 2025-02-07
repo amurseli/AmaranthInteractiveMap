@@ -85,11 +85,18 @@
             maxZoom: 6,
         }).addTo(map);
 
-        function showSidebarFromFile(filePath) {
+        function showSidebarFromFile(filePath, cityName, regionName) {
             fetch(filePath)
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('sidebar-content').innerHTML = data;
+
+                    // Generar el enlace con parámetros para city_lore.html
+                    const cityEncoded = encodeURIComponent(cityName);
+                    const regionEncoded = encodeURIComponent(regionName);
+                    const readMoreLink = `<br><a href="city_lore.html?city=${cityEncoded}&region=${regionEncoded}&title=${cityEncoded}" target="_blank">Leer Más</a>`;
+
+                    document.getElementById('sidebar-content').innerHTML += readMoreLink;
                     document.getElementById('sidebar').style.display = 'block';
                 })
                 .catch(error => {
@@ -98,6 +105,7 @@
                     document.getElementById('sidebar').style.display = 'block';
                 });
         }
+
 
         function closeSidebar() {
             document.getElementById('sidebar').style.display = 'none';
