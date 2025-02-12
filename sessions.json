@@ -1,0 +1,9 @@
+{
+    "sessions": [
+      { "id": 1, "title": "Primera Sesión", "connections": [2, 3] },
+      { "id": 2, "title": "Segunda Sesión", "connections": [4] },
+      { "id": 3, "title": "Tercera Sesión", "connections": [4] },
+      { "id": 4, "title": "Cuarta Sesión", "connections": [] }
+    ]
+  }
+  

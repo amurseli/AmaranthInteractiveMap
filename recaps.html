@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recaps - Amaranth World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            color: white;
+        }
+
+        /* Barra de navegación */
+        #navbar {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            gap: 15px;
+        }
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        #navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Título */
+        h1 {
+            color: #f5a623;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Contenedor para el gráfico */
+        #network {
+            width: 80%;
+            height: 500px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            background-color: #222; /* Asegurarnos de que no sea blanco */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <div id="navbar">
+        <a href="index.html">Mapa</a>
+        <a href="stories.html">Historias</a>
+        <a href="recaps.html">Recaps</a>
+    </div>
+
+    <!-- Título -->
+    <h1>Recaps de Sesiones</h1>
+
+    <!-- Contenedor para el gráfico -->
+    <div id="network"></div>
+
+    <!-- Cargar librería vis.js -->
+    <script src="node_modules/vis-network/standalone/umd/vis-network.min.js"></script>
+
+
+    <script>
+        // Función para leer el archivo JSON y construir la red de nodos
+        window.onload = function() {
+            // Asegurarse de que la librería esté cargada antes de continuar
+            if (typeof vis === 'undefined') {
+                console.error('vis-network no ha sido cargado correctamente.');
+                return;
+            }
+
+            fetch('sessions.json')
+                .then(response => response.json())
+                .then(jsonData => { // Renombramos 'data' a 'jsonData' aquí
+                    const sessions = jsonData.sessions;
+
+                    // Crear el array de nodos y aristas
+                    const nodes = new vis.DataSet();
+                    const edges = new vis.DataSet();
+
+                    // Crear los nodos (puntos)
+                    sessions.forEach((session, index) => {
+                        nodes.add({
+                            id: session.id,
+                            label: session.title,
+                            shape: 'dot',
+                            size: 15,
+                            color: '#f5a623'
+                        });
+
+                        // Crear las conexiones (aristas) entre los puntos
+                        if (index < sessions.length - 1) {
+                            edges.add({
+                                from: session.id,
+                                to: sessions[index + 1].id,
+                                color: '#f5a623'
+                            });
+                        }
+                    });
+
+                    // Crear el gráfico
+                    const container = document.getElementById('network');
+                    const networkData = {
+                        nodes: nodes,
+                        edges: edges
+                    };
+                    const options = {
+                        layout: {
+                            improvedLayout: true,
+                            hierarchical: {
+                                direction: 'LR', // Línea de izquierda a derecha
+                                sortMethod: 'directed',
+                            }
+                        },
+                        physics: {
+                            enabled: false
+                        },
+                        nodes: {
+                            font: {
+                                size: 12,
+                                color: '#333'
+                            },
+                            borderWidth: 2
+                        },
+                        edges: {
+                            width: 2,
+                            color: {
+                                color: '#f5a623',
+                                highlight: '#f5a623'
+                            },
+                            smooth: {
+                                enabled: true
+                            }
+                        }
+                    };
+
+                    // Inicializar la red
+                    const network = new vis.Network(container, networkData, options);
+                })
+                .catch(error => console.error('Error cargando el archivo JSON:', error));
+        };
+    </script>
+
+</body>
+</html>
