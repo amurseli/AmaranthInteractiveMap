@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recaps - Amaranth World</title>
+    <script src="https://unpkg.com/marked/marked.min.js"></script> <!-- Convertir Markdown a HTML -->
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        html, body {
             margin: 0;
             padding: 0;
+            height: 100%;
             background-color: #222;
             color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
         }
 
         /* Barra de navegación */
@@ -19,6 +22,11 @@
             padding: 10px;
             display: flex;
             gap: 15px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
         }
         #navbar a {
             color: white;
@@ -29,20 +37,38 @@
             text-decoration: underline;
         }
 
-        /* Título */
-        h1 {
-            color: #f5a623;
-            margin-top: 20px;
-            text-align: center;
+        /* Contenedor del gráfico */
+        #network {
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100vw;
+            height: calc(100vh - 50px);
+            background-color: #222;
         }
 
-        /* Contenedor para el gráfico */
-        #network {
-            width: 80%;
-            height: 500px;
-            margin: 50px auto;
-            border: 1px solid #ccc;
-            background-color: #222; /* Asegurarnos de que no sea blanco */
+        /* Panel de resumen */
+        #recap-panel {
+            position: fixed;
+            right: 0;
+            top: 50px;
+            width: 40%;
+            height: calc(100vh - 50px);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+            display: none;
+        }
+        #close-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -55,16 +81,24 @@
         <a href="recaps.html">Recaps</a>
     </div>
 
-    <!-- Título -->
-    <h1>Sesiones</h1>
-
     <!-- Contenedor para el gráfico -->
     <div id="network"></div>
+
+    <!-- Panel de resumen -->
+    <div id="recap-panel">
+        <button id="close-panel">X</button>
+        <h2 id="recap-title">Resumen de Sesión</h2>
+        <div id="recap-content">Selecciona una sesión para ver el resumen...</div>
+    </div>
 
     <!-- Cargar librería vis.js -->
     <script src="https://unpkg.com/vis-network@9.1.2/standalone/umd/vis-network.min.js"></script>
 
     <script>
+        document.getElementById('close-panel').addEventListener('click', function () {
+            document.getElementById('recap-panel').style.display = 'none';
+        });
+
         window.onload = function() {
             fetch('sessions.json')
                 .then(response => response.json())
@@ -72,11 +106,9 @@
                     const sessions = jsonData.sessions;
                     const connections = jsonData.connections;
     
-                    // Crear el array de nodos y aristas
                     const nodes = new vis.DataSet();
                     const edges = new vis.DataSet();
     
-                    // Crear los nodos (puntos)
                     sessions.forEach((session) => {
                         nodes.add({
                             id: session.id,
@@ -87,8 +119,7 @@
                             font: { color: session.labelColor || 'white' }
                         });
                     });
-    
-                    // Crear las conexiones (aristas) entre los puntos
+
                     connections.forEach((connection) => {
                         edges.add({
                             from: connection.from,
@@ -96,19 +127,13 @@
                             color: connection.color || '#a65628'
                         });
                     });
-    
-                    // Crear el gráfico
+
                     const container = document.getElementById('network');
-                    const networkData = {
-                        nodes: nodes,
-                        edges: edges
-                    };
-    
+                    const networkData = { nodes, edges };
                     const options = {
                         layout: {
                             improvedLayout: false,
                             randomSeed: Math.floor(Math.random() * 1000)
-
                         },
                         physics: {
                             enabled: true,
@@ -119,31 +144,46 @@
                                 springConstant: 0.8,
                                 damping: 0.4
                             },
-                            stabilization: {
-                                iterations: 200,
-                                updateInterval: 25
-                            }
+                            stabilization: { iterations: 200, updateInterval: 25 }
                         },
-                        nodes: {
-                            font: {
-                                size: 12
-                            },
-                            borderWidth: 2
-                        },
-                        edges: {
-                            width: 2,
-                            color: {
-                                color: '#a65628',
-                                highlight: '#a65628'
-                            },
-                            smooth: {
-                                enabled: true
-                            }
-                        }
+                        nodes: { font: { size: 12 }, borderWidth: 2 },
+                        edges: { width: 2, color: { color: '#a65628', highlight: '#a65628' }, smooth: true }
                     };
-    
-                    // Inicializar la red
+
                     const network = new vis.Network(container, networkData, options);
+
+                    // Evento de clic en un nodo
+                    network.on("click", function (params) {
+                        if (params.nodes.length > 0) {
+                            const nodeId = params.nodes[0];
+                            loadRecap(nodeId);
+                        }
+                    });
+
+                    function loadRecap(sessionId) {
+                        const recapPanel = document.getElementById('recap-panel');
+                        const recapContent = document.getElementById('recap-content');
+                        const recapTitle = document.getElementById('recap-title');
+
+                        // Cambiar el título del panel
+                        const session = sessions.find(s => s.id === sessionId);
+                        recapTitle.innerText = session ? session.title : 'Resumen de Sesión';
+
+                        // Cargar el archivo Markdown correspondiente
+                        fetch(`recaps/session-${sessionId}.md`)
+                            .then(response => {
+                                if (!response.ok) throw new Error('No se encontró el resumen.');
+                                return response.text();
+                            })
+                            .then(markdown => {
+                                recapContent.innerHTML = marked.parse(markdown);
+                                recapPanel.style.display = 'block';
+                            })
+                            .catch(error => {
+                                recapContent.innerHTML = '<p>Error al cargar el resumen.</p>';
+                                recapPanel.style.display = 'block';
+                            });
+                    }
                 })
                 .catch(error => console.error('Error cargando el archivo JSON:', error));
         };
