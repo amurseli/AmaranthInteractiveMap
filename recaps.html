@@ -170,7 +170,7 @@
                         recapTitle.innerText = session ? session.title : 'Resumen de Sesión';
 
                         // Cargar el archivo Markdown correspondiente
-                        fetch(`recaps/session-${sessionId}.md`)
+                        fetch(`sessions/${sessionId}.md`)
                             .then(response => {
                                 if (!response.ok) throw new Error('No se encontró el resumen.');
                                 return response.text();
