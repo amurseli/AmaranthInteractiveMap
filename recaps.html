@@ -56,7 +56,7 @@
     </div>
 
     <!-- Título -->
-    <h1>Recaps de Sesiones</h1>
+    <h1>Sesiones</h1>
 
     <!-- Contenedor para el gráfico -->
     <div id="network"></div>
@@ -93,7 +93,7 @@
                         edges.add({
                             from: connection.from,
                             to: connection.to,
-                            color: '#a65628'
+                            color: connection.color || '#a65628'
                         });
                     });
     
@@ -107,7 +107,8 @@
                     const options = {
                         layout: {
                             improvedLayout: false,
-                            randomSeed: 1
+                            randomSeed: Math.floor(Math.random() * 1000)
+
                         },
                         physics: {
                             enabled: true,
@@ -115,7 +116,7 @@
                                 gravitationalConstant: -2000,
                                 centralGravity: 0.3,
                                 springLength: 100,
-                                springConstant: 0.08,
+                                springConstant: 0.8,
                                 damping: 0.4
                             },
                             stabilization: {
