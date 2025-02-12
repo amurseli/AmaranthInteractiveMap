@@ -66,25 +66,19 @@
 
 
     <script>
-        // Función para leer el archivo JSON y construir la red de nodos
         window.onload = function() {
-            // Asegurarse de que la librería esté cargada antes de continuar
-            if (typeof vis === 'undefined') {
-                console.error('vis-network no ha sido cargado correctamente.');
-                return;
-            }
-
             fetch('sessions.json')
                 .then(response => response.json())
-                .then(jsonData => { // Renombramos 'data' a 'jsonData' aquí
+                .then(jsonData => { 
                     const sessions = jsonData.sessions;
-
+                    const connections = jsonData.connections; // Cargar las conexiones
+    
                     // Crear el array de nodos y aristas
                     const nodes = new vis.DataSet();
                     const edges = new vis.DataSet();
-
+    
                     // Crear los nodos (puntos)
-                    sessions.forEach((session, index) => {
+                    sessions.forEach((session) => {
                         nodes.add({
                             id: session.id,
                             label: session.title,
@@ -92,33 +86,42 @@
                             size: 15,
                             color: '#f5a623'
                         });
-
-                        // Crear las conexiones (aristas) entre los puntos
-                        if (index < sessions.length - 1) {
-                            edges.add({
-                                from: session.id,
-                                to: sessions[index + 1].id,
-                                color: '#f5a623'
-                            });
-                        }
                     });
-
+    
+                    // Crear las conexiones (aristas) entre los puntos
+                    connections.forEach((connection) => {
+                        edges.add({
+                            from: connection.from,
+                            to: connection.to,
+                            color: '#f5a623'
+                        });
+                    });
+    
                     // Crear el gráfico
                     const container = document.getElementById('network');
                     const networkData = {
                         nodes: nodes,
                         edges: edges
                     };
+    
                     const options = {
                         layout: {
-                            improvedLayout: true,
-                            hierarchical: {
-                                direction: 'LR', // Línea de izquierda a derecha
-                                sortMethod: 'directed',
-                            }
+                            improvedLayout: false,
+                            randomSeed: 1
                         },
                         physics: {
-                            enabled: false
+                            enabled: true,
+                            barnesHut: {
+                                gravitationalConstant: -2000,
+                                centralGravity: 0.3,
+                                springLength: 100,
+                                springConstant: 0.08,
+                                damping: 0.4
+                            },
+                            stabilization: {
+                                iterations: 200,
+                                updateInterval: 25
+                            }
                         },
                         nodes: {
                             font: {
@@ -138,13 +141,16 @@
                             }
                         }
                     };
-
+    
                     // Inicializar la red
                     const network = new vis.Network(container, networkData, options);
                 })
                 .catch(error => console.error('Error cargando el archivo JSON:', error));
         };
     </script>
+    
+    
+    
 
 </body>
 </html>
