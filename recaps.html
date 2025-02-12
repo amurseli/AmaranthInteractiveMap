@@ -64,14 +64,13 @@
     <!-- Cargar librería vis.js -->
     <script src="node_modules/vis-network/standalone/umd/vis-network.min.js"></script>
 
-
     <script>
         window.onload = function() {
             fetch('sessions.json')
                 .then(response => response.json())
                 .then(jsonData => { 
                     const sessions = jsonData.sessions;
-                    const connections = jsonData.connections; // Cargar las conexiones
+                    const connections = jsonData.connections;
     
                     // Crear el array de nodos y aristas
                     const nodes = new vis.DataSet();
@@ -84,7 +83,8 @@
                             label: session.title,
                             shape: 'dot',
                             size: 15,
-                            color: '#f5a623'
+                            color: session.color || '#f5a623',
+                            font: { color: session.labelColor || 'white' }
                         });
                     });
     
@@ -93,7 +93,7 @@
                         edges.add({
                             from: connection.from,
                             to: connection.to,
-                            color: '#f5a623'
+                            color: '#a65628'
                         });
                     });
     
@@ -125,16 +125,15 @@
                         },
                         nodes: {
                             font: {
-                                size: 12,
-                                color: '#333'
+                                size: 12
                             },
                             borderWidth: 2
                         },
                         edges: {
                             width: 2,
                             color: {
-                                color: '#f5a623',
-                                highlight: '#f5a623'
+                                color: '#a65628',
+                                highlight: '#a65628'
                             },
                             smooth: {
                                 enabled: true
@@ -148,9 +147,6 @@
                 .catch(error => console.error('Error cargando el archivo JSON:', error));
         };
     </script>
-    
-    
-    
 
 </body>
 </html>
