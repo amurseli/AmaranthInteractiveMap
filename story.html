@@ -28,13 +28,37 @@
         a {
             color: #f5a623;
         }
+
+        /* Estilo para los metadatos */
+        /* Estilo para los metadatos alineados a la derecha */
+        .metadata {
+            font-size: 0.9em;
+            font-family: 'Arial', sans-serif;
+            color: #bbb;
+            text-align: right;
+            margin-top: 20px;
+            border-top: 1px solid #555;
+            padding-top: 10px;
+        }
+
+
+        .metadata span {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
 
     <h1 id="story-title">Cargando historia...</h1>
+    
+    
     <div id="story-content">Por favor espera...</div>
-
+    <!-- Contenedor de metadatos -->
+    <div class="metadata">
+        <span id="author">Autor: Cargando...</span>
+        <span id="date">Fecha: Cargando...</span>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         // Obtener los parámetros de la URL
@@ -50,7 +74,32 @@
             fetch(`lore/stories/${storyFile}.md`)
                 .then(response => response.text())
                 .then(text => {
-                    document.getElementById("story-content").innerHTML = marked.parse(text);
+                    // Extraer los metadatos del principio del archivo .md
+                    const metadataRegex = /^---\s*([\s\S]+?)\s*---/;
+                    const match = text.match(metadataRegex);
+
+                    if (match) {
+                        const metadata = match[1];
+                        const metadataLines = metadata.split("\n");
+
+                        let author = "Desconocido";
+                        let date = "Fecha desconocida";
+
+                        metadataLines.forEach(line => {
+                            if (line.startsWith("author:")) {
+                                author = line.replace("author:", "").trim();
+                            } else if (line.startsWith("date:")) {
+                                date = line.replace("date:", "").trim();
+                            }
+                        });
+
+                        document.getElementById("author").innerText = `${author}`;
+                        document.getElementById("date").innerText = `${date}`;
+                    }
+
+                    // Cargar el contenido de la historia
+                    const content = text.replace(metadataRegex, "").trim(); // Eliminar los metadatos
+                    document.getElementById("story-content").innerHTML = marked.parse(content);
                 })
                 .catch(error => {
                     document.getElementById("story-content").innerHTML = "<p>Error al cargar la historia.</p>";
@@ -59,7 +108,6 @@
             document.getElementById("story-content").innerHTML = "<p>No se encontró la historia.</p>";
         }
     </script>
-    
 
 </body>
 </html>
