@@ -69,7 +69,8 @@
         document.getElementById("story-title").innerText = storyTitle;
 
         if (storyFile) {
-            fetch(`/AmaranthInteractiveMap/lore/stories/${storyFile}.md`)
+            console.log(storyFile)
+            fetch(`lore/stories/${storyFile}.md`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("No se encontró el archivo");
