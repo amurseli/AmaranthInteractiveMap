@@ -72,39 +72,47 @@
             if (storyFile) {
                 fetch(`lore/stories/${storyFile}.md`)
                     .then(response => {
-                        if (!response.ok) throw new Error("No se pudo cargar el archivo.");
+                        if (!response.ok) {
+                            throw new Error("No se pudo cargar el archivo.");
+                        }
                         return response.text();
                     })
                     .then(text => {
-                        // Extraer los metadatos
-                        const metadataRegex = /^---\n([\s\S]+?)\n---/;
+                        if (!text.trim()) {
+                            throw new Error("El archivo está vacío.");
+                        }
+                        
+                        const metadataRegex = /^---\s*([\s\S]+?)\s*---/;
                         const match = text.match(metadataRegex);
-                        let author = "Desconocido";
-                        let date = "Fecha desconocida";
 
                         if (match) {
                             const metadata = match[1];
+                            const metadataLines = metadata.split("\n");
 
-                            // Expresión regular mejorada para capturar valores correctamente
-                            const authorMatch = metadata.match(/author:\s*"(.*?)"|author:\s*(.*)/);
-                            const dateMatch = metadata.match(/date:\s*"(.*?)"|date:\s*(.*)/);
+                            let author = "Desconocido";
+                            let date = "Fecha desconocida";
 
-                            if (authorMatch) author = authorMatch[1] || authorMatch[2] || "Desconocido";
-                            if (dateMatch) date = dateMatch[1] || dateMatch[2] || "Fecha desconocida";
+                            metadataLines.forEach(line => {
+                                if (line.startsWith("author:")) {
+                                    author = line.replace("author:", "").trim();
+                                } else if (line.startsWith("date:")) {
+                                    date = line.replace("date:", "").trim();
+                                }
+                            });
+
+                            document.getElementById("author").innerText = `${author}`;
+                            document.getElementById("date").innerText = `${date}`;
                         }
 
-                        // Insertar los metadatos en la página
-                        document.getElementById("author").innerText = `Autor: ${author}`;
-                        document.getElementById("date").innerText = `Fecha: ${date}`;
-
-                        // Eliminar metadatos y mostrar contenido
-                        const cleanContent = text.replace(metadataRegex, "").trim();
-                        document.getElementById("story-content").innerHTML = marked.parse(cleanContent);
+                        // Cargar contenido
+                        const content = text.replace(metadataRegex, "").trim();
+                        document.getElementById("story-content").innerHTML = marked.parse(content);
                     })
                     .catch(error => {
-                        document.getElementById("story-content").innerHTML = "<p>Error al cargar la historia.</p>";
                         console.error(error);
+                        document.getElementById("story-content").innerHTML = "<p>Error al cargar la historia.</p>";
                     });
+
             } else {
                 document.getElementById("story-content").innerHTML = "<p>No se encontró la historia.</p>";
             }
