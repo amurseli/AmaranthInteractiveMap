@@ -59,6 +59,20 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
+        function getBasePath() {
+            // Obtiene la ruta del repositorio de la URL actual
+            const repoPath = window.location.pathname.split('/')[1];
+            
+            // Si estamos en localhost o en username.github.io, no necesitamos prefijo
+            if (window.location.hostname === 'localhost' || 
+                window.location.hostname === '127.0.0.1' ||
+                window.location.hostname.endsWith('github.io')) {
+                return '';
+            }
+            
+            // En otro caso, añadimos el nombre del repositorio como prefijo
+            return `/${repoPath}`;
+        }
         // Obtener los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
         const storyFile = params.get("story");
@@ -69,8 +83,9 @@
         document.getElementById("story-title").innerText = storyTitle;
 
         if (storyFile) {
+            const basePath = getBasePath();
             console.log(storyFile)
-            fetch(`lore/stories/${storyFile}.md`)
+            fetch(`${basePath}/lore/stories/${storyFile}.md`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("No se encontró el archivo");
@@ -78,6 +93,7 @@
                     return response.text();
                 })
                 .then(text => {
+                    
                     console.log("Contenido del archivo cargado:", text); // Para depuración
 
                     // Expresión regular para extraer metadatos
