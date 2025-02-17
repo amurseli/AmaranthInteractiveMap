@@ -1,7 +1,4 @@
----
-author: "Agusda"
-date: "02/02/2025"
----
+*Agusda - 2/2/25*
 
 Airi observó al regio hombre sentado entre niños.
 "Cuentan, aunque ninguno de sus abuelos haya vivido para verlo, que el mundo comenzó con una semilla." Contó el padre Pluvio. “No era una semilla como las que plantamos la semana pasada, no. Era una semilla más particular, y tenía nombre. *Animadverte*, la llamaron.”
