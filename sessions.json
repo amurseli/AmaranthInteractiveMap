@@ -11,7 +11,7 @@
     { "id": "W9a", "title": "Eliminando a la Competencia", "color": "#ff6600", "labelColor": "#c4c4c4" },
     { "id": "W9b", "title": "Ardeep Forest", "color": "#ff6600", "labelColor": "#c4c4c4" },
     { "id": "W10a", "title": "¡La Inauguración de la Taberna de la Hoja!", "color": "#ff6600", "labelColor": "#c4c4c4" },
-    { "id": "W10b", "title": "Fell y Row: Espadas Gemelas", "color": "#ff6600", "labelColor": "#c4c4c4" },
+    { "id": "W10b", "title": "Fell y Row: Espadas Gemelas", "color": "#8C00CC", "labelColor": "#c4c4c4" },
     { "id": "W11", "title": "¡BOOM!", "color": "#ff6600", "labelColor": "#c4c4c4" },
     { "id": "W12", "title": "Investigación y Nuevos Amigos", "color": "#ff6600", "labelColor": "#c4c4c4" },
     { "id": "W13", "title": "Urstul Floxin", "color": "#ff6600", "labelColor": "#c4c4c4" },
@@ -98,7 +98,9 @@
     { "from": "S8", "to": "S9", "color": "#474080"},
     { "from": "S9", "to": "S10", "color": "#474080"},
     { "from": "S10", "to": "S11", "color": "#474080"},
-    { "from": "S11", "to": "S12", "color": "#474080"}
+    { "from": "S11", "to": "S12", "color": "#474080"},
     
+    
+    { "from": "W10b", "to": "S1", "color": "#771BA2"}
   ]
 }
