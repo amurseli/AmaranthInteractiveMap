@@ -31,6 +31,7 @@
     { "id": "W23", "title": "Lo que Uno no quiere Olvidar", "color": "#ff6600", "labelColor": "#c4c4c4" },
     { "id": "W24", "title": "Autobattle", "color": "#ff6600", "labelColor": "#c4c4c4" },
     { "id": "W25", "title": "Nihiloor, La Mano Derecha", "color": "#ff6600", "labelColor": "#c4c4c4" },
+    { "id": "W26", "title": "Las Cinco Llaves", "color": "#ff6600", "labelColor": "#c4c4c4" },
 
     
 
@@ -84,6 +85,7 @@
     { "from": "W22", "to": "W23", "color": "#cc5500" },
     { "from": "W23", "to": "W24", "color": "#cc5500" },
     { "from": "W24", "to": "W25", "color": "#cc5500" },
+    { "from": "W25", "to": "W26", "color": "#cc5500" },
 
 
 
