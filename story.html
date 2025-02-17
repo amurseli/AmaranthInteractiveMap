@@ -94,7 +94,6 @@
                     return response.text();
                 })
                 .then(text => {
-                    
                     console.log("Contenido del archivo cargado:", text); // Para depuración
 
                     // Expresión regular para extraer metadatos
@@ -104,14 +103,20 @@
                     let author = "Desconocido";
                     let date = "Fecha desconocida";
 
+                    // Si se encuentran los metadatos en el principio del archivo
                     if (match) {
                         const metadata = match[1];
 
-                        const authorMatch = metadata.match(/author:\s*(.+)/);
-                        const dateMatch = metadata.match(/date:\s*(.+)/);
+                        // Extraer el autor y la fecha
+                        const authorMatch = metadata.match(/author:\s*"([^"]*)"/); // Manejar comillas vacías correctamente
+                        const dateMatch = metadata.match(/date:\s*"([^"]*)"/); // Manejar comillas vacías correctamente
 
+                        // Asignar los valores extraídos o dejar valores predeterminados
                         author = authorMatch ? authorMatch[1].trim() : author;
                         date = dateMatch ? dateMatch[1].trim() : date;
+
+                        // Eliminar los metadatos del contenido
+                        text = text.replace(metadataRegex, "").trim();
                     }
 
                     // Asignar los metadatos extraídos
@@ -119,9 +124,9 @@
                     document.getElementById("date").innerText = `Fecha: ${date}`;
 
                     // Cargar el contenido sin los metadatos
-                    const content = text.replace(metadataRegex, "").trim();
-                    document.getElementById("story-content").innerHTML = marked.parse(content);
+                    document.getElementById("story-content").innerHTML = marked.parse(text);
                 })
+
                 .catch(error => {
                     console.error("Error al cargar la historia:", error);
                     document.getElementById("story-content").innerHTML = "<p>Error al cargar la historia.</p>";
