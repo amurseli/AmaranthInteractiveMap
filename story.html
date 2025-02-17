@@ -67,12 +67,13 @@
             if (window.location.hostname === 'localhost' || 
                 window.location.hostname === '127.0.0.1' ||
                 window.location.hostname.endsWith('github.io')) {
-                return '';
+                return '';  // No necesitas prefijo para desarrollo local o GitHub Pages
             }
             
             // En otro caso, añadimos el nombre del repositorio como prefijo
-            return `/${repoPath}`;
+            return `/${repoPath}`;  // Añadir la barra inicial correctamente
         }
+
         // Obtener los parámetros de la URL
         const params = new URLSearchParams(window.location.search);
         const storyFile = params.get("story");
@@ -85,7 +86,7 @@
         if (storyFile) {
             const basePath = getBasePath();
             console.log(storyFile)
-            fetch(`${basePath}/lore/stories/${storyFile}.md`)
+            fetch(`lore/stories/${storyFile}.md`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("No se encontró el archivo");
