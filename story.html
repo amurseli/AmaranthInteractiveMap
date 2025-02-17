@@ -107,13 +107,13 @@
                     if (match) {
                         const metadata = match[1];
 
-                        // Extraer el autor y la fecha
-                        const authorMatch = metadata.match(/author:\s*"([^"]*)"/); // Manejar comillas vacías correctamente
-                        const dateMatch = metadata.match(/date:\s*"([^"]*)"/); // Manejar comillas vacías correctamente
+                        // Extraer el autor y la fecha con una expresión regular robusta
+                        const authorMatch = metadata.match(/author:\s*"([^"]*)"/);
+                        const dateMatch = metadata.match(/date:\s*"([^"]*)"/);
 
                         // Asignar los valores extraídos o dejar valores predeterminados
-                        author = authorMatch ? authorMatch[1].trim() : author;
-                        date = dateMatch ? dateMatch[1].trim() : date;
+                        author = authorMatch && authorMatch[1] ? authorMatch[1].trim() : author;
+                        date = dateMatch && dateMatch[1] ? dateMatch[1].trim() : date;
 
                         // Eliminar los metadatos del contenido
                         text = text.replace(metadataRegex, "").trim();
