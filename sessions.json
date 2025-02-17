@@ -1,6 +1,6 @@
 {
   "sessions": [
-    { "id": "W1", "title": "Una Amigo en Apuros", "color": "#ff6600", "labelColor": "#c4c4c4" },
+    { "id": "W1", "title": "Un Amigo en Apuros", "color": "#ff6600", "labelColor": "#c4c4c4" },
     { "id": "W2", "title": "Renaer Neverember", "color": "#ff6600", "labelColor": "#c4c4c4" },
     { "id": "W3", "title": "La Guarida Xanathar", "color": "#ff6600", "labelColor": "#c4c4c4" },
     { "id": "W4", "title": "La Mansión Trollskull", "color": "#ff6600", "labelColor": "#c4c4c4" },
@@ -59,9 +59,9 @@
     { "from": "W8", "to": "W9a", "color": "#cc5500" },
     { "from": "W8", "to": "W9b", "color": "#cc5500" },
     { "from": "W9a", "to": "W10a", "color": "#cc5500" },
-    { "from": "W9b", "to": "W10b", "color": "#cc5500" },
+    { "from": "W9b", "to": "W10b", "color": "#771BA2" },
     { "from": "W10a", "to": "W11", "color": "#cc5500" },
-    { "from": "W10b", "to": "W11", "color": "#cc5500" },
+    { "from": "W10b", "to": "W11", "color": "#771BA2" },
     { "from": "W11", "to": "W12", "color": "#cc5500" },
     { "from": "W12", "to": "W13", "color": "#cc5500" },
     { "from": "W13", "to": "W14", "color": "#cc5500" },
