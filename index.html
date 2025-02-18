@@ -40,13 +40,14 @@
         #sidebar {
             position: fixed;
             right: 0;
-            top: 50px;
+            top: 40px;
             width: 40%;
-            height: calc(100vh - 50px);
+            height: calc(100% - 50px);
             background-color: rgba(0, 0, 0, 0.8);
             color: white;
             padding: 20px;
             overflow-y: auto;
+            z-index: 1000;
             display: none;
         }
         #close-sidebar {
@@ -85,6 +86,28 @@
             maxZoom: 6,
         }).addTo(map);
 
+        function createMarker(colour){
+            const marker = `
+            background-color: ${colour};
+            width: 1rem;
+            height: 1rem;
+            display: block;
+            left: -0.5rem;  /* Adjusted for more precise centering */
+            top: -0.5rem;   /* Adjusted for more precise centering */
+            position: relative;
+            border-radius: 3rem 3rem 0;
+            transform: rotate(45deg);
+            border: 1px solid #FFFFFF`;
+
+            return icon = L.divIcon({
+                className: "my-custom-pin",
+                iconAnchor: [8, 8], // Adjusted anchor to better fit the new size
+                labelAnchor: [0, 0], // Centering the label
+                popupAnchor: [0, -12], // Adjusted to new smaller size
+                html: `<span style="${marker}" />`
+            });
+        }
+
         function showSidebarFromFile(filePath, cityName, regionName) {
             fetch(filePath)
                 .then(response => response.text())
@@ -97,9 +120,6 @@
                         const cityEncoded = encodeURIComponent(cityName);
                         const regionEncoded = encodeURIComponent(regionName);
 
-                        const readMoreLink = `<br><a href="city_lore.html?city=${cityEncoded}&region=${regionEncoded}&title=${cityEncoded}" target="_blank">Leer Más</a>`;
-
-                        document.getElementById('sidebar-content').innerHTML += readMoreLink;
                     } else {
                         console.error("Error: Parámetros de ciudad o región no definidos.");
                     }
@@ -113,8 +133,15 @@
                 });
         }
 
+        const purple = '#583470'
+        const green = '#4CAF50'
+        const blue = '#2196F3'
+        const red = '#F44336'
+        const orange = '#FF9800'
 
-
+        const iconCity = createMarker(purple)
+        const iconLandmark = createMarker(orange)
+       
 
         function closeSidebar() {
             document.getElementById('sidebar').style.display = 'none';
@@ -128,42 +155,42 @@
         // COSTASPADA
         //-----------------------------------------
 
-        var cityOrientroost = L.marker([37.753344, -29.11377]).addTo(map);
-        cityOrientroost.bindPopup("<b>Orientroost</b> <a href='lore/Orientroost.md' target='_blank'>Ver detalles en archivo.md</a>");
+        var cityOrientroost = L.marker([37.753344, -29.11377], {icon:iconCity}).addTo(map);
+        cityOrientroost.bindPopup("<b>Orientroost</b>");
         cityOrientroost.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/Orientroost.md', 'Orientroost', 'Costaspada');
         });
-        var cityLunasquirla = L.marker([47.931066, -28.168945]).addTo(map);
+        var cityLunasquirla = L.marker([47.931066, -28.168945], {icon:iconCity}).addTo(map);
         cityLunasquirla.bindPopup("<b>Lunaesquirla</b>");
         cityLunasquirla.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/Lunaesquirla.md', 'Lunaesquirla', 'Costaspada');
         });
 
-        var cityCiudantigua = L.marker([47.709762, -8.920898]).addTo(map);
+        var cityCiudantigua = L.marker([47.709762, -8.920898], {icon:iconCity}).addTo(map);
         cityCiudantigua.bindPopup("<b>Ciudantigua</b>");
         cityCiudantigua.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/Ciudantigua.md', 'Ciudantigua', 'Costaspada');
         });
 
-        var cityLlusiltan = L.marker([51.248163, -32.827148]).addTo(map);
+        var cityLlusiltan = L.marker([51.248163, -32.827148], {icon:iconCity}).addTo(map);
         cityLlusiltan.bindPopup("<b>Llusiltán</b>");
         cityLlusiltan.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/Llusiltan.md', 'Llusiltán', 'Costaspada');
         });
 
-        var cityNeverwinter = L.marker([47.338823, -35.771484]).addTo(map);
+        var cityNeverwinter = L.marker([47.338823, -35.771484], {icon:iconCity}).addTo(map);
         cityNeverwinter.bindPopup("<b>Neverwinter</b>");
         cityNeverwinter.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/Neverwinter.md', 'Neverwinter', 'Costaspada');
         });
 
-        var cityWaterdeep = L.marker([44.040219, -37.507324]).addTo(map);
+        var cityWaterdeep = L.marker([44.040219, -37.507324], {icon:iconCity}).addTo(map);
         cityWaterdeep.bindPopup("<b>Waterdeep</b>");
         cityWaterdeep.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/Waterdeep.md', 'Waterdeep', 'Costaspada');
         });
 
-        var cityBaldursGate = L.marker([34.831841, -34.321289]).addTo(map);
+        var cityBaldursGate = L.marker([34.831841, -34.321289], {icon:iconCity}).addTo(map);
         cityBaldursGate.bindPopup("<b>Baldur's Gate</b>");
         cityBaldursGate.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/BaldursGate.md', 'Baldur\'s Gate', 'Costaspada');
@@ -182,7 +209,7 @@
         */
 
             //LANDMARKS
-        var ruinasMonolito = L.marker([51.549751, -22.5]).addTo(map);
+        var ruinasMonolito = L.marker([51.549751, -22.5], {icon:iconLandmark}).addTo(map);
         ruinasMonolito.bindPopup("<b>Ruinas Monolito</b>");
         ruinasMonolito.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/RuinasMonolito.md', 'Ruinas Monolito', 'Costaspada');
@@ -204,13 +231,13 @@
         // AGY
         //-----------------------------------------
 
-        var cityCardiovalla = L.marker([4.214943, -13.535156]).addTo(map);
+        var cityCardiovalla = L.marker([4.214943, -13.535156], {icon:iconCity}).addTo(map);
         cityCardiovalla.bindPopup("<b>Cardiovalla</b>");
         cityCardiovalla.on('click', function() {
             showSidebarFromFile('lore/cities/Agy/Cardiovalla.md', 'Cardiovalla', 'Agy');
         });
 
-        var cityPinta = L.marker([6.620957, -36.430664]).addTo(map);
+        var cityPinta = L.marker([6.620957, -36.430664], {icon:iconCity}).addTo(map);
         cityPinta.bindPopup("<b>Pinta</b>");
         cityPinta.on('click', function() {
             showSidebarFromFile('lore/cities/Agy/Pinta.md', 'Pinta', 'Agy');
@@ -227,11 +254,14 @@
             */
            
         // Grupo de marcadores
-        var cities = L.layerGroup([cityOrientroost, cityLunasquirla, cityCiudantigua, cityLlusiltan, cityNeverwinter, cityWaterdeep, cityBaldursGate,mov]);
+        var cities = L.layerGroup([cityOrientroost, cityLunasquirla, cityCiudantigua, cityLlusiltan, cityNeverwinter, cityWaterdeep, cityBaldursGate, cityCardiovalla, cityPinta]);
+        var landmarks = L.layerGroup([ruinasMonolito]);
+        cities.addTo(map)
         var overlays = {
             "Cities": cities,
+            "Landmarks": landmarks
         };
-        L.control.layers(null, overlays).addTo(map);
+        L.control.layers(null, overlays,{ collapsed: false }).addTo(map);
 
         map.on('click', function() {
             closeSidebar();
