@@ -1,4 +1,4 @@
-*Manuel Boetto - 24/2/25*
+*Manuel Boetto - 24/1/25*
 
 
 El sonido agudo del silbato significaba el final de la jornada de trabajo. Esta vez sin embargo Ibas no sintió el alivio resignado y habitual de todas las tardes. En su lugar sintió  algo parecido a un vacío en la boca del estómago.  El mal presentimiento fue ocasionado por lo excepcional del silbato, más bien, del horario en el que este sonó. 
