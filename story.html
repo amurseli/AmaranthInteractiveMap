@@ -51,12 +51,6 @@
 
     <div id="story-content">Por favor espera...</div>
 
-    <!-- Contenedor de metadatos -->
-    <div class="metadata">
-        <span id="author">Autor: Cargando...</span>
-        <span id="date">Fecha: Cargando...</span>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         function getBasePath() {
@@ -100,28 +94,14 @@
                     const metadataRegex = /^---\s*([\s\S]+?)\s*---/;
                     const match = text.match(metadataRegex);
 
-                    let author = "Desconocido";
-                    let date = "Fecha desconocida";
-
                     // Si se encuentran los metadatos en el principio del archivo
                     if (match) {
                         const metadata = match[1];
 
-                        // Extraer el autor y la fecha con una expresión regular robusta
-                        const authorMatch = metadata.match(/author:\s*"([^"]*)"/);
-                        const dateMatch = metadata.match(/date:\s*"([^"]*)"/);
-
-                        // Asignar los valores extraídos o dejar valores predeterminados
-                        author = authorMatch && authorMatch[1] ? authorMatch[1].trim() : author;
-                        date = dateMatch && dateMatch[1] ? dateMatch[1].trim() : date;
 
                         // Eliminar los metadatos del contenido
                         text = text.replace(metadataRegex, "").trim();
                     }
-
-                    // Asignar los metadatos extraídos
-                    document.getElementById("author").innerText = `Autor: ${author}`;
-                    document.getElementById("date").innerText = `Fecha: ${date}`;
 
                     // Cargar el contenido sin los metadatos
                     document.getElementById("story-content").innerHTML = marked.parse(text);

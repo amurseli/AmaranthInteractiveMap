@@ -1,6 +1,3 @@
-*Manuel Boetto - 24/1/25*
-
-
 El sonido agudo del silbato significaba el final de la jornada de trabajo. Esta vez sin embargo Ibas no sintió el alivio resignado y habitual de todas las tardes. En su lugar sintió  algo parecido a un vacío en la boca del estómago.  El mal presentimiento fue ocasionado por lo excepcional del silbato, más bien, del horario en el que este sonó. 
 Cualquier día, Ibas hubiera dejado su casco en el balde asignado y hubiera estado en casa en menos de media hora. Esta vez sin embargo, se detuvo en el salón común, en la entrada de la mina, quince de sus compañeros fueron amontonándose poco a poco igual de desconcertados que él. El rutinario olor a azufre y sal le resulto más pungente que de costumbre, como si de repente fuera capaz de distinguir algo que siempre tuvo en frente pero no podía ver. 
 Un enano canoso entro a la sala, agitado. El carbón acumulado durante años en sus pulmones provocaba pausas irregulares cuando intentaba comenzar a hablar. Su voz, sin embargo, era sorprendentemente dulce. 
