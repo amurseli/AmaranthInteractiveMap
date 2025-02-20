@@ -1,6 +1,6 @@
 {
   "sessions": [
-    { "id": "W1", "title": "Un Amigo en Apuros", "color": "#ff6600", "labelColor": "#c4c4c4", "shape": "dot", "size": 15 },
+    { "id": "W1", "title": "Un Amigo en Apuros", "color": "#ff6600", "labelColor": "#c4c4c4", "shape": "diamond", "size": 15 },
     { "id": "W2", "title": "Renaer Neverember", "color": "#ff6600", "labelColor": "#c4c4c4" , "shape": "dot", "size": 15},
     { "id": "W3", "title": "La Guarida Xanathar", "color": "#ff6600", "labelColor": "#c4c4c4", "shape": "dot", "size": 15 },
     { "id": "W4", "title": "La Mansión Trollskull", "color": "#ff6600", "labelColor": "#c4c4c4" , "shape": "dot", "size": 15},
@@ -37,7 +37,7 @@
     
 
 
-    { "id": "S1", "title": "La Piedra de Murkmire", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15 },
+    { "id": "S1", "title": "La Piedra de Murkmire", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "diamond", "size": 15 },
     { "id": "S2", "title": "El Rey", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15 },
     { "id": "S3", "title": "Kóbolds y Hogoblins", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15 },
     { "id": "S4", "title": "Pueblo Molino", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15 },
