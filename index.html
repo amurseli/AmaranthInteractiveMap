@@ -201,8 +201,6 @@
         /* FALTAN POR PONER
             36.261992, -25.64209 -> ciénaga Orient
 
-            49.253465, -22.763672 -> Pueblo Molino
-            45.675482, -18.413086 -> Pueblo Chía
             52.187405, -15.754395 -> Fortaleza de la Doncella
         */
 
@@ -232,13 +230,13 @@
             showSidebarFromFile('lore/cities/Costaspada/Kilomantes.md', 'Kilomantes', 'Costaspada');
         });
         
-        var elPuenteMuerto = L.marker([34.831841, -34.321289], {icon:iconLandmark}).addTo(map);
+        var elPuenteMuerto = L.marker([351.358062, -11.821289], {icon:iconLandmark})
         elPuenteMuerto.bindPopup("<b>El Puente Muerto</b>");
         elPuenteMuerto.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/elPuenteMuerto.md', 'El Puente Muerto', 'Costaspada');
         });
         
-        var lasAgujasDelViento = L.marker([36.862043, -38.649902], {icon:iconLandmark}).addTo(map);
+        var lasAgujasDelViento = L.marker([36.862043, -38.649902], {icon:iconLandmark})
         lasAgujasDelViento.bindPopup("<b>Las Agujas del Viento</b>");
         lasAgujasDelViento.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/lasAgujasDelViento.md', 'Las Agujas del Viento', 'Costaspada');
@@ -272,13 +270,13 @@
            
         // Grupo de marcadores
         var cities = L.layerGroup([cityOrientroost, cityLunasquirla, cityCiudantigua, cityLlusiltan, cityNeverwinter, cityWaterdeep, cityBaldursGate, cityCardiovalla, cityPinta]);
-        var landmarks = L.layerGroup([ruinasMonolito, kilomantes]);
+        var landmarks = L.layerGroup([ruinasMonolito, kilomantes, elPuenteMuerto, lasAgujasDelViento]);
         var pueblos = L.layerGroup([puebloMolino, puebloChia]);
         cities.addTo(map)
         var overlays = {
             "Cities": cities,
             "Landmarks": landmarks,
-            "Pueblos": pueblos
+            "Towns": pueblos
         };
         L.control.layers(null, overlays,{ collapsed: false }).addTo(map);
 
