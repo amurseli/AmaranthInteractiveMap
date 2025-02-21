@@ -205,13 +205,13 @@
         */
 
         //PUEBLOS
-        var puebloMolino = L.marker([49.253465, -22.763672], {icon:iconPueblo});
+        var puebloMolino = L.marker([49.353465, -22.563672], {icon:iconPueblo});
         puebloMolino.bindPopup("<b>Pueblo Molino</b>");
         puebloMolino.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/puebloMolino.md', 'Pueblo Molino', 'Costaspada');
         });
 
-        var puebloChia = L.marker([45.675482, -18.413086], {icon:iconPueblo});
+        var puebloChia = L.marker([45.775482, -18.213086], {icon:iconPueblo});
         puebloChia.bindPopup("<b>Pueblo Chía</b>");
         puebloChia.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/puebloChia.md', 'Pueblo Chía', 'Costaspada');
@@ -230,13 +230,13 @@
             showSidebarFromFile('lore/cities/Costaspada/Kilomantes.md', 'Kilomantes', 'Costaspada');
         });
         
-        var elPuenteMuerto = L.marker([351.358062, -11.821289], {icon:iconLandmark})
+        var elPuenteMuerto = L.marker([51.467697, -10.852246], {icon:iconLandmark})
         elPuenteMuerto.bindPopup("<b>El Puente Muerto</b>");
         elPuenteMuerto.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/elPuenteMuerto.md', 'El Puente Muerto', 'Costaspada');
         });
         
-        var lasAgujasDelViento = L.marker([36.862043, -38.649902], {icon:iconLandmark})
+        var lasAgujasDelViento = L.marker([36.962043, -38.449902], {icon:iconLandmark})
         lasAgujasDelViento.bindPopup("<b>Las Agujas del Viento</b>");
         lasAgujasDelViento.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/lasAgujasDelViento.md', 'Las Agujas del Viento', 'Costaspada');
@@ -259,6 +259,7 @@
         });
         
         /* NO BORRRAR, Comentar
+        */
         var marker = L.marker([0, 0], {
             draggable: true,
         }).addTo(map);
@@ -266,7 +267,6 @@
             marker.on('dragend', function(e) {
             marker.getPopup().setContent(marker.getLatLng().toString()).openOn(map);
         });
-            */
            
         // Grupo de marcadores
         var cities = L.layerGroup([cityOrientroost, cityLunasquirla, cityCiudantigua, cityLlusiltan, cityNeverwinter, cityWaterdeep, cityBaldursGate, cityCardiovalla, cityPinta]);
