@@ -176,6 +176,7 @@
                                 return response.text();
                             })
                             .then(markdown => {
+                                marked.setOptions({ breaks: true }); // Habilitar saltos de línea
                                 recapContent.innerHTML = marked.parse(markdown);
                                 recapPanel.style.display = 'block';
                             })

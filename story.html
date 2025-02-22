@@ -89,7 +89,8 @@
                 })
                 .then(text => {
                     console.log("Contenido del archivo cargado:", text); // Para depuración
-
+                    marked.setOptions({ breaks: true }); // Habilitar saltos de línea
+                                
                     // Expresión regular para extraer metadatos
                     const metadataRegex = /^---\s*([\s\S]+?)\s*---/;
                     const match = text.match(metadataRegex);
