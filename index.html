@@ -259,15 +259,15 @@
         });
         
         /* NO BORRRAR, Comentar
-        */
         var marker = L.marker([0, 0], {
             draggable: true,
         }).addTo(map);
-            marker.bindPopup('LatLng Marker').openPopup();
-            marker.on('dragend', function(e) {
+        marker.bindPopup('LatLng Marker').openPopup();
+        marker.on('dragend', function(e) {
             marker.getPopup().setContent(marker.getLatLng().toString()).openOn(map);
         });
-           
+        */
+        
         // Grupo de marcadores
         var cities = L.layerGroup([cityOrientroost, cityLunasquirla, cityCiudantigua, cityLlusiltan, cityNeverwinter, cityWaterdeep, cityBaldursGate, cityCardiovalla, cityPinta]);
         var landmarks = L.layerGroup([ruinasMonolito, kilomantes, elPuenteMuerto, lasAgujasDelViento]);
