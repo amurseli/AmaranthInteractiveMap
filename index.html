@@ -115,7 +115,7 @@
                     // Create a title from cityName and add it before the markdown content
                     marked.setOptions({ breaks: true }); // Habilitar saltos de línea
                     const titleHTML = `<h2>${cityName}</h2>`;
-                    document.getElementById('sidebar-content').innerHTML = titleHTML + data;
+                    document.getElementById('sidebar-content').innerHTML = titleHTML + marked.parse(data);
                     
                     if (cityName && regionName) {
                         const cityEncoded = encodeURIComponent(cityName);
