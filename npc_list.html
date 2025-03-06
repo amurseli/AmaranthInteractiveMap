@@ -29,6 +29,33 @@
             text-decoration: underline;
         }
 
+        /* Estilos para el título sobre la barra de búsqueda */
+        .search-title {
+            text-align: center;
+            font-size: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-family: "Georgia", serif;
+        }
+
+        .search-title h1 {
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #ddd;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .search-title p {
+            font-size: 18px;
+            color: #bbb;
+            max-width: 70%;
+            margin: 0 auto;
+            font-style: italic;
+        }
+
+
         /* Estilos del buscador */
         .search-container {
             text-align: center;
@@ -40,9 +67,17 @@
             max-width: 500px;
             padding: 10px;
             font-size: 18px;
-            border: none;
+            background-color: #222;  /* Match the background */
+            color: white;
+            border: 2px solid rgb(169, 169, 169);  /* White outline */
             border-radius: 8px;
             outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        #search:focus {
+            border-color: #888;  /* Lighter outline on focus */
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);  /* Subtle glow effect */
         }
 
         /* Contenedor de NPCs */
@@ -98,7 +133,9 @@
             left: 0;
             border-bottom-left-radius: 12px;
             border-bottom-right-radius: 12px;
+            object-position: center var(--img-position, 50%);
         }
+
 
         /* Ocultar NPCs que no coinciden con la búsqueda */
         .hidden {
@@ -114,6 +151,10 @@
         <a href="stories.html">Historias</a>
         <a href="recaps.html">Recaps</a>
     </div>
+    <!-- Título sobre la barra de búsqueda -->
+    <div class="search-title">
+        <p>Hermanos, a pedido del Hermano Septerius, y siguiendo el Pacto de Diligente Observancia, he recopilado aquí las entidades con mayor enlazamiento kármico que encontré. Les recuerdo que tanto la influencia del cuerpo de Animadverte, como la presencia de ambos entres extra-Spireanos, dificulta mucho el análisis, por lo que espero poder actualizar esta lista tan pronto tenga nueva información. </p>
+    </div>
 
     <!-- Barra de búsqueda -->
     <div class="search-container">
@@ -126,17 +167,17 @@
             <h3>Shock, El Goblin Solitario</h3>
             <img src="lore/npcs/npc-img/shock.jpg" alt="Imagen de Shock">
         </div>
-        <div class="npc-card" onclick="location.href='npc.html?npc=shock&title=Shock'">
-            <h3>Sif, El Héroe Tabaxi</h3>
-            <img src="shock.jpg" alt="Imagen de Shock">
+        <div class="npc-card" onclick="location.href='npc.html?npc=shock&title=Sif%20Cloudwalker'">
+            <h3>Sif Cloudwalker, El Héroe Tabaxi</h3>
+            <img src="shock.jpg" alt="Imagen de Sif">
         </div>
-        <div class="npc-card" onclick="location.href='npc.html?npc=shock&title=Shock'">
+        <div class="npc-card" onclick="location.href='npc.html?npc=shock&title=Renaer%20Neverember'">
             <h3>Renaer Neverember, El Héroe de Waterdeep</h3>
-            <img src="shock.jpg" alt="Imagen de Shock">
+            <img src="shock.jpg" alt="Imagen de Renaer">
         </div>
-        <div class="npc-card" onclick="location.href='npc.html?npc=shock&title=Shock'">
+        <div class="npc-card" data-img-position="30%" onclick="location.href='npc.html?npc=shock&title=Phalanya%20Kysse'">
             <h3>Phalanya Kysse, La Exploradora del Bosque de Estrellas</h3>
-            <img src="lore/npcs/npc-img/phalanya.png" alt="Imagen de Shock">
+            <img src="lore/npcs/npc-img/phalanya.png" alt="Imagen de Phalanya">
         </div>
 
     </div>
@@ -158,6 +199,16 @@
                     card.style.display = "block"; // Mostrar tarjeta
                 } else {
                     card.style.display = "none"; // Ocultar tarjeta
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.npc-card').forEach(card => {
+                let img = card.querySelector('img');
+                let imgPosition = card.getAttribute('data-img-position');
+                if (img && imgPosition) {
+                    img.style.objectPosition = `center ${imgPosition}`;
                 }
             });
         });
