@@ -29,24 +29,43 @@
             text-decoration: underline;
         }
 
-        /* Contenedor de npcs */
+        /* Estilos del buscador */
+        .search-container {
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        #search {
+            width: 80%;
+            max-width: 500px;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        /* Contenedor de NPCs */
         .npcs-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr;
+            gap: 30px;
             padding: 20px;
-            max-width: 1000px;
+            max-width: 600px;
             margin: auto;
         }
 
         /* Estilos de las tarjetas */
         .npc-card {
             background: #444;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 25px;
+            border-radius: 12px;
             text-align: center;
             cursor: pointer;
             transition: transform 0.2s, background 0.3s;
+            font-size: 20px;
+            overflow: hidden;
+            position: relative;
         }
 
         .npc-card:hover {
@@ -56,11 +75,34 @@
 
         .npc-card h3 {
             margin: 10px 0;
+            font-size: 24px;
+            position: relative;
+            z-index: 2;
         }
 
         .npc-card p {
-            font-size: 14px;
+            font-size: 16px;
             opacity: 0.8;
+            position: relative;
+            z-index: 2;
+        }
+
+        .npc-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            filter: blur(8px);
+            opacity: 0.6;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        /* Ocultar NPCs que no coinciden con la búsqueda */
+        .hidden {
+            display: none;
         }
     </style>
 </head>
@@ -73,15 +115,54 @@
         <a href="recaps.html">Recaps</a>
     </div>
 
+    <!-- Barra de búsqueda -->
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Buscar NPCs...">
+    </div>
+
     <!-- Contenedor de NPCs -->
     <div class="npcs-container">
         <div class="npc-card" onclick="location.href='npc.html?npc=shock&title=Shock'">
             <h3>Shock, El Goblin Solitario</h3>
-            <i></i>
+            <img src="lore/npcs/npc-img/shock.jpg" alt="Imagen de Shock">
         </div>
-        
+        <div class="npc-card" onclick="location.href='npc.html?npc=shock&title=Shock'">
+            <h3>Sif, El Héroe Tabaxi</h3>
+            <img src="shock.jpg" alt="Imagen de Shock">
         </div>
+        <div class="npc-card" onclick="location.href='npc.html?npc=shock&title=Shock'">
+            <h3>Renaer Neverember, El Héroe de Waterdeep</h3>
+            <img src="shock.jpg" alt="Imagen de Shock">
+        </div>
+        <div class="npc-card" onclick="location.href='npc.html?npc=shock&title=Shock'">
+            <h3>Phalanya Kysse, La Exploradora del Bosque de Estrellas</h3>
+            <img src="lore/npcs/npc-img/phalanya.png" alt="Imagen de Shock">
+        </div>
+
     </div>
+
+    <script>
+        document.getElementById('search').addEventListener('input', function() {
+            let searchText = this.value.toLowerCase();
+            console.log("Buscando: ", searchText); // Verificar en consola
+            let npcCards = document.querySelectorAll('.npc-card');
+
+            npcCards.forEach(card => {
+                let titleElement = card.querySelector('h3'); // Buscamos el elemento
+                let descriptionElement = card.querySelector('p'); 
+
+                let title = titleElement ? titleElement.innerText.toLowerCase() : "";
+                let description = descriptionElement ? descriptionElement.innerText.toLowerCase() : "";
+
+                if (title.includes(searchText) || description.includes(searchText)) {
+                    card.style.display = "block"; // Mostrar tarjeta
+                } else {
+                    card.style.display = "none"; // Ocultar tarjeta
+                }
+            });
+        });
+
+    </script>
 
 </body>
 </html>
