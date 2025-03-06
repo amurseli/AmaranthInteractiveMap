@@ -7,12 +7,13 @@
     <style>
         body {
             font-family: 'Georgia', serif;
-            background-color: #222;
             color: white;
             padding: 20px;
             max-width: 800px;
             margin: auto;
             line-height: 1.6;
+            /* Aquí se configurará el fondo con el gradiente */
+            background-color: #222; /* Color de fondo inicial */
         }
 
         h1 {
@@ -54,22 +55,21 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         function getBasePath() {
-            // Obtiene la ruta del repositorio de la URL actual
             const repoPath = window.location.pathname.split('/')[1];
-            
-            // Si estamos en localhost o en username.github.io, no necesitamos prefijo
-            if (window.location.hostname === 'localhost' || 
-                window.location.hostname === '127.0.0.1' ||
-                window.location.hostname.endsWith('github.io')) {
-                return '';  // No necesitas prefijo para desarrollo local o GitHub Pages
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname.endsWith('github.io')) {
+                return ''; 
             }
-            
-            // En otro caso, añadimos el nombre del repositorio como prefijo
-            return `/${repoPath}`;  // Añadir la barra inicial correctamente
+            return `/${repoPath}`;  
         }
 
-        // Obtener los parámetros de la URL
+        // Obtener el parámetro hexadecimal para el color de gradiente
         const params = new URLSearchParams(window.location.search);
+        const gradColor = params.get("gradColor") || "#f5a623"; // Si no se proporciona, usa un color predeterminado (por ejemplo, amarillo)
+
+        // Establecer el gradiente dinámico
+        document.body.style.background = `linear-gradient(to bottom, #555, ${gradColor})`;
+
+        // Obtener los parámetros de la URL para el NPC
         const npcFile = params.get("npc");
         const npcTitle = params.get("title") ? decodeURIComponent(params.get("title")) : "NPC no Encontrado";
 
@@ -79,7 +79,6 @@
 
         if (npcFile) {
             const basePath = getBasePath();
-            console.log(npcFile)
             fetch(`lore/npcs/${npcFile}.md`)
                 .then(response => {
                     if (!response.ok) {
@@ -88,26 +87,17 @@
                     return response.text();
                 })
                 .then(text => {
-                    console.log("Contenido del archivo cargado:", text); // Para depuración
-                    marked.setOptions({ breaks: true }); // Habilitar saltos de línea
-                                
-                    // Expresión regular para extraer metadatos
+                    marked.setOptions({ breaks: true });
                     const metadataRegex = /^---\s*([\s\S]+?)\s*---/;
                     const match = text.match(metadataRegex);
 
-                    // Si se encuentran los metadatos en el principio del archivo
                     if (match) {
                         const metadata = match[1];
-
-
-                        // Eliminar los metadatos del contenido
                         text = text.replace(metadataRegex, "").trim();
                     }
 
-                    // Cargar el contenido sin los metadatos
                     document.getElementById("npc-content").innerHTML = marked.parse(text);
                 })
-
                 .catch(error => {
                     console.error("Error al cargar el NPC:", error);
                     document.getElementById("npc-content").innerHTML = "<p>Error al cargar el NPC.</p>";
