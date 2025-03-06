@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People of Amaranth</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            color: white;
+        }
+
+        /* Barra de navegación */
+        #navbar {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            gap: 15px;
+        }
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        #navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contenedor de npcs */
+        .npcs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        /* Estilos de las tarjetas */
+        .npc-card {
+            background: #444;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.3s;
+        }
+
+        .npc-card:hover {
+            transform: scale(1.05);
+            background: #555;
+        }
+
+        .npc-card h3 {
+            margin: 10px 0;
+        }
+
+        .npc-card p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <div id="navbar">
+        <a href="index.html">Mapa</a>
+        <a href="stories.html">Historias</a>
+        <a href="recaps.html">Recaps</a>
+    </div>
+
+    <!-- Contenedor de NPCs -->
+    <div class="npcs-container">
+        <div class="npc-card" onclick="location.href='npc.html?npc=shock&title=Shock'">
+            <h3>Shock, El Goblin Solitario</h3>
+            <i></i>
+        </div>
+        
+        </div>
+    </div>
+
+</body>
+</html>
