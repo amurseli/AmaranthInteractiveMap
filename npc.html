@@ -10,6 +10,7 @@
             color: white;
             padding: 20px;
             max-width: 800px;
+            height: 100vh;
             margin: auto;
             line-height: 1.6;
             /* Aquí se configurará el fondo con el gradiente */
@@ -64,10 +65,12 @@
 
         // Obtener el parámetro hexadecimal para el color de gradiente
         const params = new URLSearchParams(window.location.search);
-        const gradColor = params.get("gradColor") || "#f5a623"; // Si no se proporciona, usa un color predeterminado (por ejemplo, amarillo)
+        const gradColor = params.get("gradColor") || "222"; // Si no se proporciona, usa un color predeterminado (por ejemplo, amarillo)
+        console.log(window.location.href);
 
         // Establecer el gradiente dinámico
-        document.body.style.background = `linear-gradient(to bottom, #555, ${gradColor})`;
+        document.body.style.background = `linear-gradient(to bottom, #222,#222, ${gradColor} 130%)`;
+        document.body.style.title = ``
 
         // Obtener los parámetros de la URL para el NPC
         const npcFile = params.get("npc");
@@ -76,7 +79,10 @@
         // Asignar el título a la página
         document.title = npcTitle;
         document.getElementById("npc-title").innerText = npcTitle;
-
+        const titleElement = document.querySelector("h1"); // Ajusta el selector según tu HTML
+        if (titleElement) {
+            titleElement.style.color = gradColor;
+        }
         if (npcFile) {
             const basePath = getBasePath();
             fetch(`lore/npcs/${npcFile}.md`)
