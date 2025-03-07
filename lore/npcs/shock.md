@@ -5,7 +5,7 @@ Como mencioné en notas anteriores, la estricta relación de los Nombres con la 
 
 Shock es el manto que decidió portar ahora para esconderse, un infantil juego de palabras creado por él mismo. Como Shock, controla cuatro de las antes definidas génesis; pyrogénesis, terragénesis, aelogenesis y hydrogénesis. Debo agregar, también, que es un deleite verlo manipular la Uridumbre, puesto que combina casi los cuatro elementos como su fueran una extensión más de su cuerpo.
 
-Cargando este nombre, ahora mismo viaja junto a la llamada “Party de la Hoja”, junto a otros individuos de peso kármico también gargantual. Está también en continuo contacto hace años con [REDACTED], y por extraño que parezca, esto solo hace crecer y crecer su impacto en la Kármasis.
+Cargando este nombre, ahora mismo viaja junto a la llamada “Banda de la Hoja”, junto a otros individuos de peso kármico también gigante. Está también en continuo contacto hace años con [REDACTED], y por extraño que parezca, esto solo hace crecer y crecer su impacto en la Kármasis.
 
 Sus otros nombres no son relevantes, algunos lo llamaron antaño “*Goberto*”, su tribu “*Orejón*”, y algunos “*Cae*”, pero la kármasis hace muy difícil de ver el nombre más importante, del que Shock está derivado.
 
