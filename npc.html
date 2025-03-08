@@ -5,17 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Historia</title>
     <style>
-        body {
-            font-family: 'Georgia', serif;
-            color: white;
-            padding: 20px;
-            max-width: 800px;
-            height: 100%;
-            margin: auto;
-            line-height: 1.6;
-            /* Aquí se configurará el fondo con el gradiente */
-            background-color: #222; /* Color de fondo inicial */
+        html {
+            min-height: 100%;
+            overflow-x: hidden;
         }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: cover; /* Se adapta al tamaño del contenido */
+            background-attachment: fixed; /* Permite que el gradiente cubra todo el scroll */
+        }
+
+        #content {
+            max-width: 800px; /* Restaura el ancho del contenido */
+            width: 100%;
+            padding: 20px;
+            color: white; /* Restaura el color del texto */
+            font-family: 'Georgia', serif; /* Mantiene la fuente */
+            line-height: 1.6; /* Mantiene el espaciado */
+        }
+
 
         h1 {
             color: #f5a623;
@@ -48,10 +63,13 @@
     </style>
 </head>
 <body>
-
-    <h1 id="npc-title">Cargando npc...</h1>
-
-    <div id="npc-content">Por favor espera...</div>
+    <body>
+        <div id="content">
+            <h1 id="npc-title">Cargando npc...</h1>
+            <div id="npc-content">Por favor espera...</div>
+        </div>
+    </body>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
@@ -70,7 +88,7 @@
 
         // Establecer el gradiente dinámico
         document.body.style.background = `linear-gradient(to bottom, #222,#222, ${gradColor} 130%)`;
-        document.body.style.title = ``
+        document.body.style.backgroundAttachment = "fixed"; // Asegura que se desplace
 
         // Obtener los parámetros de la URL para el NPC
         const npcFile = params.get("npc");
