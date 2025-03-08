@@ -12,3 +12,7 @@ Su primera relación con la *Banda de la Hoja* (a partir de ahora intentaré lla
 - *Estado Empíreo:* Vivo
 - *Estado Spíreo:* Sorprendentemente (Gracias a [REDACTED]), Despertado
 - *Característica Spírea:* Ráfagas de Fotocombustiones
+
+
+<img src="lore/npcs/npc-img/renaer-hero.png" alt="Renaer" width="800"/>
+(Dibujo para mostrar durante su pelea del torneo, nunca lo mostré pq no lo terminé 10/12/2024)

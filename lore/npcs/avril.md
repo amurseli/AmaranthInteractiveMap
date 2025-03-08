@@ -22,3 +22,10 @@ Para nosotros, es imposible comprender como algo de significado tan abstracto ti
 - *Estado Spíreo:* Despertado
 - *Característica Spírea:* Armonurgia derivada de una potentísima Aeogénesis
 - Acceso directo a Spire: Sí
+
+---
+
+<img src="lore/npcs/npc-img/avril1.jpg" alt="Avril" width="800"/>
+(Primer dibujo de Avril, 20/05/2023)
+<img src="lore/npcs/npc-img/avril2.png" alt="Avril" width="800"/>
+(Segundo dibujo (Había perdido el primero, aunque ambos son una garcha), 08/11/2023)

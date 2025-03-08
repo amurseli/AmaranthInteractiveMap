@@ -17,3 +17,8 @@ Seguiré investigando a este peculiar individuo.
 - *Estado Empíreo:* Vivo
 - *Estado Spíreo:* Letárgico
 - *Característica Spírea:* Manipulación de la Urdidumbre elemental
+
+
+
+<img src="lore/npcs/npc-img/Shock.jpg" alt="Shock" width="800"/>
+(El OG concepto. Hice el dibujo -> Me acordé que había un goblin en nuestra campaña -> Decidí que iba a aparecer en el baile, 03/05/2023)
