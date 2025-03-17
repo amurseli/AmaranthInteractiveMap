@@ -14,3 +14,7 @@ Debo admitir, llegados a este punto, que no fui absolutamente honesto con ustede
 - *Estado Empíreo:* Vivo
 - *Estado Spíreo:* Despertado
 - *Característica Spírea:* Desconocido
+
+
+<img src="lore/npcs/npc-img/daemon.png" alt="Daemon" width="800"/>
+(1/03/2025)
