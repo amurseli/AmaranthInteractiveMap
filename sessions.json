@@ -53,7 +53,7 @@
     { "id": "S14", "title": "El Ares y El Coagulado", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
     { "id": "S15", "title": "Una Fuerza para Restaurar lo Perdido", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
 
-    { "id": "BA1", "title": "Blue Alley", "color": "#037FFC", "labelColor": "#c4c4c4", "shape": "triangleDown", "size": 15}  
+    { "id": "BA1", "title": "Blue Alley", "color": "#6bb5ff", "labelColor": "#c4c4c4", "shape": "triangleDown", "size": 15}  
   ],
   "connections": [
     { "from": "W1", "to": "W2", "color": "#cc5500" },
