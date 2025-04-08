@@ -51,8 +51,9 @@
     { "id": "S12", "title": "El Viejo y el Lagarto", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
     { "id": "S13", "title": "Ciudantigua", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "triangleDown", "size": 15},
     { "id": "S14", "title": "El Ares y El Coagulado", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
-    { "id": "S15", "title": "Una Fuerza para Restaurar lo Perdido", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15}
-  
+    { "id": "S15", "title": "Una Fuerza para Restaurar lo Perdido", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
+
+    { "id": "BA1", "title": "Blue Alley", "color": "#037FFC", "labelColor": "#c4c4c4", "shape": "triangleDown", "size": 15}  
   ],
   "connections": [
     { "from": "W1", "to": "W2", "color": "#cc5500" },
@@ -109,7 +110,7 @@
     { "from": "S11", "to": "S12", "color": "#474080"},
     { "from": "S12", "to": "S13", "color": "#474080"},
     { "from": "S13", "to": "S14", "color": "#474080"},
-    
+    { "from": "S14", "to": "S15", "color": "#474080"},
     
     { "from": "W10b", "to": "S1", "color": "#771BA2"}
   ]
