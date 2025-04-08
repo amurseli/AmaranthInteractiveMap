@@ -50,7 +50,8 @@
     { "id": "S11", "title": "Zandennkar, Vorpariel y Nuestros Destinos", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15 },
     { "id": "S12", "title": "El Viejo y el Lagarto", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
     { "id": "S13", "title": "Ciudantigua", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "triangleDown", "size": 15},
-    { "id": "S14", "title": "El Ares y La Bruja Púrpura", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15}
+    { "id": "S14", "title": "El Ares y El Coagulado", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
+    { "id": "S15", "title": "Una Fuerza para Restaurar lo Perdido", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15}
   
   ],
   "connections": [

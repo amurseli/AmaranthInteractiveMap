@@ -15,7 +15,7 @@ El padre miró unos segundos al techo, pensando. En cierto nivel, parecía diver
 “¿Por que somos diferentes a los animales? ¿Que nos diferencia?” Continuó Airi. Solo el padre y ella estaban parados, mientras que todo el resto, sus compañeros de escuela y los vecinos escuchaban atentamente.
 “La consciencia, claro está. Somos seres conscientes, del más tonto al más brillante de nosotros. Es por eso que nosotros venimos de los dioses.” El padre dió unos pasos hacia la niña genasi, pero miró al resto del público. “Ellos, los dioses, hicieron del gran árbol su hogar, y allí tuvieron a los primeros de nosotros. Cada uno de ellos nos otorgó una virtud irrevocable. Tyr nos dió su justicia y moralidad. Ruthya su libre y caótico albedrío ¿Alguno sabe el resto?
 
-Un niño enano y regordete que se sentaba junto a Airi (que se había sentado nuevamente) levantó la mano. Aprendiendo a dibujar, había descubierto que la mejor técnica para hacerlo era descomponer las personas en formas fundamentales. Habría necesitado únicamente círuclos para dibujar al niño.
+Un niño enano y regordete que se sentaba junto a Airi (que se había sentado nuevamente) levantó la mano. Aprendiendo a dibujar, había descubierto que la mejor técnica para hacerlo era descomponer las personas en formas fundamentales. Habría necesitado únicamente círculos para dibujar al niño.
 “Gond nos dió su ingenio” Habló… O más bien, chilló el niño sin esperar que vean su mano levantada.
 “Casi” Respondió el padre, girándose. “Gond nos dió su creativdad. Nishoku nos dió su ingenio.”
 “Y Natanatan su fuerza” Añadió el Tiefling de piel ceniza. Ceni, Airi lo llamaba, aunque nunca habían hablado.
