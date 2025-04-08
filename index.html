@@ -156,6 +156,17 @@
         }*/
 
         //-----------------------------------------
+        // Mar de Ícate
+        //-----------------------------------------
+
+        var lasIslasBoreales = L.marker([37.753344, -29.11377], {icon:iconCity}).addTo(map);
+        lasIslasBoreales.bindPopup("<b>Las Islas Boreales</b>");
+        lasIslasBoreales.on('click', function() {
+            showSidebarFromFile('lore/cities/Icate/lasIslasBoreales.md', 'Las Islas Boreales', 'Mar de Ícate');
+        });
+        
+
+        //-----------------------------------------
         // COSTASPADA
         //-----------------------------------------
 
@@ -272,13 +283,15 @@
         
         // Grupo de marcadores
         var cities = L.layerGroup([cityOrientroost, cityLunasquirla, cityCiudantigua, cityLlusiltan, cityNeverwinter, cityWaterdeep, cityBaldursGate, cityCardiovalla, cityPinta]);
+        var regions = L.layerGroup([])
         var landmarks = L.layerGroup([ruinasMonolito, kilomantes, elPuenteMuerto, lasAgujasDelViento]);
         var pueblos = L.layerGroup([puebloMolino, puebloChia]);
         cities.addTo(map)
         var overlays = {
             "Cities": cities,
             "Landmarks": landmarks,
-            "Towns": pueblos
+            "Towns": pueblos,
+            "Regions": regions
         };
         L.control.layers(null, overlays,{ collapsed: false }).addTo(map);
 
@@ -306,6 +319,17 @@
                 // Remove markerLayer if zoom is 3 or greater
                 if (map.hasLayer(pueblos)) {
                     map.removeLayer(pueblos);
+                }
+            }
+            if (map.getZoom() < 4) {
+                // Add markerLayer if zoom is smaller than 3
+                if (!map.hasLayer(regions)) {
+                    map.addLayer(regions);
+                }
+            } else {
+                // Remove markerLayer if zoom is 3 or greater
+                if (map.hasLayer(regions)) {
+                    map.removeLayer(regions);
                 }
             }
         } 
