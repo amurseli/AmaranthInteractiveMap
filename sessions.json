@@ -32,8 +32,9 @@
     { "id": "W24", "title": "Autobattle", "color": "#ff6600", "labelColor": "#c4c4c4", "shape": "dot", "size": 15 },
     { "id": "W25", "title": "Nihiloor, La Mano Derecha", "color": "#ff6600", "labelColor": "#c4c4c4", "shape": "dot", "size": 15 },
     { "id": "W26", "title": "Hijos de Engaño e Ira", "color": "#ff6600", "labelColor": "#c4c4c4", "shape": "dot", "size": 15 },
-    { "id": "W27", "title": "Las Cinco Llaves", "color": "#ff6600", "labelColor": "#c4c4c4" , "shape": "dot", "size": 15},
+    { "id": "W27", "title": "Mañana es lo único que tenemos", "color": "#ff6600", "labelColor": "#c4c4c4" , "shape": "dot", "size": 15},
     { "id": "W28", "title": "Shoras Ckorin, El avatar de Natanatan", "color": "#ff6600", "labelColor": "#c4c4c4" , "shape": "dot", "size": 15},
+    { "id": "W29", "title": "El Latido", "color": "#ff6600", "labelColor": "#c4c4c4" , "shape": "dot", "size": 15},
     
 
 
@@ -94,7 +95,7 @@
     { "from": "W25", "to": "W26", "color": "#cc5500" },
     { "from": "W26", "to": "W27", "color": "#cc5500" },
     { "from": "W27", "to": "W28", "color": "#cc5500" },
-
+    { "from": "W28", "to": "W29", "color": "#cc5500" },
 
 
     { "from": "S1", "to": "S2", "color": "#474080"},
