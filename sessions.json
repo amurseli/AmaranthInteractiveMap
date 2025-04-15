@@ -97,7 +97,7 @@
     { "from": "W26", "to": "W27", "color": "#cc5500" },
     { "from": "W27", "to": "W28", "color": "#cc5500" },
     { "from": "W28", "to": "W29", "color": "#cc5500" },
-
+    { "from": "W29", "to": "W30", "color": "#cc5500" },
 
     { "from": "S1", "to": "S2", "color": "#474080"},
     { "from": "S2", "to": "S3", "color": "#474080"},
