@@ -142,6 +142,7 @@
         const red = '#F44336'
         const orange = '#FF9800'
 
+        const iconSpecial = createMarker(red)
         const iconCity = createMarker(purple)
         const iconLandmark = createMarker(orange)
         const iconPueblo = createMarker(green)
@@ -169,6 +170,12 @@
         //-----------------------------------------
         // COSTASPADA
         //-----------------------------------------
+        
+        var kingdomArdeep = L.marker([43.584551, -31.904297], {icon:iconSpecial}).addTo(map);
+        kingdomArdeep.bindPopup("<b>El Reino de Ardeep</b>");
+        kingdomArdeep.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/kingdomArdeep.md', 'El Reino de Ardeep', 'Costaspada');
+        });
 
         var cityOrientroost = L.marker([37.753344, -29.11377], {icon:iconCity}).addTo(map);
         cityOrientroost.bindPopup("<b>Orientroost</b>");
@@ -282,7 +289,7 @@
         */
         
         // Grupo de marcadores
-        var cities = L.layerGroup([cityOrientroost, cityLunasquirla, cityCiudantigua, cityLlusiltan, cityNeverwinter, cityWaterdeep, cityBaldursGate, cityCardiovalla, cityPinta]);
+        var cities = L.layerGroup([cityOrientroost, cityLunasquirla, cityCiudantigua, cityLlusiltan, cityNeverwinter, cityWaterdeep, cityBaldursGate, cityCardiovalla, cityPinta, kingdomArdeep]);
         var regions = L.layerGroup([])
         var landmarks = L.layerGroup([ruinasMonolito, kilomantes, elPuenteMuerto, lasAgujasDelViento]);
         var pueblos = L.layerGroup([puebloMolino, puebloChia]);
