@@ -14,7 +14,7 @@ Es útil notar que, el peso kármico es tal, que en algun punto ha podido experi
 Seguiré investigando a este peculiar individuo.
 
 - *Proximidad kármica*: 0.93 kjp
-- *Estado Empíreo:* Vivo
+- *Estado Empíreo:* Muerto
 - *Estado Spíreo:* Letárgico
 - *Característica Spírea:* Manipulación de la Urdidumbre elemental
 
