@@ -1,6 +1,6 @@
 *470° día del 13 Ciclo, Centésimo piso*
 
-Una reina entre reinas. Junto con otras como *La Eterna* o *La Erudita del Barro*, es de las mujeres más importantes vivas en Amaranth. Reina de tanto la Ciudad de los Esplendores, Waterdeep; como la jefa de la Alianza de los Lores, controla gran parte de la totalidad de el contienente conocido como Costaspada.
+Una reina entre reinas. Junto con otras como *La Eterna* o *La Erudita del Barro*, es de las mujeres más importantes vivas en Amaranth. Reina de tanto la Ciudad de los Esplendores, Waterdeep; como la jefa de la Alianza de los Lores, controla gran parte de la totalidad de el continente conocido como Costaspada.
 
 Su pueblo la conoce también como "El Espíritu Indomable", pues jamás la han visto perder una batalla. Es posible que le haya llegado al hora.
 
