@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head >
+    <title>Waterdeep </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Scripts/leaflet.css">
+    <script src="Scripts/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background-color: #0a0a0a;
+        }
+        
+        /* Efecto de estática/corrupción */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(255, 0, 0, 0.03),
+                rgba(0, 0, 0, 0) 2px,
+                rgba(0, 0, 0, 0) 4px,
+                rgba(255, 0, 0, 0.03) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+            animation: static-lines 8s linear infinite;
+        }
+        
+        @keyframes static-lines {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
+        }
+        
+        @keyframes glitch {
+            0%, 100% { 
+                text-shadow: 2px 0 #ff0000, -2px 0 #330000;
+                transform: translateX(0);
+            }
+            20% { 
+                text-shadow: -2px 0 #ff0000, 2px 0 #330000;
+                transform: translateX(-2px);
+            }
+            40% { 
+                text-shadow: 2px 2px #ff0000, -2px -2px #330000;
+                transform: translateX(2px);
+            }
+        }
+        
+        #navbar {
+            background: linear-gradient(90deg, #000, #1a0000, #000);
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            border-bottom: 2px solid #8b0000;
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.5);
+        }
+        
+        #navbar a {
+            color: #ff6666;
+            text-decoration: none;
+            font-size: 20px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            animation: glitch 5s infinite;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+        
+        #navbar a:hover {
+            color: #ff0000;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+            animation: glitch 0.3s infinite;
+        }
+        #map-container {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Efecto de viñeta oscura/sangrienta */
+        #map-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, 
+                transparent 40%, 
+                rgba(139, 0, 0, 0.3) 70%,
+                rgba(0, 0, 0, 0.8) 100%);
+            pointer-events: none;
+            z-index: 999;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100%;
+            filter: contrast(1.1) brightness(0.9);
+        }
+        /* Sidebar styles */
+        #sidebar {
+            position: fixed;
+            right: 0;
+            top: 50px;
+            width: 40%;
+            height: calc(100% - 50px);
+            background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 0.95) 0%, 
+                rgba(139, 0, 0, 0.2) 100%);
+            color: #ff9999;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-left: 3px solid #8b0000;
+            box-shadow: -10px 0 30px rgba(139, 0, 0, 0.5);
+        }
+        
+        #close-sidebar {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 18px;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+            transition: all 0.3s;
+        }
+        
+        #close-sidebar:hover {
+            transform: scale(1.2) rotate(180deg);
+            text-shadow: 0 0 15px rgba(255, 0, 0, 1);
+        }
+              /* Agujero negro pulsante */
+        #black-hole {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: move;
+            z-index: 1001;
+            pointer-events: all;
+        }
+        
+        .black-hole-core {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        /* Centro del agujero negro */
+        .event-horizon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at center,
+                rgba(0, 0, 0, 1) 0%,
+                rgba(0, 0, 0, 0.9) 20%,
+                rgba(139, 0, 0, 0.6) 40%,
+                rgba(255, 0, 0, 0.3) 60%,
+                transparent 100%
+            );
+            backdrop-filter: blur(8px) contrast(0.5) brightness(0.3) hue-rotate(180deg);
+            -webkit-backdrop-filter: blur(8px) contrast(0.5) brightness(0.3) hue-rotate(180deg);
+            mix-blend-mode: color-burn;
+            animation: rotate 10s linear infinite;
+        }
+        
+        /* Anillo de acreción */
+        .accretion-disk {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            top: -10%;
+            left: -10%;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 0deg,
+                transparent,
+                rgba(255, 0, 0, 0.2),
+                rgba(139, 0, 0, 0.4),
+                transparent,
+                rgba(255, 0, 0, 0.2),
+                rgba(139, 0, 0, 0.4),
+                transparent
+            );
+            animation: rotate 5s linear infinite reverse;
+            mix-blend-mode: screen;
+        }
+        
+        /* Efecto de distorsión gravitacional */
+        .gravity-well {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            border-radius: 50%;
+            background: radial-gradient(circle at center,
+                transparent 20%,
+                rgba(0, 0, 0, 0.1) 40%,
+                transparent 60%
+            );
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            animation: warping 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes warping {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                filter: blur(2px);
+            }
+            50% { 
+                transform: scale(1.2) rotate(180deg);
+                filter: blur(4px);
+            }
+        }
+        
+        /* Partículas siendo absorbidas */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff0000;
+            border-radius: 50%;
+            opacity: 0;
+            animation: absorb 3s linear infinite;
+        }
+        
+        @keyframes absorb {
+            0% {
+                transform: translate(100px, 0) scale(1);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(0, 0) scale(0);
+                opacity: 0;
+            }
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        
+        .flicker {
+            animation: flicker 0.1s infinite;
+            animation-duration: calc(0.1s + random() * 0.5s);
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        
+        .flicker {
+            animation: flicker 0.1s infinite;
+            animation-duration: calc(0.1s + random() * 0.5s);
+        }
+        
+        /* Efecto de temblor ocasional */
+        @keyframes shake {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-2px, 2px); }
+            50% { transform: translate(2px, -2px); }
+            75% { transform: translate(-1px, -1px); }
+        }
+        
+        #map {
+            animation: shake 0.1s infinite;
+            animation-play-state: paused;
+        }
+        
+        body.corrupted #map {
+            animation-play-state: running;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <a href="index.html">Regresar a un lugar seguro</a>
+    </div>
+    
+
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <span id="close-sidebar" onclick="closeSidebar()">✖ Close</span>
+        <p id="sidebar-content">Contenido del marcador aquí</p>
+    </div>
+
+    <script type="text/javascript">
+        
+        var map = L.map('map').setView([0, 0], 0);
+        
+        var bounds = L.latLngBounds(
+            [-80, -81],  // Esquina suroeste [lat, lng]
+            [83.50, 80.60]     // Esquina noreste [lat, lng]
+        );
+        
+        map.setMaxBounds(bounds);
+        map.options.maxBoundsViscosity = 1.0;
+        L.tileLayer('wd_map/{z}/{x}/{y}.png', {
+            continuousWorld: false,
+            noWrap: false,
+            minZoom: 5,
+            maxZoom: 6,
+        }).addTo(map);
+
+        // Mensajes perturbadores aleatorios
+        const creepyMessages = [
+            "No deberías estar aquí...",
+            "Los muros tienen ojos",
+            "¿Escuchas los susurros?",
+            "Este lugar ya no es seguro",
+            "Ellos saben que estás mirando",
+            "El mapa miente",
+            "No confíes en las sombras"
+        ];
+
+        // Mostrar mensaje aleatorio ocasionalmente
+        setInterval(() => {
+            if (Math.random() < 0.1) { // 10% de probabilidad cada 5 segundos
+                const msg = creepyMessages[Math.floor(Math.random() * creepyMessages.length)];
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: rgba(139, 0, 0, 0.9);
+                    color: #fff;
+                    padding: 20px;
+                    border-radius: 5px;
+                    font-size: 24px;
+                    z-index: 10000;
+                    text-shadow: 2px 2px 4px #000;
+                    animation: glitch 0.5s infinite;
+                `;
+                notification.textContent = msg;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.remove();
+                }, 2000);
+            }
+        }, 5000);
+
+        function createMarker(colour){
+            const marker = `
+            background-color: ${colour};
+            width: 1rem;
+            height: 1rem;
+            display: block;
+            left: -0.5rem;  /* Adjusted for more precise centering */
+            top: -0.5rem;   /* Adjusted for more precise centering */
+            position: relative;
+            border-radius: 3rem 3rem 0;
+            transform: rotate(45deg);
+            border: 1px solid #FFFFFF`;
+
+            return icon = L.divIcon({
+                className: "my-custom-pin",
+                iconAnchor: [8, 8], // Adjusted anchor to better fit the new size
+                labelAnchor: [0, 0], // Centering the label
+                popupAnchor: [0, -12], // Adjusted to new smaller size
+                html: `<span style="${marker}" />`
+            });
+        }
+
+        function showSidebarFromFile(filePath, cityName, regionName) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(data => {
+                    // Create a title from cityName and add it before the markdown content
+                    marked.setOptions({ breaks: true }); // Habilitar saltos de línea
+                    const titleHTML = `<h2>${cityName}</h2>`;
+                    document.getElementById('sidebar-content').innerHTML = titleHTML + marked.parse(data);
+                    
+                    if (cityName && regionName) {
+                        const cityEncoded = encodeURIComponent(cityName);
+                        const regionEncoded = encodeURIComponent(regionName);
+
+                    } else {
+                        console.error("Error: Parámetros de ciudad o región no definidos.");
+                    }
+
+                    document.getElementById('sidebar').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error loading content:', error);
+                    document.getElementById('sidebar-content').innerHTML = '<p>Error loading content.</p>';
+                    document.getElementById('sidebar').style.display = 'block';
+                });
+        }
+
+        const purple = '#583470'
+        const green = '#4CAF50'
+        const blue = '#2196F3'
+        const red = '#F44336'
+        const orange = '#FF9800'
+
+        const iconSpecial = createMarker(red)
+        const iconCity = createMarker(purple)
+        const iconLandmark = createMarker(orange)
+        const iconPueblo = createMarker(green)
+
+        function closeSidebar() {
+            document.getElementById('sidebar').style.display = 'none';
+        }
+
+        // Marcador arrastrable con estilo corrupto
+        var marker = L.marker([0, 0], {
+            draggable: true,
+        }).addTo(map);
+        marker.bindPopup('<span style="color: #ff0000; font-weight: bold;">Ubicación Maldita</span>').openPopup();
+        marker.on('dragend', function(e) {
+            const coords = marker.getLatLng();
+            const corrupted = `<span style="color: #ff0000;">Coordenadas Corrompidas:<br>${coords.toString()}</span>`;
+            marker.getPopup().setContent(corrupted).openOn(map);
+        });
+        
+        // Efecto de temblor ocasional
+        setInterval(() => {
+            if (Math.random() < 0.05) { // 5% de probabilidad cada segundo
+                document.body.classList.add('corrupted');
+                setTimeout(() => {
+                    document.body.classList.remove('corrupted');
+                }, 300);
+            }
+        }, 1000);
+              // Hacer el agujero negro arrastrable
+        const blackHole = document.getElementById('black-hole');
+        let isDragging = false;
+        let currentX;
+        let currentY;
+        let initialX;
+        let initialY;
+        let xOffset = 0;
+        let yOffset = 0;
+
+        function dragStart(e) {
+            if (e.type === "touchstart") {
+                initialX = e.touches[0].clientX - xOffset;
+                initialY = e.touches[0].clientY - yOffset;
+            } else {
+                initialX = e.clientX - xOffset;
+                initialY = e.clientY - yOffset;
+            }
+
+            if (e.target === blackHole || e.target.parentElement === blackHole || e.target.parentElement.parentElement === blackHole) {
+                isDragging = true;
+            }
+        }
+
+        function dragEnd(e) {
+            initialX = currentX;
+            initialY = currentY;
+            isDragging = false;
+        }
+
+        function drag(e) {
+            if (isDragging) {
+                e.preventDefault();
+                
+                if (e.type === "touchmove") {
+                    currentX = e.touches[0].clientX - initialX;
+                    currentY = e.touches[0].clientY - initialY;
+                } else {
+                    currentX = e.clientX - initialX;
+                    currentY = e.clientY - initialY;
+                }
+
+                xOffset = currentX;
+                yOffset = currentY;
+
+                blackHole.style.transform = `translate(${currentX}px, ${currentY}px)`;
+            }
+        }
+
+        blackHole.addEventListener('mousedown', dragStart);
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('mouseup', dragEnd);
+
+        blackHole.addEventListener('touchstart', dragStart);
+        document.addEventListener('touchmove', drag);
+        document.addEventListener('touchend', dragEnd);
+
+        blackHole.addEventListener('mousemove', function() {
+            if (isDragging) {
+                this.style.filter = 'contrast(2) brightness(0.5)';
+            }
+        });
+
+        blackHole.addEventListener('mouseup', function() {
+            this.style.filter = '';
+        });
+
+        map.on('click', function() {
+            closeSidebar();
+        });
+    </script>
+</body>
+</html>
