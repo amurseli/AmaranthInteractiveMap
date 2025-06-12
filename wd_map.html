@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head >
+    <title>Amaranth World Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Scripts/leaflet.css">
+    <script src="Scripts/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        #navbar {
+            background-color: #333;
+            padding: 10px;
+            display: flex;
+            gap: 15px;
+        }
+        #navbar a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        #navbar a:hover {
+            text-decoration: underline;
+        }
+        #map-container {
+            flex: 1;
+            position: relative;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        /* Sidebar styles */
+        #sidebar {
+            position: fixed;
+            right: 0;
+            top: 40px;
+            width: 40%;
+            height: calc(100% - 50px);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+        }
+        #close-sidebar {
+            display: block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <a href="index.html">Mapa</a>
+        <a href="stories.html">Historias</a>
+        <a href="recaps.html">Recaps</a> 
+        <a href="npc_list.html">Gente de Amaranth</a>
+    </div>
+    
+
+    <div id="map-container">
+        <div id="map"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <span id="close-sidebar" onclick="closeSidebar()">✖ Close</span>
+        <p id="sidebar-content">Contenido del marcador aquí</p>
+    </div>
+
+    <script type="text/javascript">
+        var map = L.map('map').setView([0, 0], 0);
+        L.tileLayer('wd_map/{z}/{x}/{y}.png', {
+            continuousWorld: false,
+            noWrap: false,
+            minZoom: 3,
+            maxZoom: 6,
+        }).addTo(map);
+
+        function createMarker(colour){
+            const marker = `
+            background-color: ${colour};
+            width: 1rem;
+            height: 1rem;
+            display: block;
+            left: -0.5rem;  /* Adjusted for more precise centering */
+            top: -0.5rem;   /* Adjusted for more precise centering */
+            position: relative;
+            border-radius: 3rem 3rem 0;
+            transform: rotate(45deg);
+            border: 1px solid #FFFFFF`;
+
+            return icon = L.divIcon({
+                className: "my-custom-pin",
+                iconAnchor: [8, 8], // Adjusted anchor to better fit the new size
+                labelAnchor: [0, 0], // Centering the label
+                popupAnchor: [0, -12], // Adjusted to new smaller size
+                html: `<span style="${marker}" />`
+            });
+        }
+
+        function showSidebarFromFile(filePath, cityName, regionName) {
+            fetch(filePath)
+                .then(response => response.text())
+                .then(data => {
+                    // Create a title from cityName and add it before the markdown content
+                    marked.setOptions({ breaks: true }); // Habilitar saltos de línea
+                    const titleHTML = `<h2>${cityName}</h2>`;
+                    document.getElementById('sidebar-content').innerHTML = titleHTML + marked.parse(data);
+                    
+                    if (cityName && regionName) {
+                        const cityEncoded = encodeURIComponent(cityName);
+                        const regionEncoded = encodeURIComponent(regionName);
+
+                    } else {
+                        console.error("Error: Parámetros de ciudad o región no definidos.");
+                    }
+
+                    document.getElementById('sidebar').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error loading content:', error);
+                    document.getElementById('sidebar-content').innerHTML = '<p>Error loading content.</p>';
+                    document.getElementById('sidebar').style.display = 'block';
+                });
+        }
+
+
+        const purple = '#583470'
+        const green = '#4CAF50'
+        const blue = '#2196F3'
+        const red = '#F44336'
+        const orange = '#FF9800'
+
+        const iconSpecial = createMarker(red)
+        const iconCity = createMarker(purple)
+        const iconLandmark = createMarker(orange)
+        const iconPueblo = createMarker(green)
+
+
+        function closeSidebar() {
+            document.getElementById('sidebar').style.display = 'none';
+        }
+
+        /*function openCityLore(){
+            print(document.getElementById('sidebar-content'))
+        }*/
+
+        //-----------------------------------------
+        // Mar de Ícate
+        //-----------------------------------------
+
+        var lasIslasBoreales = L.marker([37.753344, -29.11377], {icon:iconCity}).addTo(map);
+        lasIslasBoreales.bindPopup("<b>Las Islas Boreales</b>");
+        lasIslasBoreales.on('click', function() {
+            showSidebarFromFile('lore/cities/Icate/lasIslasBoreales.md', 'Las Islas Boreales', 'Mar de Ícate');
+        });
+        
+
+        //-----------------------------------------
+        // COSTASPADA
+        //-----------------------------------------
+        
+        var kingdomArdeep = L.marker([43.584551, -31.904297], {icon:iconSpecial}).addTo(map);
+        kingdomArdeep.bindPopup("<b>El Reino de Ardeep</b>");
+        kingdomArdeep.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/kingdomArdeep.md', 'El Reino de Ardeep', 'Costaspada');
+        });
+
+        var cityOrientroost = L.marker([37.753344, -29.11377], {icon:iconCity}).addTo(map);
+        cityOrientroost.bindPopup("<b>Orientroost</b>");
+        cityOrientroost.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/Orientroost.md', 'Orientroost', 'Costaspada');
+        });
+        var cityLunasquirla = L.marker([47.931066, -28.168945], {icon:iconCity}).addTo(map);
+        cityLunasquirla.bindPopup("<b>Lunaesquirla</b>");
+        cityLunasquirla.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/Lunaesquirla.md', 'Lunaesquirla', 'Costaspada');
+        });
+
+        var cityCiudantigua = L.marker([47.709762, -8.920898], {icon:iconCity}).addTo(map);
+        cityCiudantigua.bindPopup("<b>Ciudantigua</b>");
+        cityCiudantigua.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/Ciudantigua.md', 'Ciudantigua', 'Costaspada');
+        });
+
+        var cityLlusiltan = L.marker([51.248163, -32.827148], {icon:iconCity}).addTo(map);
+        cityLlusiltan.bindPopup("<b>Llusiltán</b>");
+        cityLlusiltan.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/Llusiltan.md', 'Llusiltán', 'Costaspada');
+        });
+
+        var cityNeverwinter = L.marker([47.338823, -35.771484], {icon:iconCity}).addTo(map);
+        cityNeverwinter.bindPopup("<b>Neverwinter</b>");
+        cityNeverwinter.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/Neverwinter.md', 'Neverwinter', 'Costaspada');
+        });
+
+        var cityWaterdeep = L.marker([44.040219, -37.507324], {icon:iconCity}).addTo(map);
+        cityWaterdeep.bindPopup("<b>Waterdeep</b>");
+        cityWaterdeep.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/Waterdeep.md', 'Waterdeep', 'Costaspada');
+        });
+
+        var cityBaldursGate = L.marker([34.831841, -34.321289], {icon:iconCity}).addTo(map);
+        cityBaldursGate.bindPopup("<b>Baldur's Gate</b>");
+        cityBaldursGate.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/BaldursGate.md', 'Baldur\'s Gate', 'Costaspada');
+        });
+
+        /* FALTAN POR PONER
+            36.261992, -25.64209 -> ciénaga Orient
+
+            52.187405, -15.754395 -> Fortaleza de la Doncella
+        */
+
+        //PUEBLOS
+        var puebloMolino = L.marker([49.353465, -22.563672], {icon:iconPueblo});
+        puebloMolino.bindPopup("<b>Pueblo Molino</b>");
+        puebloMolino.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/puebloMolino.md', 'Pueblo Molino', 'Costaspada');
+        });
+
+        var puebloChia = L.marker([45.775482, -18.213086], {icon:iconPueblo});
+        puebloChia.bindPopup("<b>Pueblo Chía</b>");
+        puebloChia.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/puebloChia.md', 'Pueblo Chía', 'Costaspada');
+        });
+
+        //LANDMARKS
+        var ruinasMonolito = L.marker([51.549751, -22.5], {icon:iconLandmark});
+        ruinasMonolito.bindPopup("<b>Ruinas Monolito</b>");
+        ruinasMonolito.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/RuinasMonolito.md', 'Ruinas Monolito', 'Costaspada');
+        });
+
+        var kilomantes = L.marker([51.248163, -18.720703], {icon:iconLandmark});
+        kilomantes.bindPopup("<b>Kilomantes</b>");
+        kilomantes.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/Kilomantes.md', 'Kilomantes', 'Costaspada');
+        });
+        
+        var elPuenteMuerto = L.marker([51.467697, -10.852246], {icon:iconLandmark})
+        elPuenteMuerto.bindPopup("<b>El Puente Muerto</b>");
+        elPuenteMuerto.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/elPuenteMuerto.md', 'El Puente Muerto', 'Costaspada');
+        });
+        
+        var lasAgujasDelViento = L.marker([36.962043, -38.449902], {icon:iconLandmark})
+        lasAgujasDelViento.bindPopup("<b>Las Agujas del Viento</b>");
+        lasAgujasDelViento.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/lasAgujasDelViento.md', 'Las Agujas del Viento', 'Costaspada');
+        });
+
+        //-----------------------------------------
+        // AGY
+        //-----------------------------------------
+
+        var cityCardiovalla = L.marker([4.214943, -13.535156], {icon:iconCity}).addTo(map);
+        cityCardiovalla.bindPopup("<b>Cardiovalla</b>");
+        cityCardiovalla.on('click', function() {
+            showSidebarFromFile('lore/cities/Agy/Cardiovalla.md', 'Cardiovalla', 'Agy');
+        });
+
+        var cityPinta = L.marker([6.620957, -36.430664], {icon:iconCity}).addTo(map);
+        cityPinta.bindPopup("<b>Pinta</b>");
+        cityPinta.on('click', function() {
+            showSidebarFromFile('lore/cities/Agy/Pinta.md', 'Pinta', 'Agy');
+        });
+        
+        /* NO BORRRAR, Comentar
+        var marker = L.marker([0, 0], {
+            draggable: true,
+        }).addTo(map);
+        marker.bindPopup('LatLng Marker').openPopup();
+        marker.on('dragend', function(e) {
+            marker.getPopup().setContent(marker.getLatLng().toString()).openOn(map);
+        });
+        */
+        
+        // Grupo de marcadores
+        var cities = L.layerGroup([cityOrientroost, cityLunasquirla, cityCiudantigua, cityLlusiltan, cityNeverwinter, cityWaterdeep, cityBaldursGate, cityCardiovalla, cityPinta]);
+        var regions = L.layerGroup([])
+        var landmarks = L.layerGroup([ruinasMonolito, kilomantes, elPuenteMuerto, lasAgujasDelViento, kingdomArdeep]);
+        var pueblos = L.layerGroup([puebloMolino, puebloChia]);
+        cities.addTo(map)
+        var overlays = {
+            "Cities": cities,
+            "Landmarks": landmarks,
+            "Towns": pueblos,
+            "Regions": regions
+        };
+        L.control.layers(null, overlays,{ collapsed: false }).addTo(map);
+
+        if (map.hasLayer(landmarks)) {
+                    map.removeLayer(landmarks);
+        }
+        function toggleMarkersOnZoom() {
+            if (map.getZoom() > 4) {
+                // Add markerLayer if zoom is smaller than 3
+                if (!map.hasLayer(landmarks)) {
+                    map.addLayer(landmarks);
+                }
+            } else {
+                // Remove markerLayer if zoom is 3 or greater
+                if (map.hasLayer(landmarks)) {
+                    map.removeLayer(landmarks);
+                }
+            }
+            if (map.getZoom() > 3) {
+                // Add markerLayer if zoom is smaller than 3
+                if (!map.hasLayer(pueblos)) {
+                    map.addLayer(pueblos);
+                }
+            } else {
+                // Remove markerLayer if zoom is 3 or greater
+                if (map.hasLayer(pueblos)) {
+                    map.removeLayer(pueblos);
+                }
+            }
+            if (map.getZoom() < 4) {
+                // Add markerLayer if zoom is smaller than 3
+                if (!map.hasLayer(regions)) {
+                    map.addLayer(regions);
+                }
+            } else {
+                // Remove markerLayer if zoom is 3 or greater
+                if (map.hasLayer(regions)) {
+                    map.removeLayer(regions);
+                }
+            }
+        } 
+        
+        map.on('zoomend', toggleMarkersOnZoom);
+        map.on('click', function() {
+            closeSidebar();
+        });
+        </script>
+</body>
+</html>
