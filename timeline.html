@@ -275,7 +275,7 @@
             {
                 id: 2,
                 content: 'Se Funda la Alianza de Lores',
-                start: '00010-30-8',
+                start: '0010-30-8',
                 importancia: 4,
                 categoria: 'fundacion',
                 description: '...',
@@ -283,6 +283,7 @@
                 desbloqueable: true
             },
         ];
+        const timelineItems = new vis.DataSet([]);
 
         // Configuración de la timeline
         const options = {
@@ -353,7 +354,7 @@
 
         // Crear la timeline
         const container = document.getElementById('timeline-container');
-        const timeline = new vis.Timeline(container, getDisplayData(), options);
+        const timeline = new vis.Timeline(container, timelineItems, options);
 
         // Event listeners
         document.getElementById('close-detail').addEventListener('click', function() {
