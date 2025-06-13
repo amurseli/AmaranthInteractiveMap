@@ -57,6 +57,24 @@
                 transform: translateX(2px);
             }
         }
+         @keyframes fadeInOut {
+            0% { 
+                opacity: 0;
+                filter: blur(10px);
+            }
+            20% { 
+                opacity: 1;
+                filter: blur(0px);
+            }
+            80% { 
+                opacity: 1;
+                filter: blur(0px);
+            }
+            100% { 
+                opacity: 0;
+                filter: blur(10px);
+            }
+        }
         
         #navbar {
             background: linear-gradient(90deg, #000, #1a0000, #000);
@@ -209,39 +227,76 @@
         // Mensajes perturbadores aleatorios
         const creepyMessages = [
             "No deberías estar aquí...",
-            "Los muros tienen ojos",
-            "¿Escuchas los susurros?",
-            "Este lugar ya no es seguro",
-            "Ellos saben que estás mirando",
-            "El mapa miente",
-            "No confíes en las sombras"
+            "Ellos vienen",
+            "¿Escuchas lo que susurran?",
+            "No confíes en Renaer",
+            "No confíes en Sif",
+            "No confíes en Pyrrah",
+            "Los dragones danzaran en el cielo",
+            "La Bóveda... La Bóveda...",
+            "Una Mano de Oro",
+            "Él reina entre las sombras... Ciudado",
+            "Portaruina...",
+            "Waterdeep pende de un hilo",
+            "La Trigésima Hora muestra su rostro",
+            "Regresa",
+            "Regresa",
+            "¡REGRESA!",
+            "Escapa al Oeste",
+            "El Norte es un camino seguro",
+            "La Ira camina por el Sur",
+            "Un Enano General, portando un Dios Aterrado",
+            "Un Fragmento de la Ira misma",
+            "Una Huérfana, Heredera de Creatividad y Caos",
+            "Una Mente lejana, Luchando consigo mismo",
+            "Una Mente bélica floreciente",
+            "Un Devorador de Mundos encadenado",
+            "Un Hombre, buscnado el significado del fracaso",
         ];
 
         // Mostrar mensaje aleatorio ocasionalmente
         setInterval(() => {
             if (Math.random() < 0.1) { // 10% de probabilidad cada 5 segundos
-                const msg = creepyMessages[Math.floor(Math.random() * creepyMessages.length)];
+               const msg = creepyMessages[Math.floor(Math.random() * creepyMessages.length)];
                 const notification = document.createElement('div');
+                
+                // Posición aleatoria (evitando los bordes)
+                const randomX = 15 + Math.random() * 70; // Entre 15% y 85%
+                const randomY = 15 + Math.random() * 70; // Entre 15% y 85%
+                
+                // Variaciones aleatorias adicionales
+                const randomSize = 18 + Math.random() * 20; // Entre 28px y 48px
+                const randomRotation = -10 + Math.random() * 20; // Entre -10° y 10°
+                
                 notification.style.cssText = `
                     position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background: rgba(139, 0, 0, 0.9);
+                    top: ${randomY}%;
+                    left: ${randomX}%;
+                    transform: translate(-50%, -50%) rotate(${randomRotation}deg);
                     color: #fff;
                     padding: 20px;
-                    border-radius: 5px;
-                    font-size: 24px;
+                    font-size: ${randomSize}px;
+                    font-weight: bold;
                     z-index: 10000;
-                    text-shadow: 2px 2px 4px #000;
-                    animation: glitch 0.5s infinite;
+                    mix-blend-mode: difference;
+                    pointer-events: none;
+                    text-transform: uppercase;
+                    letter-spacing: 4px;
+                    font-family: 'Courier New', monospace;
+                    animation: fadeInOut 2.5s ease-in-out forwards, glitch 0.5s infinite;
+                    opacity: 0;
                 `;
                 notification.textContent = msg;
                 document.body.appendChild(notification);
+                // Variación ocasional: usar exclusion en lugar de difference
+                if (Math.random() < 0.3) {
+                    notification.style.mixBlendMode = 'exclusion';
+                }
                 
+                // Remover después de que termine la animación
                 setTimeout(() => {
                     notification.remove();
-                }, 2000);
+                }, 2500);
             }
         }, 5000);
 
@@ -327,15 +382,18 @@
             }
         }, 1000);
         
-        // INICIALIZAR SISTEMA DE AGUJEROS NEGROS
         BlackHoleSystem.init(map);
-        
-        // EJEMPLOS DE USO:
-        
-        // 1. Agujero negro simple (no clickeable)
         const bh1 = BlackHoleSystem.create(20, -10, 150, 'red');
         
-        
+        // ########## MARKERS BASE ##########
+
+        var lasTorresKolat = L.marker([-60, 41], {icon:iconCity}).addTo(map);
+        lasTorresKolat.bindPopup("<b>Las Torres Kolat</b>");
+        lasTorresKolat.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/wd_corrupted/kolat.md', 'Las Torres Kolat', 'Waterdeep');
+        });
+
+
         map.on('click', function() {
             closeSidebar();
         });
