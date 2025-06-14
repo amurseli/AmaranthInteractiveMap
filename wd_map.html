@@ -169,7 +169,7 @@
         });
         */
         //######################################
-        // ########## MARKERS BASE ##########
+        //########## MARKERS BASE ##############
         //######################################
         
         var lasTorresKolat = L.marker([-60, 41], {icon:iconBig}).addTo(map);
@@ -181,43 +181,43 @@
         var trollskullAlley = L.marker([67.08455, 27.751465], {icon:iconBig}).addTo(map);
         trollskullAlley.bindPopup("<b>Callejón Trollskull</b>");
         trollskullAlley.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullAlley.md', 'Callejón Alley', 'Waterdeep');
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullAlley.md', 'Callejón Trollskull', 'Waterdeep');
         });
         // Trollskull Alley markers
         var vya = L.marker([66.478208, 30.717773], {icon:iconSmall})
-        vya.bindPopup("<b>Callejón Trollskull</b>");
+        vya.bindPopup("<b>Vapor y Acero</b>");
         vya.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullAlley.md', 'Callejón Alley', 'Waterdeep');
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/vaporYAcero.md', 'Vapor y Acero', 'Waterdeep');
         });
 
         var tdwel = L.marker([67.483338, 23.752441], {icon:iconSmall})
-        tdwel.bindPopup("<b>Callejón Trollskull</b>");
+        tdwel.bindPopup("<b>El Tesoro de Wyrm, ¡El Libro!</b>");
         tdwel.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullAlley.md', 'Callejón Alley', 'Waterdeep');
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/rishaalBookstore.md', 'El Tesoro de Wyrm, ¡El Libro!', 'Waterdeep');
         });
 
         var mt = L.marker([67.550559, 28.959961], {icon:iconSmall})
-        mt.bindPopup("<b>Callejón Trollskull</b>");
+        mt.bindPopup("<b>Mansión Trollskull</b>");
         mt.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullAlley.md', 'Callejón Alley', 'Waterdeep');
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullManor.md', 'Mansión Trollskull', 'Waterdeep');
         });
 
-        var cdc = L.marker([66.748677, 28.5864], {icon:iconSmall})
-        cdc.bindPopup("<b>Callejón Trollskull</b>");
-        cdc.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullAlley.md', 'Callejón Alley', 'Waterdeep');
+        var cdn = L.marker([66.748677, 28.5864], {icon:iconSmall})
+        cdn.bindPopup("<b>Corona de Nanotako</b>");
+        cdn.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/coronaDeNanotako.md', 'Corona de Nanotako', 'Waterdeep');
         });
 
         var odt = L.marker([67.592475, 26.894531], {icon:iconSmall})
-        odt.bindPopup("<b>Callejón Trollskull</b>");
+        odt.bindPopup("<b>Ojo de Tigre</b>");
         odt.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullAlley.md', 'Callejón Alley', 'Waterdeep');
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/ojoDeTigre.md', 'Ojo de Tigre', 'Waterdeep');
         });
 
         var ecd = L.marker([67.033163, 31.223145], {icon:iconSmall})
-        ecd.bindPopup("<b>Callejón Trollskull</b>");
+        ecd.bindPopup("<b>El Clavo Doblado</b>");
         ecd.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullAlley.md', 'Callejón Alley', 'Waterdeep');
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/elClavoDoblado.md', 'El Clavo Doblado', 'Waterdeep');
         });
         
         
@@ -234,8 +234,8 @@
         };
         L.control.layers(null, overlays,{ collapsed: false }).addTo(map);
 
-        if (map.hasLayer(landmarks)) {
-                    map.removeLayer(landmarks);
+        if (map.hasLayer(Small)) {
+                    map.removeLayer(Small);
         }
         function toggleMarkersOnZoom() {
             if (map.getZoom() > 5) {

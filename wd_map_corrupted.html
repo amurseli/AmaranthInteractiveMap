@@ -352,26 +352,14 @@
         const red = '#F44336'
         const orange = '#FF9800'
 
-        const iconSpecial = createMarker(red)
-        const iconCity = createMarker(purple)
-        const iconLandmark = createMarker(orange)
-        const iconPueblo = createMarker(green)
+        const iconBig = createMarker(purple)
+        const iconSmall = createMarker(blue)
+        const iconMedium = createMarker(orange)
 
         function closeSidebar() {
             document.getElementById('sidebar').style.display = 'none';
         }
 
-        // Marcador arrastrable con estilo corrupto
-        var marker = L.marker([0, 0], {
-            draggable: true,
-        }).addTo(map);
-        marker.bindPopup('<span style="color: #ff0000; font-weight: bold;">Ubicación Maldita</span>').openPopup();
-        marker.on('dragend', function(e) {
-            const coords = marker.getLatLng();
-            const corrupted = `<span style="color: #ff0000;">Coordenadas Corrompidas:<br>${coords.toString()}</span>`;
-            marker.getPopup().setContent(corrupted).openOn(map);
-        });
-        
         // Efecto de temblor ocasional
         setInterval(() => {
             if (Math.random() < 0.05) {
@@ -382,17 +370,95 @@
             }
         }, 1000);
         
-        BlackHoleSystem.init(map);
-        const bh1 = BlackHoleSystem.create(20, -10, 150, 'red');
-        
-        // ########## MARKERS BASE ##########
 
-        var lasTorresKolat = L.marker([-60, 41], {icon:iconCity}).addTo(map);
+        
+       //######################################
+        //########## MARKERS BASE ##############
+        //######################################
+        
+        var lasTorresKolat = L.marker([-60, 41], {icon:iconBig}).addTo(map);
         lasTorresKolat.bindPopup("<b>Las Torres Kolat</b>");
         lasTorresKolat.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/wd_corrupted/kolat.md', 'Las Torres Kolat', 'Waterdeep');
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/kolat.md', 'Las Torres Kolat', 'Waterdeep');
         });
 
+        var trollskullAlley = L.marker([67.08455, 27.751465], {icon:iconBig}).addTo(map);
+        trollskullAlley.bindPopup("<b>Callejón Trollskull</b>");
+        trollskullAlley.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullAlley.md', 'Callejón Trollskull', 'Waterdeep');
+        });
+        // Trollskull Alley markers
+        var vya = L.marker([66.478208, 30.717773], {icon:iconSmall})
+        vya.bindPopup("<b>Vapor y Acero</b>");
+        vya.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/vaporYAcero.md', 'Vapor y Acero', 'Waterdeep');
+        });
+
+        var tdwel = L.marker([67.483338, 23.752441], {icon:iconSmall})
+        tdwel.bindPopup("<b>El Tesoro de Wyrm, ¡El Libro!</b>");
+        tdwel.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/rishaalBookstore.md', 'El Tesoro de Wyrm, ¡El Libro!', 'Waterdeep');
+        });
+
+        var mt = L.marker([67.550559, 28.959961], {icon:iconSmall})
+        mt.bindPopup("<b>Mansión Trollskull</b>");
+        mt.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullManor.md', 'Mansión Trollskull', 'Waterdeep');
+        });
+
+        var cdn = L.marker([66.748677, 28.5864], {icon:iconSmall})
+        cdn.bindPopup("<b>Corona de Nanotako</b>");
+        cdn.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/coronaDeNanotako.md', 'Corona de Nanotako', 'Waterdeep');
+        });
+
+        var odt = L.marker([67.592475, 26.894531], {icon:iconSmall})
+        odt.bindPopup("<b>Ojo de Tigre</b>");
+        odt.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/ojoDeTigre.md', 'Ojo de Tigre', 'Waterdeep');
+        });
+
+        var ecd = L.marker([67.033163, 31.223145], {icon:iconSmall})
+        ecd.bindPopup("<b>El Clavo Doblado</b>");
+        ecd.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/elClavoDoblado.md', 'El Clavo Doblado', 'Waterdeep');
+        });
+
+        BlackHoleSystem.create(-60, 41, 120, 'purple');
+        
+        
+        var Big = L.layerGroup([trollskullAlley, lasTorresKolat]);
+        var Medium = L.layerGroup([])
+        var Small = L.layerGroup([vya, tdwel, mt, cdn, odt, ecd]);
+        Big.addTo(map)
+        Small.addTo(map)
+        Medium.addTo(map)
+        var overlays = {
+            "Grandes": Big,
+            "Medianas": Medium,
+            "Pequeñas": Small
+        };
+        L.control.layers(null, overlays,{ collapsed: false }).addTo(map);
+        
+        if (map.hasLayer(Small)) {
+            map.removeLayer(Small);
+        }
+        
+        function toggleMarkersOnZoom() {
+            if (map.getZoom() > 5) {
+                // Add markerLayer if zoom is smaller than 3
+                if (!map.hasLayer(Small)) {
+                    map.addLayer(Small);
+                }
+            } else {
+                // Remove markerLayer if zoom is 3 or greater
+                if (map.hasLayer(Small)) {
+                    map.removeLayer(Small);
+                }
+            }
+        } 
+        
+        map.on('zoomend', toggleMarkersOnZoom);
 
         map.on('click', function() {
             closeSidebar();
