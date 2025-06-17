@@ -1,0 +1,1 @@
+El cementerio amurallado de Waterdeep, tan extenso que funciona como un distrito propio. Sus altas murallas y puertas cerradas al anochecer responden a incidentes pasados con muertos vivientes. Durante el día recibe visitantes, pero las noches quedan reservadas para las patrullas que vigilan tanto las entradas como las salidas.

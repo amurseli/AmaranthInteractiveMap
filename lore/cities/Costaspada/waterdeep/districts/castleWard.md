@@ -1,0 +1,1 @@
+El corazón administrativo de Waterdeep, donde se concentran los edificios gubernamentales y las torres de los magos más prominentes. Este distrito alberga el castillo, las oficinas de estado, y sirve como centro del poder político de la ciudad. Su arquitectura varía desde imponentes fortalezas hasta elegantes mansiones, reflejando la diversidad de sus habitantes y funciones.

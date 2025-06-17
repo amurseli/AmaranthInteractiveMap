@@ -1,0 +1,1 @@
+Un asentamiento no oficial entre las murallas norte, surgido de campos de batalla convertidos en refugio para los desesperados. Sin servicios básicos ni presencia de la guardia, alberga a los más pobres entre calles de barro, mataderos y curtiembres. Es considerado el distrito más peligroso de Waterdeep.

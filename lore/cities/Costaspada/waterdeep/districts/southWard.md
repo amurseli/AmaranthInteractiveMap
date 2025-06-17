@@ -1,0 +1,1 @@
+Conocido como "Ciudad de Caravanas", es el punto de entrada para los mercaderes terrestres. Un distrito humilde pero acogedor, dominado por posadas, establos y la gran plaza donde las caravanas descargan mercancías exóticas. A pesar de ser frecuentemente olvidado, mantiene un carácter auténtico y una comunidad unida.

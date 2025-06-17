@@ -1,0 +1,1 @@
+El distrito portuario de Waterdeep, hogar de estibadores, marineros y trabajadores del puerto. Caracterizado por sus calles empinadas, almacenes, y el constante olor a mar, es el motor laboral de la ciudad. A pesar de su reputación de zona peligrosa, sus habitantes son reconocidos como los trabajadores más dedicados de Waterdeep.

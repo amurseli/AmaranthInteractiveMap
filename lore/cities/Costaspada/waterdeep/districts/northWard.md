@@ -1,0 +1,1 @@
+Un distrito residencial tranquilo habitado por la clase media alta y nobles menores. Conocido por cerrar al anochecer, su aparente calma esconde una red de intrigas políticas y contrabando en sus sótanos. Es el barrio más silencioso de Waterdeep, pero también uno de los más misteriosos.

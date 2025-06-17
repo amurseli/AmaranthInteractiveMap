@@ -1,0 +1,1 @@
+El centro comercial de Waterdeep, activo las veinticuatro horas del día. Sede de los principales gremios y mercados, sus calles permanecen iluminadas toda la noche para facilitar el comercio constante. La clase mercante vive y trabaja aquí, convirtiendo al distrito en el corazón económico de la ciudad.

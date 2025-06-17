@@ -1,0 +1,1 @@
+El distrito más exclusivo de la ciudad, donde residen las familias nobles en mansiones de múltiples torres. Alberga los templos más importantes y las residencias de los magos más poderosos. Sus jardines privados, playas exclusivas y arquitectura grandiosa lo convierten en el símbolo del poder y la riqueza de Waterdeep.
