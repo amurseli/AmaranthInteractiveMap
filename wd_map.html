@@ -218,6 +218,7 @@
         oroApartment.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/oroApartment.md', 'Departamento de Oro', 'Waterdeep');
         });
+
         var xoblob = L.marker([-63.064914, 28.850098], {icon:iconSubPlaces}).addTo(map);
         xoblob.bindPopup("<b>Tienda Violeta del Viejo Xoblob</b>");
         xoblob.on('click', function() {
@@ -226,12 +227,17 @@
                 'Una peculiar tienda atendida por un peculiar gnomo llamado Xoblob. El hombre está, según comenta la gente de los puertos, algo loco, y solo vende en su tienda cosas de color violeta.'
             )
         });
+
         var dragonEnsartado = L.marker([-63.636504, 25.422363], {icon:iconSubPlaces}).addTo(map);
         dragonEnsartado.bindPopup("<b>El Dragón Ensartado</b>");
         dragonEnsartado.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/dragonEnsartado.md', 'El Dragón Ensartado', 'Waterdeep');
+            showSidebarText(
+                'El Dragón Ensartado',
+                'Una taberna famosa por su decoración única, ser horripilante. Los muebles y las paredes se caen a pedazos de tantas peleas y, como muchas otras tabernas de Waterdeep, no tienen forma de competir contra el Portal Bostezante.'
+            )
         });
 
+        //#endregion
 
         //#region Trollskull Alley markers
         // Trollskull Alley markers
