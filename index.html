@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Scripts/leaflet.css">
     <script src="Scripts/leaflet.js"></script>
+    <script src="utils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         body {
@@ -87,65 +88,12 @@
             maxZoom: 6,
         }).addTo(map);
 
-        function createMarker(colour){
-            const marker = `
-            background-color: ${colour};
-            width: 1rem;
-            height: 1rem;
-            display: block;
-            left: -0.5rem;  /* Adjusted for more precise centering */
-            top: -0.5rem;   /* Adjusted for more precise centering */
-            position: relative;
-            border-radius: 3rem 3rem 0;
-            transform: rotate(45deg);
-            border: 1px solid #FFFFFF`;
-
-            return icon = L.divIcon({
-                className: "my-custom-pin",
-                iconAnchor: [8, 8], // Adjusted anchor to better fit the new size
-                labelAnchor: [0, 0], // Centering the label
-                popupAnchor: [0, -12], // Adjusted to new smaller size
-                html: `<span style="${marker}" />`
-            });
-        }
-
-        function showSidebarFromFile(filePath, cityName, regionName) {
-            fetch(filePath)
-                .then(response => response.text())
-                .then(data => {
-                    // Create a title from cityName and add it before the markdown content
-                    marked.setOptions({ breaks: true }); // Habilitar saltos de línea
-                    const titleHTML = `<h2>${cityName}</h2>`;
-                    document.getElementById('sidebar-content').innerHTML = titleHTML + marked.parse(data);
-                    
-                    if (cityName && regionName) {
-                        const cityEncoded = encodeURIComponent(cityName);
-                        const regionEncoded = encodeURIComponent(regionName);
-
-                    } else {
-                        console.error("Error: Parámetros de ciudad o región no definidos.");
-                    }
-
-                    document.getElementById('sidebar').style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('Error loading content:', error);
-                    document.getElementById('sidebar-content').innerHTML = '<p>Error loading content.</p>';
-                    document.getElementById('sidebar').style.display = 'block';
-                });
-        }
 
 
-        const purple = '#583470'
-        const green = '#4CAF50'
-        const blue = '#2196F3'
-        const red = '#F44336'
-        const orange = '#FF9800'
-
-        const iconSpecial = createMarker(red)
-        const iconCity = createMarker(purple)
-        const iconLandmark = createMarker(orange)
-        const iconPueblo = createMarker(green)
+        const iconSpecial = createMarker('red')
+        const iconCity = createMarker('purple', 1.2)
+        const iconLandmark = createMarker('orange')
+        const iconPueblo = createMarker('green', 1, "cross")
 
 
         function closeSidebar() {
