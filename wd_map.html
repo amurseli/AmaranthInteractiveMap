@@ -90,7 +90,7 @@
         L.tileLayer('wd_map/{z}/{x}/{y}.png', {
             continuousWorld: false,
             noWrap: false,
-            minZoom: 4,
+            minZoom: 3,
             maxZoom: 6,
         }).addTo(map);
 
@@ -169,12 +169,19 @@
         });
         //#endregion
 
-        //#region Places
-        var lasTorresKolat = L.marker([-60, 41], {icon:iconPlaces}).addTo(map);
-        lasTorresKolat.bindPopup("<b>Las Torres Kolat</b>");
-        lasTorresKolat.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/kolat.md', 'Las Torres Kolat', 'Waterdeep');
+        //#region Field Ward
+        var rooksInn = L.marker([80.375381, -12.436523], {icon:iconSubPlaces}).addTo(map);
+        rooksInn.bindPopup("<b>Lo de Rook</b>");
+        rooksInn.on('click', function() {
+            showSidebarText(
+                'Lo de Rook',
+                'Un establecimiento que pasa desapercibido entre la pobreza y los refugiados del Distrito Agrónomo, pues de afuera, parece una simple posada venida abajo. \nEn realidad, "Lo de Rook" es una de los puntos de encuentro criminales mas importantes de el norte de Waterdeep. Rook Carabain, su dueño, es Estrecho, la una gente que toma contratos de organizaciones criminales como los Zenths o El Gremio de Xanathar para dárselos a sus seguidores, creando así una especie de "mercenarios" criminales.'
+            )
         });
+
+        //#endregion
+
+        //#region North Ward
 
         var trollskullAlley = L.marker([67.08455, 27.751465], {icon:iconPlaces}).addTo(map);
         trollskullAlley.bindPopup("<b>Callejón Trollskull</b>");
@@ -182,18 +189,20 @@
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullAlley.md', 'Callejón Trollskull', 'Waterdeep');
         });
 
-        var theYawningPortal = L.marker([-35.746512, 12.32666], {icon:iconPlaces}).addTo(map);
-        theYawningPortal.bindPopup("<b>El Portal Bostezante</b>");
-        theYawningPortal.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/yawningPortal.md', 'El Portal Bostezante', 'Waterdeep');
-        });
+        //#endregion
 
+        //#region Sea Ward
+        
         var ashrunnerFortress = L.marker([71.497037, -39.199219], {icon:iconPlaces}).addTo(map);
         ashrunnerFortress.bindPopup("<b>Fortaleza Ashrunner</b>");
         ashrunnerFortress.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/ashrunnerFortress.md', 'Fortaleza Ashrunner', 'Waterdeep');
         });
 
+        //#endregion
+        
+        //#region Castle Ward
+        
         var theBlackstaffTower = L.marker([33.760882, -36.540527], {icon:iconPlaces}).addTo(map);
         theBlackstaffTower.bindPopup("<b>Torre del Blackstaff</b>");
         theBlackstaffTower.on('click', function() {
@@ -206,19 +215,60 @@
             showSidebarText(
                 'Salón de la Fuerza Grís',
                 'El Salón de la Fuerza Grís es la sede principal de la Fuerza Grís, es decir, el grupo élite de aventureros que trabajan para el Open Lord de Waterdeep.'
-
+                
             )
         });
-
+        
+        var palacioAltamarea = L.marker([-33.578015, 3.779297], {icon:iconPlaces}).addTo(map);
+        palacioAltamarea.bindPopup("<b>Palacio Altamarea</b>");
+        palacioAltamarea.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/palacioAltamarea.md', 'Palacio Altamarea', 'Waterdeep');
+        });
+        
+        var palacioShpuma = L.marker([-12.897489, -29.267578], {icon:iconPlaces}).addTo(map);
+        palacioShpuma.bindPopup("<b>Palacio Shpuma</b>");
+        palacioShpuma.on('click', function() {
+            showSidebarText(
+                'Palacio Shpuma',
+                'El Palacio Shpuma es la residencia oficial del Open Lord de Waterdeep, encontrado al pie del monte Occidental.'+
+                'Frente a el, en la plaza Corazón, se alza también la Torre de del Señor del Tiempo, el hogar y eventualmente la tumba del primer Open Lord de Waterdeep.' +
+                'El Palacio Shpuma es un edificio de gran tamaño, con una arquitectura impresionante y una gran cantidad de habitaciones y salones. Es nombrado en todo Costaspada como un ejemplo de un lugar extremadamente lujurioso, y todo el que haya tenido el placer de conocer su interior comenta la importancia de las obras de arte que cuelgan en sus pasillos, la maestría de los artesanos al crear muebles tan perfectos y la perfecta mezcla con la naturaleza que guarda su interior.' 
+            );
+        });
+        
+        var torreTiempo = L.marker([-15.961329, -23.466797], {icon:iconSubPlaces}).addTo(map);
+        torreTiempo.bindPopup("<b>Torre del Señor del Tiempo</b>");
+        torreTiempo.on('click', function() {
+            showSidebarText(
+                'Torre del Señor del Tiempo',
+                'La Torre del Señor del Tiempo es un edificio histórico y emblemático del Distrito del Castillo. De hecho, la estructura antecede a la propia ciudad, siendo parte de Caraxes, la capital de La Unión.' +   
+                '\nCon la creación de La Alianza de Lores, La Torre se convirtió en la casa de el primer Open Lord de Waterdeep, Nareres Shpuma; para luego convertirse también en su tumba.' +
+                '\nA día de hoy, se desconoce el propósito de semejante torre, y que función le dió La Unión. Su interior, dividido en pisos, funciona como una mazmorra gigante que portege lo que luego se convirtió en el hogar del propio Nareres.'
+            );  
+        });
+        
         //#endregion
+        
+        //#region Dock Ward
 
-        //#region sub-places
+        var theYawningPortal = L.marker([-35.746512, 12.32666], {icon:iconPlaces}).addTo(map);
+        theYawningPortal.bindPopup("<b>El Portal Bostezante</b>");
+        theYawningPortal.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/yawningPortal.md', 'El Portal Bostezante', 'Waterdeep');
+        });
+
+        var lasTorresKolat = L.marker([-60, 41], {icon:iconPlaces}).addTo(map);
+        lasTorresKolat.bindPopup("<b>Las Torres Kolat</b>");
+        lasTorresKolat.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/kolat.md', 'Las Torres Kolat', 'Waterdeep');
+        });
+
         var oroApartment = L.marker([-40.996484, 27.905273], {icon:iconSubPlaces}).addTo(map);
         oroApartment.bindPopup("<b>Departamento de Oro</b>");
         oroApartment.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/oroApartment.md', 'Departamento de Oro', 'Waterdeep');
         });
-
+        
         var xoblob = L.marker([-63.064914, 28.850098], {icon:iconSubPlaces}).addTo(map);
         xoblob.bindPopup("<b>Tienda Violeta del Viejo Xoblob</b>");
         xoblob.on('click', function() {

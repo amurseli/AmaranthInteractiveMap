@@ -5,9 +5,13 @@ function createMarker(colour, size = 1, shape = 'teardrop') {
     const baseSize = size;
     const halfSize = baseSize / 2;
     
+    // Convertir rem a pixels para anchors (1rem ≈ 16px)
+    const pixelSize = baseSize * 16;
+    const halfPixelSize = pixelSize / 2;
+    
     let shapeStyles = '';
-    let iconAnchorX = baseSize * 8;
-    let iconAnchorY = baseSize * 8;
+    let iconAnchorX = halfPixelSize;
+    let iconAnchorY = halfPixelSize;
     
     switch(shape) {
         case 'teardrop':
@@ -62,6 +66,9 @@ function createMarker(colour, size = 1, shape = 'teardrop') {
                     35% 35%
                 );
             `;
+            // Centrar la cruz correctamente
+            iconAnchorX = halfPixelSize;
+            iconAnchorY = halfPixelSize;
             break;
     }
     
