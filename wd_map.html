@@ -81,8 +81,8 @@
         var map = L.map('map').setView([0, 0], 0);
         
         var bounds = L.latLngBounds(
-            [-80, -81],  // Esquina suroeste [lat, lng]
-            [83.50, 80.60]     // Esquina noreste [lat, lng]
+            [-80, -81],  
+            [83.50, 80.60]     
         );
         
         map.setMaxBounds(bounds);
@@ -106,7 +106,7 @@
 
         // Marcador arrastrable
         
-        var marker = L.marker([-53.748711, 16.083984], {
+        var marker = L.marker([67.08455, 27.751465], {
             draggable: true,
         }).addTo(map);
         marker.bindPopup('LatLng Marker').openPopup();
@@ -198,6 +198,39 @@
         ashrunnerFortress.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/ashrunnerFortress.md', 'Fortaleza Ashrunner', 'Waterdeep');
         });
+        
+        var casaManosDeGond = L.marker([62.995158, -46.274414], {icon:iconSubPlaces}).addTo(map);
+        casaManosDeGond.bindPopup("<b>Casa de las Manos de Gond</b>");
+        casaManosDeGond.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/casaManosDeGond.md', 'Casa de las Manos de Gond', 'Waterdeep');
+        });
+
+        var temploYustitia = L.marker([73.124945, -43.769531], {icon:iconSubPlaces}).addTo(map);
+        temploYustitia.bindPopup("<b>Templo Yustitia</b>");
+        temploYustitia.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/temploYustitia.md', 'Templo Yustitia', 'Waterdeep');
+        });
+
+        var elTiro = L.marker([-58.722599, -55.371094], {icon:iconSubPlaces}).addTo(map);
+        elTiro.bindPopup("<b>El Tiro</b>");
+        elTiro.on('click', function() {
+            showSidebarText(
+                'El Tiro',
+                'El Tiro es el centro de entrenamiento de la divisón naval de la Guardia de Waterdeep. Se en el continente, justo al norte de la Isla Stormhaven, y es un lugar de gran importancia para las defensas de la ciudad.' +
+                '\nEn la puerta, se encuentra la gran estatua del Primer Inmigrante, un símbolo de los refugiados de todo el mundo, para recordarle a la gente que Waterdeep es una ciudad construída por la Comunidad, no por nadie solo'
+            );
+        });
+
+        var mercat = L.marker([37.788081, -2.900391], {icon:iconPlaces}).addTo(map);
+        mercat.bindPopup("<b>El Tiro</b>");
+        mercat.on('click', function() {
+            showSidebarText(
+                'Mercat',
+                'Posiblemente, el lugar más concurrido de Waterdeep, y uno de los más populares de todo Costaspada. El Mercat es un mercado andante, lleno de vendedores de todo color y forma. A diferencia de un mercado tradicional, en el Mercat se puede encontrar de TODO, '+
+                '\nDesde comida, ropa, armas, artesanías, hasta objetos mágicos y reliquias de gran valor. El Mercat es un lugar donde la gente puede encontrar lo que sea que necesite, y es un lugar donde la gente puede vender lo que sea que tenga para vender.' 
+            );
+        });
+        
 
         //#endregion
         
@@ -330,7 +363,7 @@
         
         var Places = L.layerGroup([trollskullAlley, lasTorresKolat]);
         var Medium = L.layerGroup([])
-        var SubPlaces = L.layerGroup([vya, tdwel, mt, cdn, odt, ecd, xoblob, dragonEnsartado, oroApartment]);
+        var SubPlaces = L.layerGroup([vya, tdwel, mt, cdn, odt, ecd, xoblob, dragonEnsartado, oroApartment, casaManosDeGond, temploYustitia, rooksInn, torreTiempo]);
         Places.addTo(map)
         SubPlaces.addTo(map)
         Medium.addTo(map)
