@@ -6,9 +6,14 @@
     <link rel="stylesheet" href="Scripts/leaflet.css">
     <script src="Scripts/leaflet.js"></script>
     <script src="utils.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js">
-    </script><link rel="stylesheet" href="/AmaranthInteractiveMap/components/blackhole.css">
-    <script src="/AmaranthInteractiveMap/components/blackhole.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const basePath = isLocal ? '..' : '/AmaranthInteractiveMap';
+        
+        document.write(`<link rel="stylesheet" href="${basePath}/components/blackhole.css">`);
+        document.write(`<script src="${basePath}/components/blackhole.js"><\/script>`);
+    </script>
     
     <style>
         body {
@@ -210,8 +215,10 @@
 
     <script type="text/javascript">
         
-        var map = L.map('map').setView([0, 0], 0);
-        
+        var map = L.map('map', {
+            inertia:false
+        }).setView([0, 0], 0);
+
         var bounds = L.latLngBounds(
             [-80, -81],  
             [83.50, 80.60]     
@@ -307,7 +314,7 @@
 
         const iconPlaces = createMarker('purple', 1.3)
         const iconSubPlaces = createMarker('amber', 1.5, 'cross')
-        const iconMedium = createMarker('orange')
+        const iconCorruptedEvent = createMarker('black', 1.5, 'diamond')
         const iconDistricts = createMarker('darkerRed', 1.5, 'square');
 
         function closeSidebar() {
@@ -563,7 +570,7 @@
             }
         });
         
-        var tomaAshrunner = L.marker([71.497037, -39.199219], {icon:iconPlaces})
+        var tomaAshrunner = L.marker([71.497037, -39.199219], {icon:iconCorruptedEvent})
         tomaAshrunner.bindPopup("<b>Una Fortaleza tomada</b>");
         tomaAshrunner.on('click', function() {
             showSidebarText(
@@ -573,13 +580,13 @@
         });
         
 
-        BlackHoleSystem.create(80.4886, -37.265625, 5, 'green', {
+        BlackHoleSystem.create(80.4886, -37.265625, 10, 'green', {
             clickable: true,
             onClick: function() {
                 showSidebarText(
                     'HOLA LEE ESTO!!!',
                     '¡HOLa! AlgUna ves soniaste con Ser *ALGUIEN*? alGUNA ves pensaste como sería tu bida siu no fueses tan (insulto hiriente)?'+
-                    '\nclaro que lo penzaste si sos un (insulto aún mas hiriente) y como (insulto demasiado hiriente), deberóias morIR'+
+                    '\nclaro que lo penzaste si sos un (insulto aún mas hiriente) y, cómo (insulto demasiado hiriente), deberóias (forma atroz de perecer)'+
                     '\n\n(((Recalculando estrategia de atracción)))'+
                     '\nIGNORA ESO'+
                     '\nBEN AQUÍ. COSAS GRATIS SISI MUY GRATIS BARATAS SI.'
@@ -587,25 +594,25 @@
            }
         });
 
-        var Places = L.layerGroup([trollskullAlley, tomaAshrunner, mercat, theYawningPortal, theBlackstaffTower, hallsOfGrayForce, palacioAltamarea, palacioShpuma, rooksInn, vya, tdwel, mt, cdn, odt, ecd, xoblob, dragonEnsartado]);
-        var Medium = L.layerGroup([])
+        var Places = L.layerGroup([trollskullAlley, mercat, theYawningPortal, theBlackstaffTower, hallsOfGrayForce, palacioAltamarea, palacioShpuma]);
+        var corruptedEvent = L.layerGroup([tomaAshrunner])
         var SubPlaces = L.layerGroup([vya, tdwel, mt, cdn, odt, ecd, xoblob, dragonEnsartado, elTiro, oroApartment, casaManosDeGond, temploYustitia, rooksInn, torreTiempo]);
         var Distritos = L.layerGroup([northWard, seaWard, castleWard, tradesWard, dockWard, southWard, fieldWard, cityOfTheDead]);
         Places.addTo(map)
         SubPlaces.addTo(map)
-        Medium.addTo(map)
+        corruptedEvent.addTo(map)
         Distritos.addTo(map)
         var overlays = {
             "Distritos": Distritos,
             "Lugares": Places,
-            "Sub-lugares": SubPlaces
+            "Sub-lugares": SubPlaces,
+            "Eventos Corruptos": corruptedEvent
         };
         L.control.layers(null, overlays,{ collapsed: false }).addTo(map);
 
         if (map.hasLayer(SubPlaces)) {
                     map.removeLayer(SubPlaces);
         }
-        map.removeLayer(Medium);
         map.removeLayer(Places);
         map.removeLayer(SubPlaces);
         map.removeLayer(Distritos)

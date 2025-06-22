@@ -97,16 +97,7 @@
     animation: black-hole-warping 4s ease-in-out infinite;
 }
 
-/* Partículas siendo absorbidas */
-.black-hole-particle {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #ff0000;
-    border-radius: 50%;
-    opacity: 0;
-    animation: black-hole-absorb 3s linear infinite;
-}
+
 
 /* Animaciones - Versión optimizada para mejor rendimiento */
 @keyframes black-hole-pulse {
@@ -149,11 +140,6 @@
     .accretion-disk,
     .gravity-well {
         animation-duration: 20s !important;
-    }
-    
-    .black-hole-particle {
-        animation: none !important;
-        display: none;
     }
 }
 
