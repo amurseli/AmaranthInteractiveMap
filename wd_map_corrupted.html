@@ -7,8 +7,8 @@
     <script src="Scripts/leaflet.js"></script>
     <script src="utils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js">
-    </script><link rel="stylesheet" href="/AmaranthInteractiveMap/components/blackhole.css">
-    <script src="/AmaranthInteractiveMap/components/blackhole.js"></script>
+    </script><link rel="stylesheet" href="../components/blackhole.css">
+    <script src="../components/blackhole.js"></script>
     
     <style>
         body {
@@ -222,7 +222,7 @@
         L.tileLayer('wd_map/{z}/{x}/{y}.png', {
             continuousWorld: false,
             noWrap: false,
-            minZoom: 3,
+            minZoom: 4,
             maxZoom: 6,
         }).addTo(map);
 
@@ -393,13 +393,7 @@
         //#endregion
 
         //#region Sea Ward
-        
-        var ashrunnerFortress = L.marker([71.497037, -39.199219], {icon:iconPlaces}).addTo(map);
-        ashrunnerFortress.bindPopup("<b>Fortaleza Ashrunner</b>");
-        ashrunnerFortress.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/ashrunnerFortress.md', 'Fortaleza Ashrunner', 'Waterdeep');
-        });
-        
+
         var casaManosDeGond = L.marker([62.995158, -46.274414], {icon:iconSubPlaces}).addTo(map);
         casaManosDeGond.bindPopup("<b>Casa de las Manos de Gond</b>");
         casaManosDeGond.on('click', function() {
@@ -568,16 +562,41 @@
                 showSidebarFromFile('lore/cities/Costaspada/wd_corrupted/kolat.md', 'Una Tormenta Iridiscente', 'Waterdeep');
             }
         });
+        
+        var tomaAshrunner = L.marker([71.497037, -39.199219], {icon:iconPlaces})
+        tomaAshrunner.bindPopup("<b>Una Fortaleza tomada</b>");
+        tomaAshrunner.on('click', function() {
+            showSidebarText(
+                'Una Fortaleza tomada',
+                'La Fortaleza Ashrunner fue tomada por un grupo armado de civiles tomó esta y otras dos fortalezas de la zona.'
+            )
+        });
+        
 
+        BlackHoleSystem.create(80.4886, -37.265625, 5, 'green', {
+            clickable: true,
+            onClick: function() {
+                showSidebarText(
+                    'HOLA LEE ESTO!!!',
+                    '¡HOLa! AlgUna ves soniaste con Ser *ALGUIEN*? alGUNA ves pensaste como sería tu bida siu no fueses tan (insulto hiriente)?'+
+                    '\nclaro que lo penzaste si sos un (insulto aún mas hiriente) y como (insulto demasiado hiriente), deberóias morIR'+
+                    '\n\n(((Recalculando estrategia de atracción)))'+
+                    '\nIGNORA ESO'+
+                    '\nBEN AQUÍ. COSAS GRATIS SISI MUY GRATIS BARATAS SI.'
+                )
+           }
+        });
 
-        var Places = L.layerGroup([trollskullAlley]);
+        var Places = L.layerGroup([trollskullAlley, tomaAshrunner, mercat, theYawningPortal, theBlackstaffTower, hallsOfGrayForce, palacioAltamarea, palacioShpuma, rooksInn, vya, tdwel, mt, cdn, odt, ecd, xoblob, dragonEnsartado]);
         var Medium = L.layerGroup([])
         var SubPlaces = L.layerGroup([vya, tdwel, mt, cdn, odt, ecd, xoblob, dragonEnsartado, elTiro, oroApartment, casaManosDeGond, temploYustitia, rooksInn, torreTiempo]);
+        var Distritos = L.layerGroup([northWard, seaWard, castleWard, tradesWard, dockWard, southWard, fieldWard, cityOfTheDead]);
         Places.addTo(map)
         SubPlaces.addTo(map)
         Medium.addTo(map)
+        Distritos.addTo(map)
         var overlays = {
-            "Distritos": L.layerGroup([northWard, seaWard, castleWard, tradesWard, dockWard, southWard, fieldWard, cityOfTheDead]),
+            "Distritos": Distritos,
             "Lugares": Places,
             "Sub-lugares": SubPlaces
         };
@@ -586,6 +605,10 @@
         if (map.hasLayer(SubPlaces)) {
                     map.removeLayer(SubPlaces);
         }
+        map.removeLayer(Medium);
+        map.removeLayer(Places);
+        map.removeLayer(SubPlaces);
+        map.removeLayer(Distritos)
         function toggleMarkersOnZoom() {
             if (map.getZoom() > 5) {
                 if (!map.hasLayer(SubPlaces)) {

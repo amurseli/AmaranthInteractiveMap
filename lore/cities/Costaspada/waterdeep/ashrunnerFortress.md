@@ -10,4 +10,4 @@ El atrativo principal del salón, lo que lo hace no ser solamente un salon gigan
 
 El vitral vivo, esta compuesto de pequeños  y coloridos fragmentos, que se contraen y dilatan para iluminar la sala con un patrón siempre cambiante. Mediante un sistema de magia y espejos, la luz de luna se concentra siempre sobre el cristal, por lo que el salón entero puede iluminarse sin necesidad ninguna de lamparas o velas.
 
-![Salón Ashrunner iluminado](img/FortAshrunnerLight.jpg)
+<img src="img/FortAshrunnerLight.jpg" alt="Salón Ashrunner" style="width: 90%;">
