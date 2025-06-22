@@ -19,6 +19,10 @@ const BlackHoleSystem = {
     // Contenedor donde se crearán los agujeros negros
     container: null,
     
+    // Control de throttling
+    updateTimeout: null,
+    isUpdating: false,
+    
     /**
      * Inicializa el sistema de agujeros negros
      * @param {L.Map} leafletMap - Instancia del mapa de Leaflet
@@ -33,13 +37,28 @@ const BlackHoleSystem = {
             return false;
         }
         
-        // Configurar listeners del mapa
+        // Configurar listeners del mapa con throttling
         this.map.on('move zoom', () => {
-            this.updateAllPositions();
+            this.throttledUpdate();
         });
         
         console.log('BlackHoleSystem inicializado');
         return true;
+    },
+    
+    /**
+     * Actualización con throttling para mejor rendimiento
+     */
+    throttledUpdate: function() {
+        // Cancelar actualización previa si existe
+        if (this.updateTimeout) {
+            cancelAnimationFrame(this.updateTimeout);
+        }
+        
+        // Programar nueva actualización
+        this.updateTimeout = requestAnimationFrame(() => {
+            this.updateAllPositions();
+        });
     },
     
     /**
@@ -87,6 +106,13 @@ const BlackHoleSystem = {
         blackHoleElement.style.width = size + 'px';
         blackHoleElement.style.height = size + 'px';
         blackHoleElement.style.setProperty('--size', size + 'px');
+        blackHoleElement.dataset.baseSize = size; // Guardar tamaño base
+        
+        // Usar position absolute con transform para mejor rendimiento
+        blackHoleElement.style.position = 'absolute';
+        blackHoleElement.style.top = '0';
+        blackHoleElement.style.left = '0';
+        blackHoleElement.style.willChange = 'transform';
         
         // Agregar variación aleatoria a las animaciones
         const randomDelay = Math.random() * 3;
@@ -142,9 +168,21 @@ const BlackHoleSystem = {
         const lat = parseFloat(blackHoleElement.dataset.lat);
         const lng = parseFloat(blackHoleElement.dataset.lng);
         const point = this.map.latLngToContainerPoint(L.latLng(lat, lng));
-        const size = parseInt(blackHoleElement.style.width) || 150;
-        blackHoleElement.style.left = (point.x - size/2) + 'px';
-        blackHoleElement.style.top = (point.y - size/2) + 'px';
+        
+        // Obtener tamaño base y calcular nuevo tamaño basado en zoom
+        const baseSize = parseInt(blackHoleElement.dataset.baseSize) || parseInt(blackHoleElement.style.width) || 150;
+        const zoomLevel = this.map.getZoom();
+        const minZoom = 3;
+        const maxZoom = 6;
+        
+        // Escalar el tamaño basado en el zoom (crece con más zoom)
+        const zoomFactor = (zoomLevel - minZoom) / (maxZoom - minZoom);
+        const scaledSize = baseSize * (0.7 + (zoomFactor * 0.8)); // Entre 0.7x y 1.5x del tamaño base
+        
+        // Usar transform para mejor rendimiento
+        blackHoleElement.style.transform = `translate(${point.x - scaledSize/2}px, ${point.y - scaledSize/2}px)`;
+        blackHoleElement.style.width = scaledSize + 'px';
+        blackHoleElement.style.height = scaledSize + 'px';
     },
     
     /**
@@ -331,5 +369,46 @@ const BlackHoleSystem = {
         marker.blackHoleSize = size;
         
         return marker;
+    },
+    
+    /**
+     * Activa o desactiva el modo de rendimiento
+     * @param {boolean} enable - true para activar, false para desactivar
+     */
+    setPerformanceMode: function(enable) {
+        if (enable) {
+            // Reducir frecuencia de actualizaciones
+            this.blackHoles.forEach(bh => {
+                // Desactivar algunas animaciones
+                bh.element.querySelectorAll('.black-hole-particle').forEach(p => {
+                    p.style.display = 'none';
+                });
+                // Reducir velocidad de animaciones
+                bh.element.querySelector('.event-horizon').style.animationDuration = '20s';
+                bh.element.querySelector('.accretion-disk').style.animationDuration = '15s';
+                bh.element.querySelector('.gravity-well').style.animationDuration = '12s';
+            });
+        } else {
+            // Restaurar animaciones normales
+            this.blackHoles.forEach(bh => {
+                bh.element.querySelectorAll('.black-hole-particle').forEach(p => {
+                    p.style.display = 'block';
+                });
+                bh.element.querySelector('.event-horizon').style.animationDuration = '10s';
+                bh.element.querySelector('.accretion-disk').style.animationDuration = '5s';
+                bh.element.querySelector('.gravity-well').style.animationDuration = '4s';
+            });
+        }
+        console.log(`Modo de rendimiento ${enable ? 'activado' : 'desactivado'}`);
+    },
+    
+    /**
+     * Detecta automáticamente si debe activar el modo de rendimiento
+     */
+    autoDetectPerformance: function() {
+        // Si hay más de 5 agujeros negros, activar modo de rendimiento
+        if (this.blackHoles.length > 5) {
+            this.setPerformanceMode(true);
+        }
     }
 };

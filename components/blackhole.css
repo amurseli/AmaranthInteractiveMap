@@ -4,12 +4,15 @@
 
 /* Agujero negro pulsante */
 .black-hole {
-    position: absolute;
     width: 150px;
     height: 150px;
     z-index: 998;
     pointer-events: none;
     --size: 150px;
+    /* Optimizaciones de rendimiento */
+    transform-origin: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* Cuando es clickeable */
@@ -105,7 +108,7 @@
     animation: black-hole-absorb 3s linear infinite;
 }
 
-/* Animaciones */
+/* Animaciones - Versión optimizada para mejor rendimiento */
 @keyframes black-hole-pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.1); }
@@ -119,11 +122,9 @@
 @keyframes black-hole-warping {
     0%, 100% { 
         transform: scale(1) rotate(0deg);
-        filter: blur(2px);
     }
     50% { 
         transform: scale(1.2) rotate(180deg);
-        filter: blur(4px);
     }
 }
 
@@ -138,6 +139,21 @@
     100% {
         transform: translate(0, 0) scale(0);
         opacity: 0;
+    }
+}
+
+/* Modo de rendimiento reducido (opcional) */
+@media (prefers-reduced-motion: reduce) {
+    .black-hole-core,
+    .event-horizon,
+    .accretion-disk,
+    .gravity-well {
+        animation-duration: 20s !important;
+    }
+    
+    .black-hole-particle {
+        animation: none !important;
+        display: none;
     }
 }
 

@@ -212,8 +212,8 @@
         var map = L.map('map').setView([0, 0], 0);
         
         var bounds = L.latLngBounds(
-            [-80, -81],  // Esquina suroeste [lat, lng]
-            [83.50, 80.60]     // Esquina noreste [lat, lng]
+            [-80, -81],  
+            [83.50, 80.60]     
         );
         
         map.setMaxBounds(bounds);
@@ -221,9 +221,11 @@
         L.tileLayer('wd_map/{z}/{x}/{y}.png', {
             continuousWorld: false,
             noWrap: false,
-            minZoom: 4,
+            minZoom: 3,
             maxZoom: 6,
         }).addTo(map);
+
+        BlackHoleSystem.init(map);
 
         // Mensajes perturbadores aleatorios
         const creepyMessages = [
@@ -301,108 +303,296 @@
             }
         }, 5000);
 
-        const iconBig = createMarker('purple')
-        const iconSmall = createMarker('blue')
+
+        const iconPlaces = createMarker('purple', 1.3)
+        const iconSubPlaces = createMarker('amber', 1.5, 'cross')
         const iconMedium = createMarker('orange')
+        const iconDistricts = createMarker('darkerRed', 1.5, 'square');
 
         function closeSidebar() {
             document.getElementById('sidebar').style.display = 'none';
         }
 
-        // Efecto de temblor ocasional
-        setInterval(() => {
-            if (Math.random() < 0.05) {
-                document.body.classList.add('corrupted');
-                setTimeout(() => {
-                    document.body.classList.remove('corrupted');
-                }, 300);
-            }
-        }, 1000);
-        
 
-        
-       //######################################
+        //######################################
         //########## MARKERS BASE ##############
         //######################################
         
-        var lasTorresKolat = L.marker([-60, 41], {icon:iconBig}).addTo(map);
-        lasTorresKolat.bindPopup("<b>Las Torres Kolat</b>");
-        lasTorresKolat.on('click', function() {
-            showSidebarFromFile('lore/cities/Costaspada/waterdeep/kolat.md', 'Las Torres Kolat', 'Waterdeep');
+        //#region Districts
+
+        var northWard = L.marker([60.586967, 19.248047], {icon:iconDistricts}).addTo(map);
+        northWard.bindPopup("<b>Distrito Norte</b>");
+        northWard.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/districts/northWard.md', 'Distrito Norte', 'Waterdeep');
         });
 
-        var trollskullAlley = L.marker([67.08455, 27.751465], {icon:iconBig}).addTo(map);
+        var seaWard = L.marker([62.875188, -34.980469], {icon:iconDistricts}).addTo(map);
+        seaWard.bindPopup("<b>Distrito Marítimo</b>");
+        seaWard.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/districts/seaWard.md', 'Distrito Marítimo', 'Waterdeep');
+        });
+
+        var castleWard = L.marker([15.114553, 4.570313], {icon:iconDistricts}).addTo(map);
+        castleWard.bindPopup("<b>Distrito del Castillo</b>");
+        castleWard.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/districts/castleWard.md', 'Distrito del Castillo', 'Waterdeep');
+        });
+
+        var tradesWard = L.marker([-26.037042, 33.75], {icon:iconDistricts}).addTo(map);
+        tradesWard.bindPopup("<b>Distrito de los Comerciantes</b>");
+        tradesWard.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/districts/tradesWard.md', 'Distrito del Comercio', 'Waterdeep');
+        });
+
+        var dockWard = L.marker([-53.748711, 16.083984], {icon:iconDistricts}).addTo(map);
+        dockWard.bindPopup("<b>Distrito del Puerto</b>");
+        dockWard.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/districts/dockWard.md', 'Distrito del Puerto', 'Waterdeep');
+        });
+
+        var southWard = L.marker([-64.320872, 48.515625], {icon:iconDistricts}).addTo(map);
+        southWard.bindPopup("<b>Distrito Sur</b>");
+        southWard.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/districts/southWard.md', 'Distrito Sur', 'Waterdeep');
+        });
+
+        var fieldWard = L.marker([79.038437, 12.744141], {icon:iconDistricts}).addTo(map);
+        fieldWard.bindPopup("<b>Distrito de los Campos</b>");
+        fieldWard.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/districts/fieldWard.md', 'Distrito Agrónomo', 'Waterdeep');
+        });
+
+        var cityOfTheDead = L.marker([13.923404, 40.693359], {icon:iconDistricts}).addTo(map);
+        cityOfTheDead.bindPopup("<b>Ciudad de los Muertos</b>");
+        cityOfTheDead.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/districts/cityOfDead.md', 'Ciudad de los Muertos', 'Waterdeep');
+        });
+        //#endregion
+
+        //#region Field Ward
+        var rooksInn = L.marker([80.375381, -12.436523], {icon:iconSubPlaces}).addTo(map);
+        rooksInn.bindPopup("<b>Lo de Rook</b>");
+        rooksInn.on('click', function() {
+            showSidebarText(
+                'Lo de Rook',
+                'Un establecimiento que pasa desapercibido entre la pobreza y los refugiados del Distrito Agrónomo, pues de afuera, parece una simple posada venida abajo. \nEn realidad, "Lo de Rook" es una de los puntos de encuentro criminales mas importantes de el norte de Waterdeep. Rook Carabain, su dueño, es Estrecho, la una gente que toma contratos de organizaciones criminales como los Zenths o El Gremio de Xanathar para dárselos a sus seguidores, creando así una especie de "mercenarios" criminales.'
+            )
+        });
+
+        //#endregion
+
+        //#region North Ward
+
+        var trollskullAlley = L.marker([67.08455, 27.751465], {icon:iconPlaces}).addTo(map);
         trollskullAlley.bindPopup("<b>Callejón Trollskull</b>");
         trollskullAlley.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullAlley.md', 'Callejón Trollskull', 'Waterdeep');
         });
+
+        //#endregion
+
+        //#region Sea Ward
+        
+        var ashrunnerFortress = L.marker([71.497037, -39.199219], {icon:iconPlaces}).addTo(map);
+        ashrunnerFortress.bindPopup("<b>Fortaleza Ashrunner</b>");
+        ashrunnerFortress.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/ashrunnerFortress.md', 'Fortaleza Ashrunner', 'Waterdeep');
+        });
+        
+        var casaManosDeGond = L.marker([62.995158, -46.274414], {icon:iconSubPlaces}).addTo(map);
+        casaManosDeGond.bindPopup("<b>Casa de las Manos de Gond</b>");
+        casaManosDeGond.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/casaManosDeGond.md', 'Casa de las Manos de Gond', 'Waterdeep');
+        });
+
+        var temploYustitia = L.marker([73.124945, -43.769531], {icon:iconSubPlaces}).addTo(map);
+        temploYustitia.bindPopup("<b>Templo Yustitia</b>");
+        temploYustitia.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/temploYustitia.md', 'Templo Yustitia', 'Waterdeep');
+        });
+
+        var elTiro = L.marker([-58.722599, -55.371094], {icon:iconSubPlaces}).addTo(map);
+        elTiro.bindPopup("<b>El Tiro</b>");
+        elTiro.on('click', function() {
+            showSidebarText(
+                'El Tiro',
+                'El Tiro es el centro de entrenamiento de la divisón naval de la Guardia de Waterdeep. Se en el continente, justo al norte de la Isla Stormhaven, y es un lugar de gran importancia para las defensas de la ciudad.' +
+                '\nEn la puerta, se encuentra la gran estatua del Primer Inmigrante, un símbolo de los refugiados de todo el mundo, para recordarle a la gente que Waterdeep es una ciudad construída por la Comunidad, no por nadie solo'
+            );
+        });
+
+        var mercat = L.marker([37.788081, -2.900391], {icon:iconPlaces}).addTo(map);
+        mercat.bindPopup("<b>El Tiro</b>");
+        mercat.on('click', function() {
+            showSidebarText(
+                'Mercat',
+                'Posiblemente, el lugar más concurrido de Waterdeep, y uno de los más populares de todo Costaspada. El Mercat es un mercado andante, lleno de vendedores de todo color y forma. A diferencia de un mercado tradicional, en el Mercat se puede encontrar de TODO, '+
+                '\nDesde comida, ropa, armas, artesanías, hasta objetos mágicos y reliquias de gran valor. El Mercat es un lugar donde la gente puede encontrar lo que sea que necesite, y es un lugar donde la gente puede vender lo que sea que tenga para vender.' 
+            );
+        });
+        
+
+        //#endregion
+        
+        //#region Castle Ward
+        
+        var theBlackstaffTower = L.marker([33.760882, -36.540527], {icon:iconPlaces}).addTo(map);
+        theBlackstaffTower.bindPopup("<b>Torre del Blackstaff</b>");
+        theBlackstaffTower.on('click', function() {
+            showSidebarText('Torre del Blackstaff', 'La Torre del Blackstaff es la sede de la poderosa figura conocida con su epónimo, el Blackstaff. El Blackstaff actual es la Maga Vajra Safhar.\nLa torre es un símbolo de poder mágico y liderazgo en la ciudad.');
+        });
+        
+        var hallsOfGrayForce = L.marker([37.649034, -27.509766], {icon:iconPlaces}).addTo(map);
+        hallsOfGrayForce.bindPopup("<b>Salón de la Fuerza Grís</b>");
+        hallsOfGrayForce.on('click', function() {
+            showSidebarText(
+                'Salón de la Fuerza Grís',
+                'El Salón de la Fuerza Grís es la sede principal de la Fuerza Grís, es decir, el grupo élite de aventureros que trabajan para el Open Lord de Waterdeep.'
+                
+            )
+        });
+        
+        var palacioAltamarea = L.marker([-33.578015, 3.779297], {icon:iconPlaces}).addTo(map);
+        palacioAltamarea.bindPopup("<b>Palacio Altamarea</b>");
+        palacioAltamarea.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/palacioAltamarea.md', 'Palacio Altamarea', 'Waterdeep');
+        });
+        
+        var palacioShpuma = L.marker([-12.897489, -29.267578], {icon:iconPlaces}).addTo(map);
+        palacioShpuma.bindPopup("<b>Palacio Shpuma</b>");
+        palacioShpuma.on('click', function() {
+            showSidebarText(
+                'Palacio Shpuma',
+                'El Palacio Shpuma es la residencia oficial del Open Lord de Waterdeep, encontrado al pie del monte Occidental.'+
+                'Frente a el, en la plaza Corazón, se alza también la Torre de del Señor del Tiempo, el hogar y eventualmente la tumba del primer Open Lord de Waterdeep.' +
+                'El Palacio Shpuma es un edificio de gran tamaño, con una arquitectura impresionante y una gran cantidad de habitaciones y salones. Es nombrado en todo Costaspada como un ejemplo de un lugar extremadamente lujurioso, y todo el que haya tenido el placer de conocer su interior comenta la importancia de las obras de arte que cuelgan en sus pasillos, la maestría de los artesanos al crear muebles tan perfectos y la perfecta mezcla con la naturaleza que guarda su interior.' 
+            );
+        });
+        
+        var torreTiempo = L.marker([-15.961329, -23.466797], {icon:iconSubPlaces}).addTo(map);
+        torreTiempo.bindPopup("<b>Torre del Señor del Tiempo</b>");
+        torreTiempo.on('click', function() {
+            showSidebarText(
+                'Torre del Señor del Tiempo',
+                'La Torre del Señor del Tiempo es un edificio histórico y emblemático del Distrito del Castillo. De hecho, la estructura antecede a la propia ciudad, siendo parte de Caraxes, la capital de La Unión.' +   
+                '\nCon la creación de La Alianza de Lores, La Torre se convirtió en la casa de el primer Open Lord de Waterdeep, Nareres Shpuma; para luego convertirse también en su tumba.' +
+                '\nA día de hoy, se desconoce el propósito de semejante torre, y que función le dió La Unión. Su interior, dividido en pisos, funciona como una mazmorra gigante que portege lo que luego se convirtió en el hogar del propio Nareres.'
+            );  
+        });
+        
+        //#endregion
+        
+        //#region Dock Ward
+
+        var theYawningPortal = L.marker([-35.746512, 12.32666], {icon:iconPlaces}).addTo(map);
+        theYawningPortal.bindPopup("<b>El Portal Bostezante</b>");
+        theYawningPortal.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/yawningPortal.md', 'El Portal Bostezante', 'Waterdeep');
+        });
+
+        var oroApartment = L.marker([-40.996484, 27.905273], {icon:iconSubPlaces}).addTo(map);
+        oroApartment.bindPopup("<b>Departamento de Oro</b>");
+        oroApartment.on('click', function() {
+            showSidebarFromFile('lore/cities/Costaspada/waterdeep/oroApartment.md', 'Departamento de Oro', 'Waterdeep');
+        });
+        
+        var xoblob = L.marker([-63.064914, 28.850098], {icon:iconSubPlaces}).addTo(map);
+        xoblob.bindPopup("<b>Tienda Violeta del Viejo Xoblob</b>");
+        xoblob.on('click', function() {
+            showSidebarText(
+                'Tienda Violeta del Viejo Xoblob',
+                'Una peculiar tienda atendida por un peculiar gnomo llamado Xoblob. El hombre está, según comenta la gente de los puertos, algo loco, y solo vende en su tienda cosas de color violeta.'
+            )
+        });
+
+        var dragonEnsartado = L.marker([-63.636504, 25.422363], {icon:iconSubPlaces}).addTo(map);
+        dragonEnsartado.bindPopup("<b>El Dragón Ensartado</b>");
+        dragonEnsartado.on('click', function() {
+            showSidebarText(
+                'El Dragón Ensartado',
+                'Una taberna famosa por su decoración única, ser horripilante. Los muebles y las paredes se caen a pedazos de tantas peleas y, como muchas otras tabernas de Waterdeep, no tienen forma de competir contra el Portal Bostezante.'+
+                '\n\nHarvey paso por este aquí en su búsqueda de Daemon, aunque Waterdeep no parecía tener ninguna información importante, durante su estadia en este lugar logro encontrar información sobre su maestro, asi como algunas notas que dejo tiradas en su habitación que lo guiaron hacia el bosque de Ardeep'+
+                '\n\nLa Party interrogó a unos malvivientes en el bar para saber que ocurrió con Renaer Neverember y Floon Blagmaar'
+            )
+        });
+
+        //#endregion
+
+        //#region Trollskull Alley markers
         // Trollskull Alley markers
-        var vya = L.marker([66.478208, 30.717773], {icon:iconSmall})
+        var vya = L.marker([66.478208, 30.717773], {icon:iconSubPlaces})
         vya.bindPopup("<b>Vapor y Acero</b>");
         vya.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/vaporYAcero.md', 'Vapor y Acero', 'Waterdeep');
         });
 
-        var tdwel = L.marker([67.483338, 23.752441], {icon:iconSmall})
+        var tdwel = L.marker([67.483338, 23.752441], {icon:iconSubPlaces})
         tdwel.bindPopup("<b>El Tesoro de Wyrm, ¡El Libro!</b>");
         tdwel.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/rishaalBookstore.md', 'El Tesoro de Wyrm, ¡El Libro!', 'Waterdeep');
         });
 
-        var mt = L.marker([67.550559, 28.959961], {icon:iconSmall})
+        var mt = L.marker([67.550559, 28.959961], {icon:iconSubPlaces})
         mt.bindPopup("<b>Mansión Trollskull</b>");
         mt.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/tollskullManor.md', 'Mansión Trollskull', 'Waterdeep');
         });
 
-        var cdn = L.marker([66.748677, 28.5864], {icon:iconSmall})
+        var cdn = L.marker([66.748677, 28.5864], {icon:iconSubPlaces})
         cdn.bindPopup("<b>Corona de Nanotako</b>");
         cdn.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/coronaDeNanotako.md', 'Corona de Nanotako', 'Waterdeep');
         });
 
-        var odt = L.marker([67.592475, 26.894531], {icon:iconSmall})
+        var odt = L.marker([67.592475, 26.894531], {icon:iconSubPlaces})
         odt.bindPopup("<b>Ojo de Tigre</b>");
         odt.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/ojoDeTigre.md', 'Ojo de Tigre', 'Waterdeep');
         });
 
-        var ecd = L.marker([67.033163, 31.223145], {icon:iconSmall})
+        var ecd = L.marker([67.033163, 31.223145], {icon:iconSubPlaces})
         ecd.bindPopup("<b>El Clavo Doblado</b>");
         ecd.on('click', function() {
             showSidebarFromFile('lore/cities/Costaspada/waterdeep/elClavoDoblado.md', 'El Clavo Doblado', 'Waterdeep');
         });
+        //#endregion
+        
+        //######################################
+        //######## MARKERS CORRUPTED ###########
+        //######################################
 
-        BlackHoleSystem.create(-60, 41, 120, 'purple');
-        
-        
-        var Big = L.layerGroup([trollskullAlley, lasTorresKolat]);
+        BlackHoleSystem.create(-60, 41, 50, 'blue', {
+            clickable: true,
+            onClick: function() {
+                showSidebarFromFile('lore/cities/Costaspada/wd_corrupted/kolat.md', 'Una Tormenta Iridiscente', 'Waterdeep');
+            }
+        });
+
+
+        var Places = L.layerGroup([trollskullAlley]);
         var Medium = L.layerGroup([])
-        var Small = L.layerGroup([vya, tdwel, mt, cdn, odt, ecd]);
-        Big.addTo(map)
-        Small.addTo(map)
+        var SubPlaces = L.layerGroup([vya, tdwel, mt, cdn, odt, ecd, xoblob, dragonEnsartado, elTiro, oroApartment, casaManosDeGond, temploYustitia, rooksInn, torreTiempo]);
+        Places.addTo(map)
+        SubPlaces.addTo(map)
         Medium.addTo(map)
         var overlays = {
-            "Grandes": Big,
-            "Medianas": Medium,
-            "Pequeñas": Small
+            "Distritos": L.layerGroup([northWard, seaWard, castleWard, tradesWard, dockWard, southWard, fieldWard, cityOfTheDead]),
+            "Lugares": Places,
+            "Sub-lugares": SubPlaces
         };
         L.control.layers(null, overlays,{ collapsed: false }).addTo(map);
-        
-        if (map.hasLayer(Small)) {
-            map.removeLayer(Small);
+
+        if (map.hasLayer(SubPlaces)) {
+                    map.removeLayer(SubPlaces);
         }
-        
         function toggleMarkersOnZoom() {
             if (map.getZoom() > 5) {
-                // Add markerLayer if zoom is smaller than 3
-                if (!map.hasLayer(Small)) {
-                    map.addLayer(Small);
+                if (!map.hasLayer(SubPlaces)) {
+                    map.addLayer(SubPlaces);
                 }
             } else {
-                // Remove markerLayer if zoom is 3 or greater
-                if (map.hasLayer(Small)) {
-                    map.removeLayer(Small);
+                if (map.hasLayer(SubPlaces)) {
+                    map.removeLayer(SubPlaces);
                 }
             }
         } 
