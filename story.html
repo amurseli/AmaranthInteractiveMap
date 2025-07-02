@@ -43,6 +43,19 @@
         .metadata span {
             margin-right: 10px;
         }
+
+        /* Sangría para párrafos */
+        .paragraph {
+            text-indent: 2em;
+            margin-bottom: 0em;
+        }
+        
+        /* Separador de secciones */
+        .section-break {
+            margin: 2em 0;
+            border-top: 1px solid #555;
+            height: 1px;
+        }
     </style>
 </head>
 <body>
@@ -99,15 +112,77 @@
                     if (match) {
                         const metadata = match[1];
 
-
                         // Eliminar los metadatos del contenido
                         text = text.replace(metadataRegex, "").trim();
                     }
 
                     // Cargar el contenido sin los metadatos
-                    document.getElementById("story-content").innerHTML = marked.parse(text);
+                    marked.setOptions({ breaks: true });
+                    
+                    // Procesar el markdown para detectar cambios de sección (3+ saltos de línea)
+                    // y mantener párrafos normales (1-2 saltos)
+                    const lines = text.split('\n');
+                    let processedText = '';
+                    let emptyLineCount = 0;
+                    
+                    for (let i = 0; i < lines.length; i++) {
+                        const line = lines[i];
+                        
+                        if (line.trim() === '') {
+                            emptyLineCount++;
+                        } else {
+                            // Si hay 2 o más líneas vacías, es un cambio de sección
+                            if (emptyLineCount >= 2) {
+                                processedText += '\n\n---SECTION_BREAK---\n\n';
+                            } else if (emptyLineCount === 1) {
+                                // Una línea vacía es solo un salto normal
+                                processedText += '\n';
+                            }
+                            
+                            processedText += line + '\n';
+                            emptyLineCount = 0;
+                        }
+                    }
+                    
+                    // Procesar con marked
+                    let htmlContent = marked.parse(processedText);
+                    
+                    // Reemplazar marcadores de sección
+                    htmlContent = htmlContent.replace(/<p>---SECTION_BREAK---<\/p>/g, '<div class="section-break"></div>');
+                    htmlContent = htmlContent.replace(/---SECTION_BREAK---<br>/g, '<div class="section-break"></div>');
+                    htmlContent = htmlContent.replace(/<br>---SECTION_BREAK---/g, '<div class="section-break"></div>');
+                    
+                    // Procesar párrafos para agregar sangrías
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = htmlContent;
+                    
+                    const paragraphs = tempDiv.querySelectorAll('p');
+                    paragraphs.forEach(p => {
+                        const html = p.innerHTML;
+                        if (html.includes('<br>')) {
+                            // Dividir por <br> y crear divs con sangría
+                            const lines = html.split('<br>');
+                            const newContent = lines
+                                .map(line => {
+                                    line = line.trim();
+                                    if (line && !line.includes('SECTION_BREAK')) {
+                                        return `<div class="paragraph">${line}</div>`;
+                                    }
+                                    return '';
+                                })
+                                .filter(line => line)
+                                .join('');
+                            
+                            if (newContent) {
+                                p.innerHTML = newContent;
+                            }
+                        } else if (!html.includes('SECTION_BREAK')) {
+                            p.classList.add('paragraph');
+                        }
+                    });
+                    
+                    document.getElementById("story-content").innerHTML = tempDiv.innerHTML;
                 })
-
                 .catch(error => {
                     console.error("Error al cargar la historia:", error);
                     document.getElementById("story-content").innerHTML = "<p>Error al cargar la historia.</p>";
