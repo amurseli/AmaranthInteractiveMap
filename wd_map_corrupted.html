@@ -229,7 +229,7 @@
         L.tileLayer('wd_map/{z}/{x}/{y}.png', {
             continuousWorld: false,
             noWrap: false,
-            minZoom: 4,
+            minZoom: 3,
             maxZoom: 6,
         }).addTo(map);
 
@@ -321,6 +321,16 @@
             document.getElementById('sidebar').style.display = 'none';
         }
 
+        // Marcador arrastrable
+        
+        var marker = L.marker([67.08455, 27.751465], {
+            draggable: true,
+        }).addTo(map);
+        marker.bindPopup('LatLng Marker').openPopup();
+        marker.on('dragend', function(e) {
+            marker.getPopup().setContent(marker.getLatLng().toString()).openOn(map);
+        });
+        
 
         //######################################
         //########## MARKERS BASE ##############
@@ -578,7 +588,15 @@
                 'La Fortaleza Ashrunner fue tomada por un grupo armado de civiles tomó esta y otras dos fortalezas de la zona.'
             )
         });
-        
+
+        var PuertaRio = L.marker([-33.751802, 56.25], {icon:iconCorruptedEvent})
+        PuertaRio.bindPopup("<b>Puerta tomada</b>");
+        PuertaRio.on('click', function() {
+            showSidebarText(
+                'Los Primeros en Llegar',
+                'La Puerta Rio no tiene hombres suficientes para defenderse, y una pequeña escuadra de soldados Baldureños fue vista por la zona. Van a ser los primeros en llegar, y parece que saben que es la puerta más fácil de capturar. Se necesita a alguien fuerte que pueda reunir soldados para defenderla de los invasores antes de que lleguen.'
+            )
+        });
 
         BlackHoleSystem.create(80.4886, -37.265625, 10, 'green', {
             clickable: true,
@@ -595,7 +613,7 @@
         });
 
         var Places = L.layerGroup([trollskullAlley, mercat, theYawningPortal, theBlackstaffTower, hallsOfGrayForce, palacioAltamarea, palacioShpuma]);
-        var corruptedEvent = L.layerGroup([tomaAshrunner])
+        var corruptedEvent = L.layerGroup([tomaAshrunner, PuertaRio])
         var SubPlaces = L.layerGroup([vya, tdwel, mt, cdn, odt, ecd, xoblob, dragonEnsartado, elTiro, oroApartment, casaManosDeGond, temploYustitia, rooksInn, torreTiempo]);
         var Distritos = L.layerGroup([northWard, seaWard, castleWard, tradesWard, dockWard, southWard, fieldWard, cityOfTheDead]);
         Places.addTo(map)

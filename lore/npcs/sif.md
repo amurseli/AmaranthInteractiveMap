@@ -9,7 +9,8 @@ Su fortuito encuentro con *El Explorador* y *El Brujo* fue de lo más peculiar, 
 Si bien su equipo quizás no confía al cien por ciento en él, y puesto en sus palabras, “*Un Héroe derrota al mal siempre*”, y estoy seguro que eso hará hasta al final. El problema vendrá, preveo, más adelante. ¿Cuando el Bien y el Mal se pierden en el mar de Perspectivas, a donde cae la lealtad de los seres? 
 ¿Cual filo pesa mas, La Verdad o La Justicia?
 
-
+ADENDA: Puedo… ver algo más. Algo vergonzoso. Algo que sangra duelo y pena. 
+Yan Cloudwalker… un nombre que vibra en angustia, un vínculo roto. Todo Héroe tiene su mal día.
 
 - *Proximidad kármica*: 0.79
 - *Estado Empíreo:* Vivo

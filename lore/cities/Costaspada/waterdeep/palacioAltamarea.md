@@ -1,0 +1,4 @@
+La base de operaciones del poder ejecutivo de Waterdeep. Es el castillo mas concurrido de la ciudad, puesto que ahí se concentra toda la toma de decisiones. También, es el lugar de trabajo del Open Lord, Laeral Silverhand.
+
+### Apariencia
+Es una majestuosa construcción de piedra clara y techos verdes agua empinados, salpicados por cúpulas ornamentadas. Por encima, una perpetua nube de gaviotas giran en torno a la torre central. Está construida por una torre central, un interior y una mansión gigante, con muchos departamentos especializados para manejar todos los aspectos de la vida en Waterdeep.
