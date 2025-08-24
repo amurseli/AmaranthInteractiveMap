@@ -11,10 +11,13 @@ Como un nudo en el telar, su proximidad karmica supedita la de todos los demás 
 Nadando en una explosión de Azul y Energía, *El Mago* y *Aquel que guarda verdades* descubrieron algo. Algo grande.
 Algo que causó lo que denominamos el Evento-78I. La más reciente ruptura en el Vínculo Loeges (¡Y la única en eones!). Si estuvieron vivos durante el 77I, saben lo peligroso que es, incluso durando esta vez una millonésima de segundo.
 
-Con la Guerra ocurriendo al otro lado del continente; puede que su ausencia en la Academia cree la oportunidad perfecta para que lo que sea que esté al otro lado haga su jugada.
+Entiende bien que lo que hace es por el bien común, pero descubrí también, que no puede evitar llorar cada vez que descubre algo. Cada paso que da ayuda, pero los acerca poco a poco a su propia destrucción.
 
 
 - *Proximidad kármica*: 0.83 kjp
 - *Estado Empíreo:* Vivo
 - *Estado Spíreo:* Despertado
 - *Característica Spírea:* Cognoplastia
+
+<img src="lore/npcs/npc-img/Plaudinax.png" alt="Plaudinax" width="800"/>
+(Lord Plaudinax de Ciudantigua, 08/07/2025)
