@@ -35,8 +35,11 @@
     { "id": "W27", "title": "Mañana es lo único que tenemos", "color": "#ff6600", "labelColor": "#c4c4c4" , "shape": "dot", "size": 15},
     { "id": "W28", "title": "Shoras Ckorin, El avatar de Natanatan", "color": "#ff6600", "labelColor": "#c4c4c4" , "shape": "dot", "size": 15},
     { "id": "W29", "title": "Llora después", "color": "#ff6600", "labelColor": "#c4c4c4" , "shape": "dot", "size": 15},
-    { "id": "W30", "title": "Comité de Guerra", "color": "#ff6600", "labelColor": "#c4c4c4" , "shape": "dot", "size": 15},
+    { "id": "W30", "title": "Blues de Rebeldía y Maquinaciones", "color": "#ff6600", "labelColor": "#c4c4c4" , "shape": "dot", "size": 15},
+
+    { "id": "W31", "title": "El Tañir de las Primeras Campanadas", "color": "#8C00CC", "labelColor": "#c4c4c4" , "shape": "triangleDown", "size": 30},
     
+
 
 
     { "id": "S1", "title": "La Piedra de Murkmire", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "diamond", "size": 15 },
@@ -57,7 +60,8 @@
     { "id": "S16", "title": "Surcacielos", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
     { "id": "S17", "title": "Sapos de otro Pozo", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
 
-    { "id": "BA1", "title": "Blue Alley", "color": "#6bb5ff", "labelColor": "#c4c4c4", "shape": "triangleDown", "size": 15}  
+    { "id": "BA1", "title": "Blue Alley", "color": "#6bb5ff", "labelColor": "#c4c4c4", "shape": "triangleDown", "size": 15},
+    { "id": "N1", "title": "El Mar de Nada y Una Luz Intermitente", "color": "#000000", "labelColor": "#c4c4c4", "shape": "triangle", "size": 15}
   ],
   "connections": [
     { "from": "W1", "to": "W2", "color": "#cc5500" },
@@ -100,6 +104,7 @@
     { "from": "W27", "to": "W28", "color": "#cc5500" },
     { "from": "W28", "to": "W29", "color": "#cc5500" },
     { "from": "W29", "to": "W30", "color": "#cc5500" },
+    { "from": "W30", "to": "W31", "color": "#cc5500" },
 
     { "from": "S1", "to": "S2", "color": "#474080"},
     { "from": "S2", "to": "S3", "color": "#474080"},
@@ -117,6 +122,7 @@
     { "from": "S14", "to": "S15", "color": "#474080"},
     { "from": "S15", "to": "S16", "color": "#474080"},
     { "from": "S16", "to": "S17", "color": "#474080"},
+    { "from": "S17", "to": "W31", "color": "#474080"},
     
     { "from": "W10b", "to": "S1", "color": "#771BA2"}
   ]
