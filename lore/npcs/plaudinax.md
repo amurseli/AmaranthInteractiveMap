@@ -6,7 +6,7 @@ Dragones... Dragones. Seres extraños. Un denominador común a lo largo de todo 
 
 Plaudinax no guarda oro ni joyas ni nada que pueda considerarse un "Tesoro" per se. Todavía estoy trantando de analizar de dónde consigue todo su poder, y creo que, como todo en Amaranth, el concepto es más Abstracto.
 
-Como un nudo en el telar, su proximidad karmica supedita la de todos los demás informes que entregué hasta el momento (sí, estoy al tanto que todavía debo el informe de *La Riena Eterna*) y podría hacer este informe virtualmente infinito, pero el hermano Oris me comentó que "amaría informes más breves", así que aquí vá lo que verdaderamente nos compete.
+Como un nudo en el telar, su proximidad karmica supedita la de todos los demás informes que entregué hasta el momento (sí, estoy al tanto que todavía debo el informe de *La Reina Eterna*) y podría hacer este informe virtualmente infinito, pero el hermano Oris me comentó que "amaría informes más breves", así que aquí vá lo que verdaderamente nos compete.
 
 Nadando en una explosión de Azul y Energía, *El Mago* y *Aquel que guarda verdades* descubrieron algo. Algo grande.
 Algo que causó lo que denominamos el Evento-78I. La más reciente ruptura en el Vínculo Loeges (¡Y la única en eones!). Si estuvieron vivos durante el 77I, saben lo peligroso que es, incluso durando esta vez una millonésima de segundo.
