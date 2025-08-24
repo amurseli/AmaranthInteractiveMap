@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recaps - Amaranth World</title>
-    <script src="https://unpkg.com/marked/marked.min.js"></script> <!-- Convertir Markdown a HTML -->
-    <style>
+    <script src="https://unpkg.com/marked@16.2.0/lib/marked.umd.js"></script>    <style>
         html, body {
             margin: 0;
             padding: 0;
@@ -183,7 +182,8 @@
                                 recapPanel.style.display = 'block';
                             })
                             .catch(error => {
-                                recapContent.innerHTML = '<p>Error al cargar el resumen.</p>';
+                                recapContent.innerHTML = '<p>Un cierto goblin esta trabajando arduamente en traer este resumen de sesión...</p>';
+                                console.log(error)
                                 recapPanel.style.display = 'block';
                             });
                     }
