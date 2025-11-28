@@ -63,8 +63,10 @@
     { "id": "S16", "title": "Surcacielos", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
     { "id": "S17", "title": "Sapos de otro Pozo", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
 
-    { "id": "S20", "title": "Sin Tiempo que Perder", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
-    { "id": "S21", "title": "Ardeep, La Sombra entre los Árboles", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
+    { "id": "S20", "title": "El Camino lo hacen los Pies", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
+    { "id": "S21", "title": "Mor'Vanith, Ciudad de las Bestias", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
+    { "id": "S22", "title": "El Cielo, por Asalto", "color": "#1C00FF", "labelColor": "#c4c4c4", "shape": "dot", "size": 15},
+
 
     
     { "id": "BA1", "title": "Blue Alley", "color": "#6bb5ff", "labelColor": "#c4c4c4", "shape": "triangleDown", "size": 15},
@@ -141,6 +143,7 @@
 
     { "from": "W32", "to": "S20", "color": "#474080"},
     { "from": "S20", "to": "S21", "color": "#474080"},
+    { "from": "S21", "to": "S22", "color": "#474080"},
     
     
     { "from": "W10b", "to": "S1", "color": "#771BA2"}

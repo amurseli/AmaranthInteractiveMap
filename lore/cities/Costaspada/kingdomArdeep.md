@@ -162,57 +162,26 @@ ________________________________________
 
 ________________________________________
 
-## Ciudades más importantes
--	*Lythra’ El capital*, sede del trono y el Círculo. (Medio)
+#### Loryath’El (Capital Real) (Ciudad Alta)
 
--	*Zan'Dhul*: ciudad de alquimistas, situada en cavernas y raíces de árboles. (Baja)
+- Nivel Alto: Palacio de la Reina dentro de arbol dios, Salón del Círculo, pasaje a ciudad alta.
+- Nivel Medio: Bibliotecas arcanas, viviendas de nobles, templos oscuros.
+- Nivel Bajo: Cuarteles de la guardia, mercados rituales, acceso a raíces profundas.
 
--	*Mor’Vanith*: centro de entrenamiento de bestias, donde más pega la luz .(Alta)
+#### Zan'Dhul (Ciudad Alquímica) (Ciudad Baja)
 
-#### Lythra’El  (Capital Real) (Ciudad Media)
--	Nivel Alto: Palacio de la Reina dentro de arbol dios, Salón del Círculo, pasaje a ciudad alta.
+- Nivel Alto: Entradas cavernosas, Talleres alquímicos, torres de estudios, laboratorios oscuros.
+- Nivel Medio: Almacenes de ingredientes mágicos.
+- Nivel Bajo: Cristales encantados, cámaras rituales, reservas de energía mágica, calabozos.  
+    (Se ilumina la ciudad con cristales mágicos y hongos bioluminiscentes)
 
--	Nivel Medio: Bibliotecas arcanas, viviendas de nobles, templos oscuros.
+#### Mor’Vanith (Ciudad Bestiaria) (Ciudad Media)
 
--	Nivel Bajo: Cuarteles de la guardia, mercados rituales, acceso a raíces profundas.
- 
+- Nivel Alto: Torres de doma, perchas para bestias voladoras.
+- Nivel Medio: Establos colgantes, zonas de entrenamiento militar.
+- Nivel Bajo: Celdas de contención, criaderos mágicos.  
+    (Como pega más la luz, no usan tanta iluminación de hongos bioluminiscentes.)
 
-#### Zan'Dhul (Ciudad Alquímica) (Ciudad baja)
--	Nivel Alto: Entradas cavernosas, Talleres alquímicos, torres de estudios, laboratorios oscuros.
-
--	Nivel Medio: Almacenes de ingredientes mágicos.
-
--	Nivel Bajo: Cristales encantados, cámaras rituales, reservas de energía mágica, calabozos.
-(Se ilumina la ciudad con cristales mágicos y hongos bioluminiscentes)
-
-
-
-### Mor’Vanith (Ciudad Bestiaria) (Ciudad Alta)
--	Nivel Alto: Torres de doma, perchas para bestias voladoras.
-
--	Nivel Medio: Establos colgantes, zonas de entrenamiento militar.
-
--	Nivel Bajo: Celdas de contención, criaderos mágicos.
-(Como pega más la luz, no usan tanta iluminación de hongos bioluminiscentes.)
-
-________________________________________
-## Entrada
-Tipos de entrada:
-
--	Sendero de la Penumbra
- Un camino secreto que se revela solo durante luna llena o tras realizar un conjuro específico. El camino cruza zonas de niebla que confunden a los viajeros no autorizados. Aquellos que entran sin permiso suelen desaparecer. (Te deja en la ciudad media)
- 
--	Puente de Telaraña Negra
- Suspendido entre árboles ancestrales, solo se manifiesta ante aquellos que poseen un emblema drow encantado. Desde lejos parece un abismo. Desde cerca, los hilos mágicos brillan débilmente. Sirve de frontera para diplomáticos o comerciantes secretos. (Te deja en la ciudad alta)
-
- 
--	Raíz Viviente
- Un acceso subterráneo que se abre desde las raíces del bosque. Las raíces se retuercen para formar túneles y pasajes vivientes, guiados por magia ancestral. Es la entrada usada por exploradores, cazadores y esclavos. (Te deja en la ciudad baja)
-
- 
--	Invocación del Árbol Guía
- Algunos druidas oscuros o altos alquimistas pueden invocar un “Árbol Guía” que abre una grieta vertical en su tronco, funcionando como portal temporal hacia una zona segura del reino. (Te deja en la ciudad capital)
- 
 
 
 *Por Mono - 24/04/25*
