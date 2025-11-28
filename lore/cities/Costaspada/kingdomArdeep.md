@@ -23,9 +23,7 @@ Jo’Fey fue criado en los lujos del palacio, pero carecía del temple de su mad
 Bajo su mandato:
 
 -	La nobleza se volvió más rica y la población más controlada.
-
 -	Se cerraron rutas con otros enclaves, temiendo traiciones imaginarias.
-
 -	El Círculo fue manipulado hasta convertirse en una sombra de su antigua gloria: un brazo de la tiranía, no del consejo.
 
 Donde antes había respeto, ahora hay miedo. Donde había cooperación, ahora hay vigilancia. El bosque de Ardeep ya no susurra canciones de gloria, sino lamentos de traición.
@@ -38,70 +36,49 @@ ________________________________________
 
 El Reino de Ardeep es completamente autosustentable, oculto del comercio exterior salvo por casos excepcionales bajo términos estrictos. Su economía y subsistencia se basa en:
 -	Agricultura fúngica: cultivan vastos jardines subterráneos y verticales de hongos luminiscentes, raíces y frutos nocturnos.
-
 -	Caza y domesticación de bestias del bosque oscuro, algunas incluso mágicas, cuya carne y recursos sirven tanto para alimentación como para ropa y materiales rituales.
-
 -	Minería de minerales encantados extraídos de cavernas profundas del bosque, muchos de los cuales tienen propiedades mágicas útiles para el desarrollo de armas, armaduras y construcciones.
-
 -	Magia natural y alquimia: gracias al dominio arcano de los Drow, han convertido la alquimia y la magia en herramientas clave de autosuficiencia, desde sistemas de purificación de agua hasta iluminación natural por cristales encantados.
-
 -	Artesanía élfica oscura, altamente refinada y exportada de forma clandestina a compradores poderosos que ni siquiera saben de dónde provienen esas reliquias.
 
 ________________________________________
 ## Demografía
 Población predominantemente drow. Las clases sociales se dividen en:
 -	Nobleza urbana.
-
 -	Ciudadanos comunes.
-
 -	Castas bajas y esclavos. Suelen vivir en los niveles bajos de las ciudades.
 
 ________________________________________
 ## Geopolítica y Subdivisiones
 El reino está dividido en:
 -	Corona y Círculo (nivel superior de autoridad, ubicado en la ciudad capital).
-
 -	Zonas comerciales y funcionales (cada ciudad tiene sus zonas comerciales)
-
 -	Zonas bajas (las zonas/niveles bajos de las ciudades).
-
 -	Raíz profunda y cavernas (minería, alquimistas, exiliados). 
-
 (Cada ciudad es supervisada por un miembro del Círculo)
 
 ________________________________________
 ## Historia
 -	Fundación por clanes exiliados.
-
 -	Reinado de Fern: auge político, económico y mágico.
-
 -	Muerte misteriosa de Fern → ascenso de Jo’Fey.
-
 -	Corrupción del Círculo, represión interna y aislamiento exterior.
-
 -	El bosque, antes protector, ahora es una cárcel.
 
 ________________________________________
 ## Cultura y religión
 -	Tradiciones drow basadas en la oscuridad, magia y culto a la reina madre.
-
 -	Ritos nocturnos, danzas con hongos y cantos entre las ramas.
-
 -	Alquimia ritual como práctica sagrada. (Si, se drogan con pociones religiosamente)
-
 -	Religión politeísta oscura, con deidades vinculadas a la sombra, veneno, secretos.
-
 -	Las herejías o cultos extranjeros están prohibidos o duramente perseguidos. (Aún más con el nuevo rey)
 
 ________________________________________
 ## Tecnología y avances
 Era mágica avanzada con elementos alquímicos. Innovaciones:
 -	Iluminación con cristales bioluminiscentes.
-
 -	Estructuras semi-flotantes y raíces guiadas por magia.
-
 -	Transporte mediante bestias domesticadas.
-
 -	Comunicación mediante cristales encantados.
 
 ________________________________________
@@ -109,22 +86,16 @@ ________________________________________
 ## Relaciones exteriores
 Muy limitadas. Durante el reinado de Fern se mantenían alianzas con enclaves élficos y tratos secretos. Bajo Jo’Fey, se impuso el aislamiento. Relaciones actuales:
 -	Neutralidad agresiva.
-
 -	Espionaje en regiones vecinas.
-
 -	Comercio oculto y restringido.
 
 ________________________________________
 
 ## Fuerzas armadas y seguridad
 -	Guardia Élite del Círculo (máxima autoridad militar).
-
 -	Legión de Sombras (tropa regular).
-
 -	Bestias entrenadas para defensa y ataque.
-
 -	Espías y saboteadores.
-
 -	Control interno mediante vigilancia mágica y represión.
 
 ________________________________________
@@ -132,32 +103,23 @@ ________________________________________
 ## Leyes y justicia
 Justicia arbitraria, centralizada en la reina y el Círculo. Leyes escritas en códices antiguos:
 -	Castigos duros: exilio, marcas mágicas, esclavitud.
-
 -	No existe presunción de inocencia.
-
 -	El juicio puede ser ritual o público.
 
 ________________________________________
 
 ## Idiomas y educación
 -	Idioma principal: Élfico/Drow.
-
 -	Educación diferenciada: nobleza accede a estudios mágicos y filosóficos, el pueblo a oficios prácticos.
-
 -	Escuelas alquímicas y torres arcanas restringidas.
-
 -	Conocimiento controlado por la corona.
 
 ________________________________________
 ### Costumbres sociales y normas
 -	Matriarcado estricto: las mujeres poseen derechos superiores y lideran.
-
 -	Estructura familiar cerrada, con linajes femeninos como base del prestigio.
-
 -	Roles de género definidos, aunque los varones pueden aspirar a cargos si demuestran excelencia.
-
 -	Matrimonio es político o ritual, no romántico.
-
 -	Lealtad al trono por encima de todo.
 
 ________________________________________
